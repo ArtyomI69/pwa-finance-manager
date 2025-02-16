@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', 'node_modules/preline/dist/*.js'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontSize: {},
@@ -64,5 +64,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('preline/plugin')],
+  plugins: [require('tailwindcss-animate')],
 };
