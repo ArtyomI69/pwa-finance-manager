@@ -1,3 +1,5 @@
+import { AppleStyleDock } from '@/widgets/AppleStyleDock/AppleStyleDock';
+
 export const App = () => {
-  return <div>Hello world!</div>;
+  return <AppleStyleDock />;
 };
