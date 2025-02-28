@@ -1,5 +1,9 @@
-import { AppleStyleDock } from '@/widgets/AppleStyleDock/AppleStyleDock';
+import { Navigation } from '@/feautres/Navigation';
 
 export const App = () => {
-  return <AppleStyleDock />;
+  return (
+    <>
+      <Navigation />
+    </>
+  );
 };
