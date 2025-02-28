@@ -4,6 +4,7 @@ import { BottomNavigation } from '@/widgets/BottomNavigation/BottomNavigation';
 
 import { ReceiptRussianRuble, ChartColumnIncreasing, ScanQrCode, Users, Bell } from 'lucide-react';
 import { NavItem } from '../types/NavItem';
+import { RoutePath } from '@/shared/config/routerConfig';
 
 export const Navigation = () => {
   const isMobile = useIsMobile();
@@ -12,27 +13,27 @@ export const Navigation = () => {
     {
       title: 'Чеки',
       icon: <ReceiptRussianRuble className="h-full w-full" />,
-      href: '#',
+      href: RoutePath.receipts,
     },
     {
       title: 'Дашборд',
       icon: <ChartColumnIncreasing className="h-full w-full" />,
-      href: '#',
+      href: RoutePath.dashboard,
     },
     {
       title: 'QR сканирование',
       icon: <ScanQrCode className="h-full w-full" />,
-      href: '#',
-    },
-    {
-      title: 'Группы',
-      icon: <Users className="h-full w-full" />,
-      href: '#',
+      href: RoutePath.qr_scanner,
     },
     {
       title: 'Напомнить',
       icon: <Bell className="h-full w-full" />,
-      href: '#',
+      href: RoutePath.reminders,
+    },
+    {
+      title: 'Группы',
+      icon: <Users className="h-full w-full" />,
+      href: RoutePath.groups,
     },
   ];
 
