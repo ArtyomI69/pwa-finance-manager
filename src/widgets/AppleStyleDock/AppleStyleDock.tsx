@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function AppleStyleDock({ navItems }: { navItems: NavItem[] }) {
   return (
-    <div className="fixed bottom-2 left-1/2 max-w-full -translate-x-1/2">
+    <div className="fixed z-50 bottom-2 left-1/2 max-w-full -translate-x-1/2">
       <Dock className="items-end pb-3">
         {navItems.map((item) => (
           <Link to={item.href} key={item.title}>

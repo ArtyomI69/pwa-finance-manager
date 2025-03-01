@@ -1,5 +1,11 @@
+import { QrScanner } from '@/feautres/QrScanner';
+
 const QrScannerPage = () => {
-  return <div>QrScannerPage</div>;
+  return (
+    <>
+      <QrScanner />
+    </>
+  );
 };
 
 export default QrScannerPage;
