@@ -4,7 +4,7 @@ import { BottomNavigation } from '@/widgets/BottomNavigation/BottomNavigation';
 
 import { ReceiptRussianRuble, ChartColumnIncreasing, ScanQrCode, Users, Bell } from 'lucide-react';
 import { NavItem } from '../types/NavItem';
-import { RoutePath } from '@/shared/config/routerConfig';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 
 export const Navigation = () => {
   const isMobile = useIsMobile();

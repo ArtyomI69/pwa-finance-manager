@@ -1,4 +1,5 @@
 import { NavItem } from '@/feautres/Navigation';
+import { NavLink } from 'react-router-dom';
 
 export const BottomNavigation = ({ navItems }: { navItems: NavItem[] }) => {
   const firstHalfNavItems = navItems.slice(0, navItems.length / 2);
@@ -7,16 +8,25 @@ export const BottomNavigation = ({ navItems }: { navItems: NavItem[] }) => {
 
   const renderNavItem = ({ title, href, icon }: NavItem) => {
     return (
-      <button
+      <NavLink
+        to={href}
         key={title}
         type="button"
         className="inline-flex flex-col items-center justify-center px-5 text-neutral-600 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-gray-800 group"
       >
-        {icon}
-        <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-          {title}
-        </span>
-      </button>
+        {({ isActive }) => (
+          <>
+            {icon}
+            <span
+              className={`text-sm text-gray-500 dark:text-gray-400 ${
+                isActive && 'text-blue-600 dark:text-blue-500'
+              }`}
+            >
+              {title}
+            </span>
+          </>
+        )}
+      </NavLink>
     );
   };
 
@@ -25,13 +35,18 @@ export const BottomNavigation = ({ navItems }: { navItems: NavItem[] }) => {
       <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
         {firstHalfNavItems.map(renderNavItem)}
         <div className="flex items-center justify-center">
-          <button
+          <NavLink
+            to={middleNavItem.href}
             data-tooltip-target="tooltip-new"
             type="button"
-            className="inline-flex items-center justify-center w-14 h-14 p-3 font-medium text-white bg-green-600 rounded-full hover:bg-green-700 group focus:ring-4 focus:ring-green-300 focus:outline-none dark:focus:ring-green-800"
+            className={({ isActive }) =>
+              `inline-flex items-center justify-center w-14 h-14 p-3 font-medium text-white bg-green-600 rounded-full hover:bg-green-700 group ${
+                isActive && 'ring-4 ring-green-300 outline-none dark:ring-green-800'
+              }`
+            }
           >
             {middleNavItem.icon}
-          </button>
+          </NavLink>
         </div>
         {secondHalfNavItems.map(renderNavItem)}
       </div>

@@ -1,6 +1,6 @@
-import { RouteProps } from 'react-router-dom';
 import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
+import { RouteProps } from 'react-router-dom';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -51,7 +51,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
   [AppRoutes.QR_SCANNER]: {
     path: `${RoutePath.qr_scanner}`,
-    element: <ReceiptsPageAsync />,
+    element: <QrScannerPageAsync />,
     authOnly: true,
   },
   [AppRoutes.GROUPS]: {
