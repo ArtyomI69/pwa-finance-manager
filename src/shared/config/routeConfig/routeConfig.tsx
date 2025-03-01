@@ -1,6 +1,7 @@
+import { RouteProps } from 'react-router-dom';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
-import { RouteProps } from 'react-router-dom';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -67,6 +68,6 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
-    element: <ReceiptsPageAsync />,
+    element: <NotFoundPage />,
   },
 };
