@@ -1,5 +1,4 @@
-import { RouteProps } from 'react-router-dom';
-import { NotFoundPage } from '@/pages/NotFoundPage';
+import { Navigate, RouteProps } from 'react-router-dom';
 import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
 
@@ -68,6 +67,6 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
-    element: <NotFoundPage />,
+    element: <Navigate to={RoutePath.receipts} replace />,
   },
 };
