@@ -10,7 +10,9 @@ export function AppleStyleDock({ navItems }: { navItems: NavItem[] }) {
           <Link to={item.href} key={item.title}>
             <DockItem className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800">
               <DockLabel>{item.title}</DockLabel>
-              <DockIcon className="text-neutral-600 dark:text-neutral-300">{item.icon}</DockIcon>
+              <DockIcon className="text-neutral-600 dark:text-neutral-300 h-full w-full">
+                {item.icon}
+              </DockIcon>
             </DockItem>
           </Link>
         ))}

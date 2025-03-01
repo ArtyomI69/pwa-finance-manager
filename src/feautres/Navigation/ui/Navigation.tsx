@@ -12,27 +12,27 @@ export const Navigation = () => {
   const navItems: NavItem[] = [
     {
       title: 'Чеки',
-      icon: <ReceiptRussianRuble className="h-full w-full" />,
+      icon: <ReceiptRussianRuble />,
       href: RoutePath.receipts,
     },
     {
       title: 'Дашборд',
-      icon: <ChartColumnIncreasing className="h-full w-full" />,
+      icon: <ChartColumnIncreasing />,
       href: RoutePath.dashboard,
     },
     {
       title: 'QR сканирование',
-      icon: <ScanQrCode className="h-full w-full" />,
+      icon: <ScanQrCode />,
       href: RoutePath.qr_scanner,
     },
     {
       title: 'Напомнить',
-      icon: <Bell className="h-full w-full" />,
+      icon: <Bell />,
       href: RoutePath.reminders,
     },
     {
       title: 'Группы',
-      icon: <Users className="h-full w-full" />,
+      icon: <Users />,
       href: RoutePath.groups,
     },
   ];

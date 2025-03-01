@@ -19,7 +19,7 @@ export const BottomNavigation = ({ navItems }: { navItems: NavItem[] }) => {
             {icon}
             <span
               className={`text-sm text-gray-500 dark:text-gray-400 ${
-                isActive && 'text-blue-600 dark:text-blue-500'
+                isActive ? '!text-blue-600 !dark:text-blue-500' : ''
               }`}
             >
               {title}
