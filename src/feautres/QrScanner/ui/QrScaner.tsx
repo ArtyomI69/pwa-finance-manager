@@ -38,5 +38,7 @@ export const QrScanner = () => {
     };
   }, []);
 
-  return <video ref={videoRef} className="w-screen h-[100vh] object-cover" />;
+  return (
+    <video ref={videoRef} className="w-screen h-[calc(100vh-64px)] md:h-screen object-cover" />
+  );
 };

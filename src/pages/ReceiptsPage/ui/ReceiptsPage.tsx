@@ -1,5 +1,43 @@
 const ReceiptsPage = () => {
-  return <div>ReceiptsPage</div>;
+  return (
+    <div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+      <div>ReceiptsPage</div>
+    </div>
+  );
 };
 
 export default ReceiptsPage;
