@@ -13,9 +13,10 @@
   "aliases": {
     "components": "@/shared/components",
     "utils": "@/shared/lib/utils",
-    "ui": "@/shared/ui",
     "lib": "@/shared/lib",
-    "hooks": "@/shared/hooks"
+    "hooks": "@/shared/hooks",
+    "magicui": "@/shared/components/magicui",
+    "ui": "@/shared/components/ui"
   },
   "iconLibrary": "lucide"
 }
