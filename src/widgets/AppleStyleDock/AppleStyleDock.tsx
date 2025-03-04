@@ -1,5 +1,5 @@
 import { NavItem } from '@/feautres/Navigation';
-import { Dock, DockIcon, DockItem, DockLabel } from '../../shared/ui/dock';
+import { Dock, DockIcon, DockItem, DockLabel } from '../../shared/components/ui/dock';
 import { Link } from 'react-router-dom';
 
 export function AppleStyleDock({ navItems }: { navItems: NavItem[] }) {

@@ -19,7 +19,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { cn } from '../lib/utils';
+import { cn } from '../../lib/utils';
 
 const DOCK_HEIGHT = 128;
 const DEFAULT_MAGNIFICATION = 80;
