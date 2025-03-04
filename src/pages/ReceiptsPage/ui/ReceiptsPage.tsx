@@ -1,62 +1,40 @@
-import { BellIcon, CalendarIcon, FileTextIcon, GlobeIcon, InputIcon } from '@radix-ui/react-icons';
+import { Map, ChartBarDecreasing } from 'lucide-react';
 
-import { BentoCard, BentoGrid } from '@/shared/components/magicui/bento-grid';
+import { BentoCard } from '@/shared/components/magicui/bento-grid';
+import { Link } from 'react-router-dom';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 
 const features = [
   {
-    Icon: FileTextIcon,
-    name: 'Save your files',
-    description: 'We automatically save your files as you type.',
+    Icon: Map,
+    name: 'Карта',
+    description: 'Узнайте, где вы делаете покупки — посмотрите на карте!',
     href: '/',
-    cta: 'Learn more',
+    cta: 'Открыть карту',
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
-    className: 'md:row-start-1 md:row-end-4 md:col-start-2 md:col-end-3',
+    className: 'flex-1',
   },
   {
-    Icon: InputIcon,
-    name: 'Full text search',
-    description: 'Search through all your files in one place.',
+    Icon: ChartBarDecreasing,
+    name: 'Статистика',
+    description:
+      'Узнайте, на что уходит больше всего ваших денег с помощью ярких графиков и таблиц!',
     href: '/',
-    cta: 'Learn more',
+    cta: 'Открыть статистку',
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
-    className: 'md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-3',
-  },
-  {
-    Icon: GlobeIcon,
-    name: 'Multilingual',
-    description: 'Supports 100+ languages and counting.',
-    href: '/',
-    cta: 'Learn more',
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
-    className: 'md:col-start-1 md:col-end-2 md:row-start-3 md:row-end-4',
-  },
-  {
-    Icon: CalendarIcon,
-    name: 'Calendar',
-    description: 'Use the calendar to filter your files by date.',
-    href: '/',
-    cta: 'Learn more',
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
-    className: 'md:col-start-3 md:col-end-3 md:row-start-1 md:row-end-2',
-  },
-  {
-    Icon: BellIcon,
-    name: 'Notifications',
-    description: 'Get notified when someone shares a file or mentions you in a comment.',
-    href: '/',
-    cta: 'Learn more',
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
-    className: 'md:col-start-3 md:col-end-3 md:row-start-2 md:row-end-4',
+    className: 'flex-1',
   },
 ];
 
 function ReceiptsPage() {
   return (
-    <BentoGrid className="md:grid-rows-3">
+    <div className="flex-1 flex flex-col gap-4 px-4 py-8 md:py-20">
       {features.map((feature) => (
-        <BentoCard key={feature.name} {...feature} />
+        <Link to={RoutePath.receipts} className={'flex flex-1'}>
+          <BentoCard key={feature.name} {...feature} />
+        </Link>
       ))}
-    </BentoGrid>
+    </div>
   );
 }
 

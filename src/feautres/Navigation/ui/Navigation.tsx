@@ -26,7 +26,7 @@ export const Navigation = () => {
       href: RoutePath.qr_scanner,
     },
     {
-      title: 'Напоминания',
+      title: 'Напомни',
       icon: <Bell />,
       href: RoutePath.reminders,
     },

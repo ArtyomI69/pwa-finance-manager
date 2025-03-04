@@ -5,7 +5,7 @@ import AppRouter from './providers/router/ui/AppRouter';
 export const App = () => {
   return (
     <Suspense fallback={''}>
-      <div className="flex flex-col mb-[63.2px] md:mb-0">
+      <div className="min-h-[calc(100vh-63.2px)] md:min-h-screen flex flex-col">
         <AppRouter />
       </div>
       <Navigation />
