@@ -9,7 +9,7 @@ const features = [
     Icon: Map,
     name: 'Карта',
     description: 'Узнайте, где вы делаете покупки — посмотрите на карте!',
-    href: '/',
+    href: RoutePath.receipts_map,
     cta: 'Открыть карту',
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
     className: 'flex-1',
@@ -19,7 +19,7 @@ const features = [
     name: 'Статистика',
     description:
       'Узнайте, на что уходит больше всего ваших денег с помощью ярких графиков и таблиц!',
-    href: '/',
+    href: RoutePath.receipts_stats,
     cta: 'Открыть статистку',
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
     className: 'flex-1',
@@ -30,7 +30,7 @@ function ReceiptsPage() {
   return (
     <div className="flex-1 flex flex-col gap-4 px-4 py-8 md:py-20">
       {features.map((feature) => (
-        <Link to={RoutePath.receipts} className={'flex flex-1'}>
+        <Link to={feature.href} className={'flex flex-1'}>
           <BentoCard key={feature.name} {...feature} />
         </Link>
       ))}
