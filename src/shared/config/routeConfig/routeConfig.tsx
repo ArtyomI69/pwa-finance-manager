@@ -1,6 +1,7 @@
 import { Navigate, RouteProps } from 'react-router-dom';
 import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
+import { ReceiptsMapAsync } from '@/pages/ReceiptsMapPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -50,7 +51,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
   [AppRoutes.ReceiptsMap]: {
     path: RoutePath.receipts_map,
-    element: <ReceiptsPageAsync />,
+    element: <ReceiptsMapAsync />,
     authOnly: true,
   },
   [AppRoutes.ReceiptsStats]: {
