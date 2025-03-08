@@ -30,7 +30,7 @@ function ReceiptsPage() {
   return (
     <div className="flex-1 flex flex-col gap-4 px-4 py-8 md:py-20">
       {features.map((feature) => (
-        <Link to={feature.href} className={'flex flex-1'}>
+        <Link key={feature.name} to={feature.href} className={'flex flex-1'}>
           <BentoCard key={feature.name} {...feature} />
         </Link>
       ))}
