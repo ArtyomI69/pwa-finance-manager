@@ -1,4 +1,5 @@
 import * as BucketsUI from './configs/tailwind/bucketsui';
+import * as ShadcnUI from './configs/tailwind/shadcnui';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -8,7 +9,8 @@ export default {
       keyframes: { ...BucketsUI.keyframes },
       animation: { ...BucketsUI.animation },
       fontFamily: { ...BucketsUI.fontFamily },
-      colors: { ...BucketsUI.colors },
+      borderRadius: { ...ShadcnUI.borderRadius },
+      colors: { ...ShadcnUI.colors, ...BucketsUI.colors },
     },
   },
   plugins: [],
