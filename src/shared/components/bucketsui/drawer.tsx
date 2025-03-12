@@ -27,7 +27,7 @@ export const Drawer = ({
           <DialogPrimitives.Content
             aria-describedby=""
             className={cn(
-              'fixed top-0 bg-blinkNeutral50 dark:bg-blinkNeutral800 h-full overflow-y-auto shadow-md',
+              'fixed top-0 bg-blinkNeutral50 dark:bg-blinkNeutral800 h-full overflow-y-auto shadow-md flex max-h-[calc(100vh-63.2px)] md:max-h-full',
               position === 'left' && 'left-0 w-[22rem] max-w-[90%] animate-slide-in-left',
               position === 'right' && 'right-0 w-[22rem] max-w-[90%] animate-slide-in-right'
             )}

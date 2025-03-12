@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MenuIcon } from '@/shared/assets/icons/menu-icon';
 import { Button } from '@/shared/components/bucketsui/button';
 import { Drawer } from '@/shared/components/bucketsui/drawer';
@@ -5,7 +6,7 @@ import { DatePickerWithRange } from '@/shared/components/shadcnui/data-range-pic
 import { Label } from '@/shared/components/shadcnui/ui/label';
 import { Switch } from '@/shared/components/shadcnui/ui/switch';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
-import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 
 export const ReceiptsMapDrawer = () => {
   const isMobile = useIsMobile();
@@ -38,6 +39,18 @@ export const ReceiptsMapDrawer = () => {
           <Switch id="show-label-on-map" />
           <Label htmlFor="show-label-on-map">Отображать названия маркеров</Label>
         </div>
+        <Tabs defaultValue="personal" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="personal">Персональное</TabsTrigger>
+            <TabsTrigger value="group">Груповое</TabsTrigger>
+          </TabsList>
+          <TabsContent value="personal">
+            <Button>Save changes</Button>
+          </TabsContent>
+          <TabsContent value="group">
+            <Button>Save password</Button>
+          </TabsContent>
+        </Tabs>
       </div>
     </Drawer>
   );
