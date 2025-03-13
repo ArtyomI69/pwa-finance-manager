@@ -32,7 +32,7 @@ export const ReceiptsMapDrawer = () => {
         </Button>
       }
     >
-      <div className="flex flex-col gap-4 p-8 w-full">
+      <div className="flex flex-col gap-4 py-8 px-4 w-full">
         <h3 className="font-blink-title font-bold text-xl italic">Настройка макеров на карте</h3>
         <DatePickerWithRange />
         <div className="flex items-center space-x-3 space-y-0 rounded-md border p-4">
