@@ -39,16 +39,51 @@ export const ReceiptsMapDrawer = () => {
           <Switch id="show-label-on-map" />
           <Label htmlFor="show-label-on-map">Отображать названия маркеров</Label>
         </div>
-        <Tabs defaultValue="personal" className="w-full">
+        <Tabs defaultValue="personal" className="w-full flex-1 flex flex-col overflow-hidden">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="personal">Персональное</TabsTrigger>
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
-          <TabsContent value="personal">
-            <Button>Save changes</Button>
+          <TabsContent value="personal" className="flex-1 overflow-y-auto">
+            <ul>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+            </ul>
           </TabsContent>
-          <TabsContent value="group">
-            <Button>Save password</Button>
+          <TabsContent value="group" className="flex-1 overflow-y-auto">
+            <ul>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+            </ul>
           </TabsContent>
         </Tabs>
       </div>
