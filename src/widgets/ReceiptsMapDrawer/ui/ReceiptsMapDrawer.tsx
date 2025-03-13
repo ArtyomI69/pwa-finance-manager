@@ -7,6 +7,7 @@ import { Label } from '@/shared/components/shadcnui/ui/label';
 import { Switch } from '@/shared/components/shadcnui/ui/switch';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
+import { Checkbox } from '@/shared/components/shadcnui/ui/checkbox';
 
 export const ReceiptsMapDrawer = () => {
   const isMobile = useIsMobile();
@@ -45,44 +46,81 @@ export const ReceiptsMapDrawer = () => {
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-auto">
-            <ul>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
-              <li>1</li>
+            <ul className="flex flex-col">
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
             </ul>
           </TabsContent>
           <TabsContent value="group" className="flex-1 overflow-y-auto">
-            <ul>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
+            <ul className="flex flex-col">
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
+              <li className="flex items-center justify-between space-y-0 rounded-md border p-4">
+                <div className="rounded-[50%] bg-red-500 w-4 h-4" />
+                <Label htmlFor="name1">Магнит</Label>
+                <Checkbox id="name1" />
+              </li>
             </ul>
           </TabsContent>
         </Tabs>
