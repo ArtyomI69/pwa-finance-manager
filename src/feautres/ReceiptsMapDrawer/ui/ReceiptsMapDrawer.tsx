@@ -46,10 +46,10 @@ export const ReceiptsMapDrawer = () => {
             <TabsTrigger value="personal">Персональное</TabsTrigger>
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
-          <TabsContent value="personal" className="flex-1 overflow-y-auto">
+          <TabsContent value="personal" className="flex-1 overflow-y-scroll">
             <ReceiptsPersonalDrawerList />
           </TabsContent>
-          <TabsContent value="group" className="flex-1 overflow-y-auto">
+          <TabsContent value="group" className="flex-1 overflow-y-scroll">
             <ReceiptsGroupDrawerList />
           </TabsContent>
         </Tabs>
