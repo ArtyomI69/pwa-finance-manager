@@ -19,7 +19,7 @@ const features = [
     name: 'Статистика',
     description:
       'Узнайте, на что уходит больше всего ваших денег с помощью ярких графиков и таблиц!',
-    href: RoutePath.receipts_stats,
+    href: RoutePath.receipts_dashboard,
     cta: 'Открыть статистку',
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
     className: 'flex-1',

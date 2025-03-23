@@ -2,6 +2,7 @@ import { Navigate, RouteProps } from 'react-router-dom';
 import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
 import { ReceiptsMapAsync } from '@/pages/ReceiptsMapPage';
+import { ReceiptsDashboardPageAsync } from '@/pages/ReceiptsDashboardPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -12,7 +13,7 @@ export enum AppRoutes {
   SignIn = 'signin',
   Receipts = 'receipts',
   ReceiptsMap = 'receipts_map',
-  ReceiptsStats = 'receipts_stats',
+  ReceiptsDashboard = 'receipts_dashboard',
   Dashboard = 'dashboard',
   QR_SCANNER = 'qr_scanner',
   GROUPS = 'groups',
@@ -26,7 +27,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.SignIn]: '/signin',
   [AppRoutes.Receipts]: '/receipts',
   [AppRoutes.ReceiptsMap]: '/receipts/map',
-  [AppRoutes.ReceiptsStats]: '/receipts/stats',
+  [AppRoutes.ReceiptsDashboard]: '/receipts/dashboard',
   [AppRoutes.Dashboard]: '/dashboard',
   [AppRoutes.QR_SCANNER]: '/qr_scanner',
   [AppRoutes.GROUPS]: '/groups',
@@ -54,9 +55,9 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element: <ReceiptsMapAsync />,
     authOnly: true,
   },
-  [AppRoutes.ReceiptsStats]: {
-    path: RoutePath.receipts_stats,
-    element: <ReceiptsPageAsync />,
+  [AppRoutes.ReceiptsDashboard]: {
+    path: RoutePath.receipts_dashboard,
+    element: <ReceiptsDashboardPageAsync />,
     authOnly: true,
   },
   [AppRoutes.Dashboard]: {
