@@ -1,3 +1,4 @@
+import { ReceiptsDashboardPersonal } from '@/feautres/ReceiptsDashboardPersonal';
 import { DatePickerWithRange } from '@/shared/components/shadcnui/data-range-picker';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 
@@ -11,7 +12,7 @@ const ReceiptsDashboardPage = () => {
           <TabsTrigger value="group">Груповое</TabsTrigger>
         </TabsList>
         <TabsContent value="personal" className="flex-1 overflow-y-scroll">
-          <div className="bg-red-300">kek</div>
+          <ReceiptsDashboardPersonal />
         </TabsContent>
         <TabsContent value="group" className="flex-1 overflow-y-scroll">
           <div className="bg-blue-300">lol</div>
