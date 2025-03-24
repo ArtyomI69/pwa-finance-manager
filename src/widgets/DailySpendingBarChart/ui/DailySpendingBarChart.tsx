@@ -86,7 +86,7 @@ export function DailySpendingBarChart() {
   });
 
   return (
-    <Card>
+    <Card className="fill-blue-500">
       <h3 className="text-sm text-gray-500 dark:text-gray-500">Средний расход в день</h3>
       <p className="text-3xl font-bold text-gray-900 dark:text-gray-50">
         <CountUp start={values.start} end={values.end} duration={0.6} />
