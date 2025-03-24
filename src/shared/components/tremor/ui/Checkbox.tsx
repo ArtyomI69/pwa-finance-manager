@@ -33,6 +33,8 @@ const Checkbox = React.forwardRef<
         'enabled:data-[state=indeterminate]:bg-blue-500 enabled:data-[state=indeterminate]:ring-0 enabled:data-[state=indeterminate]:ring-transparent',
         // focus
         focusRing,
+        // outline
+        'outline-none',
         className
       )}
       tremor-id="tremor-raw"
