@@ -1,4 +1,4 @@
-import { Card } from '@/shared/components/ui/Card';
+import { Card } from '@/shared/components/tremor/ui/Card';
 
 export const SpendingSummaryCard = () => {
   return (
