@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
+import { Divider } from '@/shared/components/tremor/ui/Divider';
 import { CategoriesDonutBar } from '@/widgets/CategoriesDonutBar';
 import { DailySpendingBarChart } from '@/widgets/DailySpendingBarChart';
 import { ReceiptsDashboardPersonalTable } from '@/widgets/ReceiptsDashboardPersonalTable';
@@ -21,6 +22,7 @@ export const ReceiptsDashboardPersonal = () => {
           <div className="bg-blue-300">Магазины</div>
         </TabsContent>
       </Tabs>
+      <Divider />
       <ReceiptsDashboardPersonalTable />
     </div>
   );

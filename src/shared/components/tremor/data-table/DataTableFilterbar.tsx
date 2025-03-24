@@ -77,10 +77,7 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
         )}
       </div>
       <div className="flex items-center gap-2">
-        <Button
-          variant="secondary"
-          className="hidden gap-x-2 px-2 py-1.5 text-sm sm:text-xs lg:flex"
-        >
+        <Button variant="secondary" className="flex gap-x-2 px-2 py-1.5 text-sm sm:text-xs">
           <RiDownloadLine className="size-4 shrink-0" aria-hidden="true" />
           Export
         </Button>
