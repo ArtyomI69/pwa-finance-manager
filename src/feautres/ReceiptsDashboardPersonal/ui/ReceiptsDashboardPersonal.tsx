@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { CategoriesDonutBar } from '@/widgets/CategoriesDonutBar';
 import { DailySpendingBarChart } from '@/widgets/DailySpendingBarChart';
+import { ReceiptsDashboardPersonalTable } from '@/widgets/ReceiptsDashboardPersonalTable';
 import { SpendingSummaryCard } from '@/widgets/SpendingSummaryCard';
 
 export const ReceiptsDashboardPersonal = () => {
@@ -20,6 +21,7 @@ export const ReceiptsDashboardPersonal = () => {
           <div className="bg-blue-300">Магазины</div>
         </TabsContent>
       </Tabs>
+      <ReceiptsDashboardPersonalTable />
     </div>
   );
 };
