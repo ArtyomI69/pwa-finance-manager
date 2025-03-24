@@ -11,10 +11,10 @@ const ReceiptsDashboardPage = () => {
           <TabsTrigger value="personal">Персональное</TabsTrigger>
           <TabsTrigger value="group">Груповое</TabsTrigger>
         </TabsList>
-        <TabsContent value="personal" className="flex-1 overflow-y-scroll">
+        <TabsContent value="personal" className="flex-1">
           <ReceiptsDashboardPersonal />
         </TabsContent>
-        <TabsContent value="group" className="flex-1 overflow-y-scroll">
+        <TabsContent value="group" className="flex-1">
           <div className="bg-blue-300">lol</div>
         </TabsContent>
       </Tabs>
