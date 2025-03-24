@@ -21,13 +21,6 @@ function DataTableBulkEditor<TData>({ table, rowSelection }: DataTableBulkEditor
       <CommandBarBar>
         <CommandBarValue>{Object.keys(rowSelection).length} selected</CommandBarValue>
         <CommandBarSeperator />
-        <CommandBarCommand
-          label="Edit"
-          action={() => {
-            console.log('Edit');
-          }}
-          shortcut={{ shortcut: 'e' }}
-        />
         <CommandBarSeperator />
         <CommandBarCommand
           label="Delete"
