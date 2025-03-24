@@ -6,7 +6,6 @@ import { Checkbox } from '@/shared/components/tremor/ui/Checkbox';
 import { formatters } from '@/shared/lib/formatters';
 import { DataTableColumnHeader } from '@/shared/components/tremor/data-table/DataTableColumnHeader';
 import { ConditionFilter } from '@/shared/components/tremor/data-table/DataTableFilter';
-import { DataTableRowActions } from '@/shared/components/tremor/data-table/DataTableRowActions';
 import { statuses } from '../model/data';
 import { Usage } from '../model/schema';
 
@@ -162,19 +161,8 @@ export const columns = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Last edited" />,
     enableSorting: false,
     meta: {
-      className: 'tabular-nums',
+      className: 'tabular-nums text-right',
       displayName: 'Last edited',
     },
-  }),
-  columnHelper.display({
-    id: 'edit',
-    header: 'Edit',
-    enableSorting: false,
-    enableHiding: false,
-    meta: {
-      className: 'text-right',
-      displayName: 'Edit',
-    },
-    cell: ({ row }) => <DataTableRowActions row={row} />,
   }),
 ] as ColumnDef<Usage>[];
