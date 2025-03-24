@@ -1,6 +1,7 @@
 import { Navigation } from '@/feautres/Navigation';
 import { Suspense } from 'react';
 import AppRouter from './providers/router/ui/AppRouter';
+import { ColorActivator } from '@/shared/components/ui/ColorActivator';
 
 export const App = () => {
   return (
@@ -9,6 +10,7 @@ export const App = () => {
         <AppRouter />
       </div>
       <Navigation />
+      <ColorActivator />
     </Suspense>
   );
 };
