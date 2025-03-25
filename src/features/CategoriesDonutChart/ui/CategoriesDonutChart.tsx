@@ -41,7 +41,7 @@ const data = [
 const currencyFormatter = (number: number) =>
   '$' + Intl.NumberFormat('us').format(number).toString();
 
-export function CategoriesDonutBar() {
+export function CategoriesDonutChart() {
   return (
     <>
       <Card className="sm:mx-auto sm:max-w-lg">

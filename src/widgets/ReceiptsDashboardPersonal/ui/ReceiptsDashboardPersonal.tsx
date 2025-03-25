@@ -1,9 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { Divider } from '@/shared/components/tremor/ui/Divider';
-import { CategoriesDonutBar } from '@/features/CategoriesDonutBar';
+import { CategoriesDonutChart } from '@/features/CategoriesDonutChart';
 import { DailySpendingBarChart } from '@/features/DailySpendingBarChart';
 import { ReceiptsDashboardPersonalTable } from '@/features/ReceiptsDashboardPersonalTable';
 import { SpendingSummaryCard } from '@/features/SpendingSummaryCard';
+import { ShopsDonutChart } from '@/features/ShopsDonutChart';
 
 export const ReceiptsDashboardPersonal = () => {
   return (
@@ -16,10 +17,10 @@ export const ReceiptsDashboardPersonal = () => {
           <TabsTrigger value="shops">Магазины</TabsTrigger>
         </TabsList>
         <TabsContent value="categories" className="flex-1">
-          <CategoriesDonutBar />
+          <CategoriesDonutChart />
         </TabsContent>
         <TabsContent value="shops" className="flex-1">
-          <div className="bg-blue-300">Магазины</div>
+          <ShopsDonutChart />
         </TabsContent>
       </Tabs>
       <Divider />
