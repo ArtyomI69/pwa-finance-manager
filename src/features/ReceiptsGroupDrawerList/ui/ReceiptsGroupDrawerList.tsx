@@ -1,7 +1,7 @@
 import { Accordion, Content, Tab, Trigger } from '@/shared/components/lukachoui/accordion';
 import { Checkbox } from '@/shared/components/shadcnui/ui/checkbox';
 import { Label } from '@/shared/components/shadcnui/ui/label';
-import { ReceiptsPersonalDrawerList } from '@/widgets/ReceiptsPersonalDrawerList';
+import { ReceiptsPersonalDrawerList } from '@/features/ReceiptsPersonalDrawerList';
 
 const questions = [
   {

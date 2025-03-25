@@ -1,6 +1,6 @@
 import { useIsMobile } from '@/shared/hooks/use-mobile';
-import { AppleStyleDock } from '@/widgets/AppleStyleDock/AppleStyleDock';
-import { BottomNavigation } from '@/widgets/BottomNavigation/BottomNavigation';
+import { AppleStyleDock } from '@/features/AppleStyleDock/AppleStyleDock';
+import { BottomNavigation } from '@/features/BottomNavigation/BottomNavigation';
 
 import { ReceiptRussianRuble, ChartColumnIncreasing, ScanQrCode, Users, Bell } from 'lucide-react';
 import { NavItem } from '../types/NavItem';

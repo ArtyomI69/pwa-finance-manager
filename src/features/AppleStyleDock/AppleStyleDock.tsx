@@ -1,4 +1,4 @@
-import { NavItem } from '@/feautres/Navigation';
+import { NavItem } from '@/widgets/Navigation';
 import { Dock, DockIcon, DockItem, DockLabel } from '../../shared/components/magicui/ui/dock';
 import { NavLink } from 'react-router-dom';
 

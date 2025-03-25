@@ -7,8 +7,8 @@ import { Label } from '@/shared/components/shadcnui/ui/label';
 import { Switch } from '@/shared/components/shadcnui/ui/switch';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
-import { ReceiptsPersonalDrawerList } from '@/widgets/ReceiptsPersonalDrawerList';
-import { ReceiptsGroupDrawerList } from '@/widgets/ReceiptsGroupDrawerList';
+import { ReceiptsPersonalDrawerList } from '@/features/ReceiptsPersonalDrawerList';
+import { ReceiptsGroupDrawerList } from '@/features/ReceiptsGroupDrawerList';
 
 export const ReceiptsMapDrawer = () => {
   const isMobile = useIsMobile();

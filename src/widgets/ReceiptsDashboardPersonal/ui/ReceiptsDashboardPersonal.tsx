@@ -1,9 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { Divider } from '@/shared/components/tremor/ui/Divider';
-import { CategoriesDonutBar } from '@/widgets/CategoriesDonutBar';
-import { DailySpendingBarChart } from '@/widgets/DailySpendingBarChart';
-import { ReceiptsDashboardPersonalTable } from '@/widgets/ReceiptsDashboardPersonalTable';
-import { SpendingSummaryCard } from '@/widgets/SpendingSummaryCard';
+import { CategoriesDonutBar } from '@/features/CategoriesDonutBar';
+import { DailySpendingBarChart } from '@/features/DailySpendingBarChart';
+import { ReceiptsDashboardPersonalTable } from '@/features/ReceiptsDashboardPersonalTable';
+import { SpendingSummaryCard } from '@/features/SpendingSummaryCard';
 
 export const ReceiptsDashboardPersonal = () => {
   return (

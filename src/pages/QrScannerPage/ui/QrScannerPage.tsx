@@ -1,4 +1,4 @@
-import { QrScanner } from '@/feautres/QrScanner';
+import { QrScanner } from '@/widgets/QrScanner';
 
 const QrScannerPage = () => {
   return (

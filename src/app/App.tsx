@@ -1,4 +1,4 @@
-import { Navigation } from '@/feautres/Navigation';
+import { Navigation } from '@/widgets/Navigation';
 import { Suspense } from 'react';
 import AppRouter from './providers/router/ui/AppRouter';
 import { ColorActivator } from '@/shared/components/ui/ColorActivator';

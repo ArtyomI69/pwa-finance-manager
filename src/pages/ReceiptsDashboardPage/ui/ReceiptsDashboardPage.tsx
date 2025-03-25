@@ -1,4 +1,4 @@
-import { ReceiptsDashboardPersonal } from '@/feautres/ReceiptsDashboardPersonal';
+import { ReceiptsDashboardPersonal } from '@/widgets/ReceiptsDashboardPersonal';
 import { DatePickerWithRange } from '@/shared/components/shadcnui/data-range-picker';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 

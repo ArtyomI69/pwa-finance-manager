@@ -1,6 +1,6 @@
 import { YMaps } from '@pbe/react-yandex-maps';
-import { ReceiptsMapDrawer } from '@/feautres/ReceiptsMapDrawer';
-import { ReceiptsMap } from '@/feautres/ReceiptsMap';
+import { ReceiptsMapDrawer } from '@/widgets/ReceiptsMapDrawer';
+import { ReceiptsMap } from '@/widgets/ReceiptsMap';
 
 const ReceiptsMapPage = () => {
   return (

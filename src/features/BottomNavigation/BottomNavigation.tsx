@@ -1,4 +1,4 @@
-import { NavItem } from '@/feautres/Navigation';
+import { NavItem } from '@/widgets/Navigation';
 import { NavLink } from 'react-router-dom';
 
 export const BottomNavigation = ({ navItems }: { navItems: NavItem[] }) => {
