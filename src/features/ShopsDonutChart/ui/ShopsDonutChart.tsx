@@ -39,14 +39,14 @@ const data = [
 ];
 
 const currencyFormatter = (number: number) =>
-  '$' + Intl.NumberFormat('us').format(number).toString();
+  Intl.NumberFormat('us').format(number).toString() + ' ₽';
 
 export function ShopsDonutChart() {
   return (
     <>
       <Card className="sm:mx-auto sm:max-w-lg">
         <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
-          Total expenses by category
+          Расходы по магазинам
         </h3>
         <DonutChart
           className="mx-auto mt-8"
@@ -59,8 +59,8 @@ export function ShopsDonutChart() {
           colors={['cyan', 'blue', 'emerald', 'violet', 'fuchsia', 'amber', 'pink', 'lime']}
         />
         <p className="mt-8 flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
-          <span>Category</span>
-          <span>Amount / Share</span>
+          <span>Магазин</span>
+          <span>Цена / В процентах</span>
         </p>
         <ul
           role="list"
