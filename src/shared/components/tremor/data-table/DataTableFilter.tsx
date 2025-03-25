@@ -67,7 +67,7 @@ const ColumnFiltersLabel = ({
   return (
     <>
       <span className={cx('font-semibold text-indigo-600 dark:text-indigo-400', className)}>
-        {columnFilterLabels[0]} and {columnFilterLabels.length - 1} more
+        {columnFilterLabels[0]} и {columnFilterLabels.length - 1} ещё
       </span>
     </>
   );
@@ -178,7 +178,7 @@ export function DataTableFilter<TData, TValue>({
               }}
             >
               <SelectTrigger className="mt-2 sm:py-1">
-                <SelectValue placeholder="Select condition" />
+                <SelectValue placeholder="Выбрать условие" />
               </SelectTrigger>
               <SelectContent>
                 {options?.map((item) => (
@@ -194,7 +194,7 @@ export function DataTableFilter<TData, TValue>({
               <Input
                 disabled={!(selectedValues as ConditionFilter)?.condition}
                 type="number"
-                placeholder="$0"
+                placeholder="0₽"
                 className="sm:[&>input]:py-1"
                 value={(selectedValues as ConditionFilter)?.value?.[0]}
                 onChange={(e) => {
@@ -215,7 +215,7 @@ export function DataTableFilter<TData, TValue>({
                   <Input
                     disabled={!(selectedValues as ConditionFilter)?.condition}
                     type="number"
-                    placeholder="$0"
+                    placeholder="0₽"
                     className="sm:[&>input]:py-1"
                     value={(selectedValues as ConditionFilter)?.value?.[1]}
                     onChange={(e) => {
@@ -320,12 +320,12 @@ export function DataTableFilter<TData, TValue>({
         >
           <div className="space-y-2">
             <div>
-              <Label className="text-base font-medium sm:text-sm">Filter by {title}</Label>
+              <Label className="text-base font-medium sm:text-sm">Отфильтровать по {title}</Label>
               {getDisplayedFilter()}
             </div>
             <PopoverClose className="w-full" asChild>
               <Button type="submit" className="w-full sm:py-1">
-                Apply
+                Применить
               </Button>
             </PopoverClose>
             {columnFilterLabels && columnFilterLabels.length > 0 && (
@@ -344,7 +344,7 @@ export function DataTableFilter<TData, TValue>({
                   );
                 }}
               >
-                Reset
+                Сбросить
               </Button>
             )}
           </div>
