@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/components/tremor/ui/Button';
 import { Searchbar } from '@/shared/components/tremor/ui/SearchBar';
-import { conditions, regions, statuses } from '@/entities/DataTable';
+import { conditions, shop, categories } from '@/entities/DataTable';
 import { formatters } from '@/shared/lib/formatters';
 import { RiDownloadLine } from '@remixicon/react';
 import { Table } from '@tanstack/react-table';
@@ -20,7 +20,7 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const debouncedSetFilterValue = useDebouncedCallback((value) => {
-    table.getColumn('owner')?.setFilterValue(value);
+    table.getColumn('product')?.setFilterValue(value);
   }, 300);
 
   const handleSearchChange = (event: any) => {
@@ -32,38 +32,38 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-x-6">
       <div className="flex w-full flex-col gap-2 sm:w-fit sm:flex-row sm:items-center">
-        {table.getColumn('status')?.getIsVisible() && (
-          <DataTableFilter
-            column={table.getColumn('status')}
-            title="Status"
-            options={statuses}
-            type="select"
-          />
-        )}
-        {table.getColumn('region')?.getIsVisible() && (
-          <DataTableFilter
-            column={table.getColumn('region')}
-            title="Region"
-            options={regions}
-            type="checkbox"
-          />
-        )}
-        {table.getColumn('costs')?.getIsVisible() && (
-          <DataTableFilter
-            column={table.getColumn('costs')}
-            title="Costs"
-            type="number"
-            options={conditions}
-            formatter={formatters.currency}
-          />
-        )}
-        {table.getColumn('owner')?.getIsVisible() && (
+        {table.getColumn('product')?.getIsVisible() && (
           <Searchbar
             type="search"
-            placeholder="Search by owner..."
+            placeholder="Поиск по товару"
             value={searchTerm}
             onChange={handleSearchChange}
             className="w-full sm:max-w-[250px] sm:[&>input]:h-[30px]"
+          />
+        )}
+        {table.getColumn('category')?.getIsVisible() && (
+          <DataTableFilter
+            column={table.getColumn('category')}
+            title="Категория"
+            options={categories}
+            type="checkbox"
+          />
+        )}
+        {table.getColumn('shop')?.getIsVisible() && (
+          <DataTableFilter
+            column={table.getColumn('shop')}
+            title="Магазин"
+            options={shop}
+            type="checkbox"
+          />
+        )}
+        {table.getColumn('price')?.getIsVisible() && (
+          <DataTableFilter
+            column={table.getColumn('price')}
+            title="Цена"
+            type="number"
+            options={conditions}
+            formatter={formatters.currency}
           />
         )}
         {isFiltered && (
