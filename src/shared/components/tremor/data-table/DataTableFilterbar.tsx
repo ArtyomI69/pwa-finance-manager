@@ -72,14 +72,14 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
             onClick={() => table.resetColumnFilters()}
             className="border border-gray-200 px-2 font-semibold text-indigo-600 sm:border-none sm:py-1 dark:border-gray-800 dark:text-indigo-500"
           >
-            Clear filters
+            Очистить фильтры
           </Button>
         )}
       </div>
       <div className="flex items-center gap-2">
         <Button variant="secondary" className="flex gap-x-2 px-2 py-1.5 text-sm sm:text-xs">
           <RiDownloadLine className="size-4 shrink-0" aria-hidden="true" />
-          Export
+          Экспорт
         </Button>
         <ViewOptions table={table} />
       </div>

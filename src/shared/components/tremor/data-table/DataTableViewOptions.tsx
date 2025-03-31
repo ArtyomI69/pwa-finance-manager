@@ -407,7 +407,7 @@ function ViewOptions<TData>({ table }: DataTableViewOptionsProps<TData>) {
               className={cx('ml-auto hidden gap-x-2 px-2 py-1.5 text-sm sm:text-xs lg:flex')}
             >
               <RiEqualizer2Line className="size-4" aria-hidden="true" />
-              View
+              Порядок
             </Button>
           </PopoverTrigger>
           <PopoverContent align="end" sideOffset={7} className="z-50 w-fit space-y-2">
