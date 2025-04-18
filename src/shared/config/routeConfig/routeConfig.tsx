@@ -3,14 +3,15 @@ import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
 import { ReceiptsMapAsync } from '@/pages/ReceiptsMapPage';
 import { ReceiptsDashboardPageAsync } from '@/pages/ReceiptsDashboardPage';
+import { RegisterPage } from '@/pages/RegisterPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
 };
 
 export enum AppRoutes {
-  SignUp = 'signup',
-  SignIn = 'signin',
+  Register = 'register',
+  Login = 'login',
   Receipts = 'receipts',
   ReceiptsMap = 'receipts_map',
   ReceiptsDashboard = 'receipts_dashboard',
@@ -23,8 +24,8 @@ export enum AppRoutes {
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.SignUp]: '/signup',
-  [AppRoutes.SignIn]: '/signin',
+  [AppRoutes.Register]: '/register',
+  [AppRoutes.Login]: '/login',
   [AppRoutes.Receipts]: '/receipts',
   [AppRoutes.ReceiptsMap]: '/receipts/map',
   [AppRoutes.ReceiptsDashboard]: '/receipts/dashboard',
@@ -37,12 +38,12 @@ export const RoutePath: Record<AppRoutes, string> = {
 };
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
-  [AppRoutes.SignUp]: {
-    path: RoutePath.signup,
-    element: <ReceiptsPageAsync />,
+  [AppRoutes.Register]: {
+    path: RoutePath.register,
+    element: <RegisterPage />,
   },
-  [AppRoutes.SignIn]: {
-    path: RoutePath.signin,
+  [AppRoutes.Login]: {
+    path: RoutePath.login,
     element: <ReceiptsPageAsync />,
   },
   [AppRoutes.Receipts]: {
