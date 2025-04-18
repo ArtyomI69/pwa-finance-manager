@@ -3,7 +3,8 @@ import { QrScannerPageAsync } from '@/pages/QrScannerPage';
 import { ReceiptsPageAsync } from '@/pages/ReceiptsPage';
 import { ReceiptsMapAsync } from '@/pages/ReceiptsMapPage';
 import { ReceiptsDashboardPageAsync } from '@/pages/ReceiptsDashboardPage';
-import { RegisterPage } from '@/pages/RegisterPage';
+import { RegisterPageAsync } from '@/pages/RegisterPage';
+import { LoginPageAsync } from '@/pages/LoginPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -40,11 +41,11 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.Register]: {
     path: RoutePath.register,
-    element: <RegisterPage />,
+    element: <RegisterPageAsync />,
   },
   [AppRoutes.Login]: {
     path: RoutePath.login,
-    element: <ReceiptsPageAsync />,
+    element: <LoginPageAsync />,
   },
   [AppRoutes.Receipts]: {
     path: RoutePath.receipts,
