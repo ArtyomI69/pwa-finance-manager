@@ -103,6 +103,7 @@ function Dock({
       className="mx-2 flex max-w-full items-end overflow-x-auto"
     >
       <motion.div
+        // @ts-ignore
         onMouseMove={({ pageX }) => {
           isHovered.set(1);
           mouseX.set(pageX);
