@@ -29,17 +29,17 @@ import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 // Define validation schema using Zod
 const formSchema = z
   .object({
-    name: z.string().min(2, { message: 'Name must be at least 2 characters long' }),
-    email: z.string().email({ message: 'Invalid email address' }),
+    name: z.string().min(2, { message: 'Имя должно быть длиной не менее 2 символов' }),
+    email: z.string().email({ message: 'Неверный адрес электронной почты' }),
     password: z
       .string()
-      .min(6, { message: 'Password must be at least 6 characters long' })
-      .regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
+      .min(6, { message: 'Пароль должен быть длиной не менее 6 символов' })
+      .regex(/[a-zA-Z0-9]/, { message: 'Пароль должен состоять из букв и цифр' }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
-    message: 'Passwords do not match',
+    message: 'Пароли не совпадают',
   });
 
 export default function RegisterPage() {

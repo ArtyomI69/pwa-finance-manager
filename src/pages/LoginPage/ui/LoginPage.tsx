@@ -28,11 +28,11 @@ import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 
 // Improved schema with additional validation rules
 const formSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
+  email: z.string().email({ message: 'Неверный адрес электронной почты' }),
   password: z
     .string()
-    .min(6, { message: 'Password must be at least 6 characters long' })
-    .regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
+    .min(6, { message: 'Пароль должен быть длиной не менее 6 символов' })
+    .regex(/[a-zA-Z0-9]/, { message: 'Пароль должен состоять из букв и цифр' }),
 });
 
 export default function LoginPage() {
