@@ -1,1 +1,1 @@
-export { $session, AuthGate } from './model/Auth.store';
+export { $inited, $session, AuthGate } from './model/Auth.store';

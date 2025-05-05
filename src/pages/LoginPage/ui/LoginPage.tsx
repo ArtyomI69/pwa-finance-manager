@@ -25,6 +25,7 @@ import {
 import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { loginEv } from '../model/LoginPage.store';
 
 // Improved schema with additional validation rules
 const formSchema = z.object({
@@ -48,6 +49,7 @@ export default function LoginPage() {
     try {
       // Assuming an async login function
       console.log(values);
+      loginEv(values);
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>

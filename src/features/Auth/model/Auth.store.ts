@@ -2,11 +2,13 @@ import { createStore, createEffect, sample, createEvent, scopeBind } from 'effec
 import { Session } from '@supabase/supabase-js';
 import { getSession, onAuthStateChange } from '@/shared/API/supabase';
 import { createGate } from 'effector-react';
+import { debug } from 'patronum/debug';
 
 const AuthGate = createGate();
 
 const onAuthStateChangeEv = createEvent<Session | null>();
 
+const $inited = createStore<Boolean>(false);
 const $session = createStore<Session | null>(null);
 
 const getSessionFx = createEffect(async () => {
@@ -16,7 +18,8 @@ const getSessionFx = createEffect(async () => {
 const onAuthStateChangeFx = createEffect(async () => {
   const sciopeOnAuthStateChangeEv = scopeBind(onAuthStateChangeEv);
 
-  onAuthStateChange((_event, session) => {
+  onAuthStateChange((_, session) => {
+    console.log(session);
     sciopeOnAuthStateChangeEv(session);
   });
 });
@@ -34,8 +37,16 @@ sample({
 });
 
 sample({
+  clock: getSessionFx.done,
+  target: $inited,
+  fn: () => true,
+});
+
+sample({
   clock: onAuthStateChangeEv,
   target: $session,
 });
 
-export { $session, AuthGate };
+debug($session, getSessionFx, onAuthStateChangeEv);
+
+export { $inited, $session, AuthGate };
