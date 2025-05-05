@@ -1,4 +1,5 @@
 import { login } from '@/shared/API/supabase';
+import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
 import { createEvent, createEffect, sample } from 'effector';
 
 interface ILogin {
@@ -9,7 +10,8 @@ interface ILogin {
 const loginEv = createEvent<ILogin>();
 
 const loginFx = createEffect(async ({ email, password }: ILogin) => {
-  login({ email, password });
+  await login({ email, password });
+  location.href = AppRoutes.Receipts;
 });
 
 sample({ clock: loginEv, target: loginFx });

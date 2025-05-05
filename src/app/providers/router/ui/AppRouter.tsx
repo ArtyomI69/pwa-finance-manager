@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AppRouteProps, routeConfig } from '@/shared/config/routeConfig/routeConfig';
 import { PageLoader } from '@/features/PageLoader';
 import { RequireAuth } from './RequireAuth';
+import { RequireUnauth } from './RequireUnauth';
 
 const AppRouter = () => {
   const renderWithWrapper = useCallback((route: AppRouteProps) => {
@@ -12,7 +13,13 @@ const AppRouter = () => {
     return (
       <Route
         key={route.path}
-        element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+        element={
+          route.authOnly ? (
+            <RequireAuth>{element}</RequireAuth>
+          ) : (
+            <RequireUnauth>{element}</RequireUnauth>
+          )
+        }
         path={route.path}
       />
     );
