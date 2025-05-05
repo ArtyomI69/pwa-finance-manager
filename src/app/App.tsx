@@ -2,10 +2,13 @@ import { Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navigation } from '@/widgets/Navigation';
 import AppRouter from './providers/router/ui/AppRouter';
-import { ColorActivator } from '@/shared/components/ui/ColorActivator';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { useGate } from 'effector-react';
+import { AuthGate } from '@/features/Auth';
 
 export const App = () => {
+  useGate(AuthGate);
+
   const location = useLocation();
   const isRegisterPage = location.pathname.includes(RoutePath.register);
   const isLoginPage = location.pathname.includes(RoutePath.login);
@@ -17,7 +20,6 @@ export const App = () => {
         <AppRouter />
       </div>
       {!isAuthPage && <Navigation />}
-      <ColorActivator />
     </Suspense>
   );
 };

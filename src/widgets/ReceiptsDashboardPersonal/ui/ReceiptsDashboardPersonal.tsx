@@ -5,6 +5,7 @@ import { DailySpendingBarChart } from '@/features/DailySpendingBarChart';
 import { ReceiptsDashboardPersonalTable } from '@/features/ReceiptsDashboardPersonalTable';
 import { SpendingSummaryCard } from '@/features/SpendingSummaryCard';
 import { ShopsDonutChart } from '@/features/ShopsDonutChart';
+import { ColorActivator } from '@/shared/components/ui/ColorActivator';
 
 export const ReceiptsDashboardPersonal = () => {
   return (
@@ -25,6 +26,7 @@ export const ReceiptsDashboardPersonal = () => {
       </Tabs>
       <Divider />
       <ReceiptsDashboardPersonalTable />
+      <ColorActivator />
     </div>
   );
 };
