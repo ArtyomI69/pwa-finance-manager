@@ -12,7 +12,7 @@ export function RequireUnauth({ children }: { children: JSX.Element }) {
   if (!inited) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <ThreeDotSimpleLoader />;
+        <ThreeDotSimpleLoader />
       </div>
     );
   }

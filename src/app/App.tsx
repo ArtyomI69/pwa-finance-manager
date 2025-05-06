@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { Navigation } from '@/widgets/Navigation';
 import AppRouter from './providers/router/ui/AppRouter';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
@@ -20,6 +21,7 @@ export const App = () => {
         <AppRouter />
       </div>
       {!isAuthPage && <Navigation />}
+      <Toaster position="top-center" closeButton />
     </Suspense>
   );
 };

@@ -1,6 +1,8 @@
 import { login } from '@/shared/API/supabase';
 import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
+import { toastLoading } from '@/shared/utils/toastLoading';
 import { createEvent, createEffect, sample } from 'effector';
+import { toast } from 'sonner';
 
 interface ILogin {
   email: string;
@@ -10,7 +12,13 @@ interface ILogin {
 const loginEv = createEvent<ILogin>();
 
 const loginFx = createEffect(async ({ email, password }: ILogin) => {
-  await login({ email, password });
+  const { error } = await toastLoading(login, { email, password });
+
+  if (error) {
+    toast.error('Введён не правильный email или пароль');
+    return;
+  }
+
   location.href = AppRoutes.Receipts;
 });
 

@@ -25,11 +25,15 @@ import {
 import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { registerEv } from '../model/RegisterPage.store';
 
 // Define validation schema using Zod
 const formSchema = z
   .object({
-    name: z.string().min(2, { message: 'Имя должно быть длиной не менее 2 символов' }),
+    name: z
+      .string()
+      .min(2, { message: 'Имя должно быть длиной не менее 2 символов' })
+      .max(100, { message: 'Имя должен быть длиной не более 100 символов' }),
     email: z.string().email({ message: 'Неверный адрес электронной почты' }),
     password: z
       .string()
@@ -53,19 +57,8 @@ export default function RegisterPage() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      // Assuming an async registration function
-      console.log(values);
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      );
-    } catch (error) {
-      console.error('Form submission error', error);
-      toast.error('Failed to submit the form. Please try again.');
-    }
+  async function onSubmit({ email, name, password }: z.infer<typeof formSchema>) {
+    registerEv({ email, name, password });
   }
 
   return (

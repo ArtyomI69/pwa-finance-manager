@@ -47,6 +47,4 @@ sample({
   target: $session,
 });
 
-debug($session, getSessionFx, onAuthStateChangeEv);
-
 export { $inited, $session, AuthGate };
