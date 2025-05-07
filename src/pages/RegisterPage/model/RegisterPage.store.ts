@@ -4,15 +4,15 @@ import { toastLoading } from '@/shared/utils/toastLoading';
 import { createEvent, createEffect, sample } from 'effector';
 import { toast } from 'sonner';
 
-interface IRegister {
+interface IRegisterData {
   email: string;
   password: string;
   name: string;
 }
 
-const registerEv = createEvent<IRegister>();
+const registerEv = createEvent<IRegisterData>();
 
-const registerFx = createEffect(async ({ email, password, name }: IRegister) => {
+const registerFx = createEffect(async ({ email, password, name }: IRegisterData) => {
   const { error } = await toastLoading(signUp, { email, name, password });
 
   if (error?.status === 400) {

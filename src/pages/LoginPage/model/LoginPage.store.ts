@@ -4,14 +4,14 @@ import { toastLoading } from '@/shared/utils/toastLoading';
 import { createEvent, createEffect, sample } from 'effector';
 import { toast } from 'sonner';
 
-interface ILogin {
+interface ILoginData {
   email: string;
   password: string;
 }
 
-const loginEv = createEvent<ILogin>();
+const loginEv = createEvent<ILoginData>();
 
-const loginFx = createEffect(async ({ email, password }: ILogin) => {
+const loginFx = createEffect(async ({ email, password }: ILoginData) => {
   const { error } = await toastLoading(login, { email, password });
 
   if (error) {
