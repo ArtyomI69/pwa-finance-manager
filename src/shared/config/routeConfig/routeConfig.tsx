@@ -19,7 +19,7 @@ export enum AppRoutes {
   Dashboard = 'dashboard',
   QR_SCANNER = 'qr_scanner',
   GROUPS = 'groups',
-  Reminders = 'reminders',
+  Profile = 'profile',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -33,7 +33,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.Dashboard]: '/dashboard',
   [AppRoutes.QR_SCANNER]: '/qr_scanner',
   [AppRoutes.GROUPS]: '/groups',
-  [AppRoutes.Reminders]: '/reminders/',
+  [AppRoutes.Profile]: '/profile',
   // последний
   [AppRoutes.NOT_FOUND]: '*',
 };
@@ -77,8 +77,8 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element: <ReceiptsPageAsync />,
     authOnly: true,
   },
-  [AppRoutes.Reminders]: {
-    path: `${RoutePath.reminders}`,
+  [AppRoutes.Profile]: {
+    path: `${RoutePath.profile}`,
     element: <ReceiptsPageAsync />,
     authOnly: true,
   },
