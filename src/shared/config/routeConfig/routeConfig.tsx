@@ -5,6 +5,7 @@ import { ReceiptsMapAsync } from '@/pages/ReceiptsMapPage';
 import { ReceiptsDashboardPageAsync } from '@/pages/ReceiptsDashboardPage';
 import { RegisterPageAsync } from '@/pages/RegisterPage';
 import { LoginPageAsync } from '@/pages/LoginPage';
+import { ProfilePageAsync } from '@/pages/ProfilePage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -79,7 +80,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
   [AppRoutes.Profile]: {
     path: `${RoutePath.profile}`,
-    element: <ReceiptsPageAsync />,
+    element: <ProfilePageAsync />,
     authOnly: true,
   },
 
