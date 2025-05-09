@@ -59,12 +59,7 @@ export function ProfileForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">
-                <PhotoUpload
-                  id="profile-photo-upload"
-                  url="https://images.unsplash.com/photo-1694239400333-0051c92d420f?q=80&w=128&h=128&auto=format&fit=crop"
-                  name="Sheera.Gottstein"
-                  aria-label="Profile photo upload"
-                />
+                <PhotoUpload id="profile-photo-upload" aria-label="Profile photo upload" />
 
                 {/* Name Field */}
                 <FormField

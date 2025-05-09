@@ -1,9 +1,8 @@
 import React, { ChangeEvent } from 'react';
 
-import { EmptyAvatarRounded } from './icons/empty-avatar';
-import { AvatarImage } from './avatar';
 import { NormalToLargeButton } from './button';
 import { cn } from '@/shared/utils/cn';
+import { CurrentUserAvatar } from '../supabase/current-user-avatar';
 
 type PhotoUploadProps = {
   id: string;
@@ -13,7 +12,7 @@ type PhotoUploadProps = {
   name?: string;
 };
 
-export const PhotoUpload = ({ id, className, onFileChange, url, name }: PhotoUploadProps) => {
+export const PhotoUpload = ({ id, className, onFileChange }: PhotoUploadProps) => {
   const fileUploadRef = React.useRef<HTMLInputElement>(null);
   return (
     <div
@@ -22,15 +21,7 @@ export const PhotoUpload = ({ id, className, onFileChange, url, name }: PhotoUpl
         className
       )}
     >
-      {url ? (
-        <AvatarImage
-          className="w-[6.25rem] h-[6.25rem] rounded-full mb-3"
-          src={url}
-          alt={name || ''}
-        />
-      ) : (
-        <EmptyAvatarRounded className="w-[6.25rem] h-[6.25rem] rounded-full mb-3" />
-      )}
+      <CurrentUserAvatar />
 
       <NormalToLargeButton appearance="secondary" onClick={() => fileUploadRef.current?.click()}>
         Загрузить фото
