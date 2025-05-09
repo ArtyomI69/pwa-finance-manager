@@ -3,8 +3,8 @@
 import React from 'react';
 import * as CheckboxPrimitives from '@radix-ui/react-checkbox';
 
-import { cn as cx } from '@/shared/lib/cn';
-import { focusRing } from '@/shared/lib/focusRing';
+import { cn as cx } from '@/shared/utils/cn';
+import { focusRing } from '@/shared/utils/focusRing';
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitives.Root>,

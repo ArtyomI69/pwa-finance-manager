@@ -1,5 +1,5 @@
 import { Button } from '@/shared/components/tremor/ui/Button';
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 import {
   RiArrowLeftDoubleLine,
   RiArrowLeftSLine,

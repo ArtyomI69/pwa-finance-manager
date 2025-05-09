@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 import { motion } from 'framer-motion';

@@ -2,7 +2,7 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import { Button } from '@/shared/components/magicui/ui/button';
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 
 interface BentoGridProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode;

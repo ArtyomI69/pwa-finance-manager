@@ -3,7 +3,7 @@
 import React from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
 
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 const badgeVariants = tv({
   base: cx(

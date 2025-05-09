@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 import * as DialogPrimitives from '@radix-ui/react-dialog';
 
 type DrawerProps = {

@@ -3,7 +3,7 @@
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { Badge, BadgeProps } from '@/shared/components/tremor/ui/Badge';
 import { Checkbox } from '@/shared/components/tremor/ui/Checkbox';
-import { formatters } from '@/shared/lib/formatters';
+import { formatters } from '@/shared/utils/formatters';
 import { DataTableColumnHeader } from '@/shared/components/tremor/data-table/DataTableColumnHeader';
 import { ConditionFilter } from '@/shared/components/tremor/data-table/DataTableFilter';
 import { categories } from '../model/data';

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 type DividerProps = React.ComponentPropsWithoutRef<'div'>;
 

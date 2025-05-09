@@ -8,7 +8,7 @@ import {
   TableHeaderCell,
   TableRow,
 } from '@/shared/components/tremor/ui/Table';
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 import * as React from 'react';
 
 import { DataTableBulkEditor } from './DataTableBulkEditor';

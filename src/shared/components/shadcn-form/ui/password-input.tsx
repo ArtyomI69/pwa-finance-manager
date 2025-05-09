@@ -5,7 +5,7 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 import { Button } from '@/shared/components/shadcnui/ui/button';
 import { Input } from '@/shared/components/shadcnui/ui/input';
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 
 const PasswordInput = React.forwardRef<HTMLInputElement, any>(({ className, ...props }, ref) => {
   const [showPassword, setShowPassword] = React.useState(false);

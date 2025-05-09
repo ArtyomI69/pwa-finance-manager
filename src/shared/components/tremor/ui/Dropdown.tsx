@@ -11,7 +11,7 @@ import {
 } from '@remixicon/react';
 import * as React from 'react';
 
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 const DropdownMenu = DropdownMenuPrimitives.Root;
 DropdownMenu.displayName = 'DropdownMenu';

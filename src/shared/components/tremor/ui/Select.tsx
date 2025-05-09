@@ -5,9 +5,9 @@ import { RiArrowDownSLine, RiArrowUpSLine, RiCheckLine } from '@remixicon/react'
 import { format } from 'date-fns';
 import React from 'react';
 
-import { cn as cx } from '@/shared/lib/cn';
-import { focusInput } from '@/shared/lib/focusInput';
-import { hasErrorInput } from '@/shared/lib/hasErrorInput';
+import { cn as cx } from '@/shared/utils/cn';
+import { focusInput } from '@/shared/utils/focusInput';
+import { hasErrorInput } from '@/shared/utils/hasErrorInput';
 import { DateRange } from 'react-day-picker';
 
 const Select = SelectPrimitives.Root;

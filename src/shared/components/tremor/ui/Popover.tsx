@@ -3,7 +3,7 @@
 import * as PopoverPrimitives from '@radix-ui/react-popover';
 import * as React from 'react';
 
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 const Popover = (props: React.ComponentPropsWithoutRef<typeof PopoverPrimitives.Root>) => {
   return <PopoverPrimitives.Root {...props} />;

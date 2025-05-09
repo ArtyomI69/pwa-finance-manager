@@ -20,8 +20,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/tremor/ui/Select';
-import { cn as cx } from '@/shared/lib/cn';
-import { focusRing } from '@/shared/lib/focusRing';
+import { cn as cx } from '@/shared/utils/cn';
+import { focusRing } from '@/shared/utils/focusRing';
 import React from 'react';
 
 export type ConditionFilter = {

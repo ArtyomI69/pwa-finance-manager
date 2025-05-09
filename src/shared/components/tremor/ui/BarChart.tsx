@@ -24,9 +24,9 @@ import {
   constructCategoryColors,
   getColorClassName,
   getYAxisDomain,
-} from '@/shared/lib/chartUtils';
+} from '@/shared/utils/chartUtils';
 import { useOnWindowResize } from '@/shared/hooks/useOnWindowResize';
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 //#region Shape
 

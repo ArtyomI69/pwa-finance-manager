@@ -3,8 +3,8 @@
 import * as Popover from '@radix-ui/react-popover';
 import * as React from 'react';
 
-import { cn as cx } from '@/shared/lib/cn';
-import { focusRing } from '@/shared/lib/focusRing';
+import { cn as cx } from '@/shared/utils/cn';
+import { focusRing } from '@/shared/utils/focusRing';
 
 const shortcutStyles = cx(
   'hidden h-6 select-none items-center justify-center rounded-md bg-gray-800 px-2 font-mono text-xs text-gray-400 ring-1 ring-inset ring-gray-700 transition sm:flex'

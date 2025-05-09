@@ -3,7 +3,7 @@
 import { Button } from '@/shared/components/tremor/ui/Button';
 import { Searchbar } from '@/shared/components/tremor/ui/SearchBar';
 import { conditions, shop, categories } from '@/entities/DataTable';
-import { formatters } from '@/shared/lib/formatters';
+import { formatters } from '@/shared/utils/formatters';
 import { RiDownloadLine } from '@remixicon/react';
 import { Table } from '@tanstack/react-table';
 import { useState } from 'react';

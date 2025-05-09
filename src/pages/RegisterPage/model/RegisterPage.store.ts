@@ -1,6 +1,6 @@
 import { signUp } from '@/shared/API/supabase';
 import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
-import { toastLoading } from '@/shared/utils/toastLoading';
+import { toastLoading } from '@/shared/lib/toastLoading';
 import { createEvent, createEffect, sample } from 'effector';
 import { toast } from 'sonner';
 

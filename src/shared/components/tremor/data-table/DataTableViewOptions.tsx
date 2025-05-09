@@ -11,7 +11,7 @@ import invariant from 'tiny-invariant';
 import { Button } from '@/shared/components/tremor/ui/Button';
 import { Checkbox } from '@/shared/components/tremor/ui/Checkbox';
 import { Label } from '@/shared/components/tremor/ui/Label';
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 import { triggerPostMoveFlash } from '@atlaskit/pragmatic-drag-and-drop-flourish/trigger-post-move-flash';
 import {
   attachClosestEdge,

@@ -1,6 +1,6 @@
 // 'use client';
 
-import { cn as cx } from '@/shared/lib/cn';
+import { cn as cx } from '@/shared/utils/cn';
 
 import { Card } from '@/shared/components/tremor/ui/Card';
 import { DonutChart } from '@/shared/components/tremor/ui/DonutChart';

@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 
 const primaryLightCls =
   'bg-blinkNeutral900 hover:bg-blinkGray900 text-blinkGray50 disabled:bg-blinkNeutral300 disabled:text-blinkNeutral50 focus-visible:ring-offset-2';

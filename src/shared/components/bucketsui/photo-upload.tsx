@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react';
 import { EmptyAvatarRounded } from './icons/empty-avatar';
 import { AvatarImage } from './avatar';
 import { NormalToLargeButton } from './button';
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/utils/cn';
 
 type PhotoUploadProps = {
   id: string;
