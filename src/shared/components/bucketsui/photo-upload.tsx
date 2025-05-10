@@ -16,10 +16,7 @@ export const PhotoUpload = ({ id, className, onFileChange }: PhotoUploadProps) =
   const fileUploadRef = React.useRef<HTMLInputElement>(null);
   return (
     <div
-      className={cn(
-        'flex flex-col gap-1 items-center relative bg-blinkGray50 dark:bg-blinkGray900 rounded pt-4 pb-2 px-2',
-        className
-      )}
+      className={cn('flex flex-col gap-1 items-center relative  rounded pt-4 pb-2 px-2', className)}
     >
       <CurrentUserAvatar />
 

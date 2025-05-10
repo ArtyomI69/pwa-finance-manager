@@ -11,7 +11,12 @@ export const useCurrentUserName = () => {
         console.error(error);
       }
 
-      setName(data.session?.user.user_metadata.user_name ?? '?');
+      let { data: profile } = await createClient()
+        .from('profile')
+        .select('name')
+        .eq('id', data.session?.user.id);
+
+      setName(profile![0].name ?? '?');
     };
 
     fetchProfileName();
