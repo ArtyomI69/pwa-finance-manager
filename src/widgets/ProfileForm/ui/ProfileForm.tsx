@@ -17,6 +17,9 @@ import { Card, CardContent } from '@/shared/components/shadcnui/ui/card';
 import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
 import { PhotoUpload } from '@/shared/components/bucketsui/photo-upload';
+import { useGate, useUnit } from 'effector-react';
+import { $email, $name, getProfileFx, ProfileFormGate } from '../model/ProfileForm.store';
+import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
 
 // Define validation schema using Zod
 const formSchema = z
@@ -38,11 +41,17 @@ const formSchema = z
   });
 
 export function ProfileForm() {
+  const loading = useUnit(getProfileFx.pending);
+  const name = useUnit($name);
+  const email = useUnit($email);
+  useGate(ProfileFormGate);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
+    defaultValues: {},
+    values: {
+      name,
+      email,
       password: '',
       confirmPassword: '',
     },
@@ -51,6 +60,8 @@ export function ProfileForm() {
   async function onSubmit({ email, name, password }: z.infer<typeof formSchema>) {
     console.log({ email, name, password });
   }
+
+  if (loading) return <ThreeDotSimpleLoader />;
 
   return (
     <div className="flex flex-1 max-w-2xl mx-auto min-h-[60vh] h-full w-full items-center justify-center px-4 pb-12">
