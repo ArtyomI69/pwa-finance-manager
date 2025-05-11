@@ -18,7 +18,13 @@ import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
 import { PhotoUpload } from '@/shared/components/bucketsui/photo-upload';
 import { useGate, useUnit } from 'effector-react';
-import { $email, $name, getProfileFx, ProfileFormGate } from '../model/ProfileForm.store';
+import {
+  $email,
+  $name,
+  getProfileFx,
+  ProfileFormGate,
+  updateProfileEv,
+} from '../model/ProfileForm.store';
 import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
 
 // Define validation schema using Zod
@@ -29,10 +35,7 @@ const formSchema = z
       .min(2, { message: 'Имя должно быть длиной не менее 2 символов' })
       .max(100, { message: 'Имя должен быть длиной не более 100 символов' }),
     email: z.string().email({ message: 'Неверный адрес электронной почты' }),
-    password: z
-      .string()
-      .min(6, { message: 'Пароль должен быть длиной не менее 6 символов' })
-      .regex(/[a-zA-Z0-9]/, { message: 'Пароль должен состоять из букв и цифр' }),
+    password: z.string(),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -48,7 +51,6 @@ export function ProfileForm() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {},
     values: {
       name,
       email,
@@ -58,7 +60,7 @@ export function ProfileForm() {
   });
 
   async function onSubmit({ email, name, password }: z.infer<typeof formSchema>) {
-    console.log({ email, name, password });
+    updateProfileEv({ email, name, password });
   }
 
   if (loading) return <ThreeDotSimpleLoader />;

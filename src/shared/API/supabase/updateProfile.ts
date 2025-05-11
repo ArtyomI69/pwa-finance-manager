@@ -1,12 +1,31 @@
+import { UserAttributes } from '@supabase/supabase-js';
 import { createClient } from './client';
-import { getSession } from './getSession';
 
-export const getProfile = async () => {
-  const supabase = createClient();
+export const updateProfile = async ({
+  email,
+  name,
+  password,
+}: {
+  email: string;
+  name: string;
+  password?: string;
+}) => {
+  let newProfileData: UserAttributes = {
+    email,
+    password,
+    data: {
+      name,
+    },
+  };
 
-  const id = (await getSession()).data.session?.user.id;
+  if (!password) {
+    newProfileData = {
+      email,
+      data: {
+        name,
+      },
+    };
+  }
 
-  let { data: profile } = await supabase.from('profile').select('*').eq('id', id);
-
-  return profile![0] as { name: string; email: string };
+  return await createClient().auth.updateUser(newProfileData);
 };
