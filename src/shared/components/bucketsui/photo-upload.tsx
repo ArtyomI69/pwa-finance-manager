@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 
 import { NormalToLargeButton } from './button';
 import { cn } from '@/shared/utils/cn';
-import { CurrentUserAvatar } from '../supabase/current-user-avatar';
+import { CurrentUserAvatar } from '@/entities/CurrentUserAvatar';
 
 type PhotoUploadProps = {
   id: string;
