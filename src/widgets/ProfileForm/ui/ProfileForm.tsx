@@ -83,7 +83,7 @@ export function ProfileForm() {
   if (loading) return <FullScreenLoader />;
 
   return (
-    <div className="flex flex-1 max-w-2xl mx-auto min-h-[60vh] h-full w-full items-center justify-center px-4 pb-12">
+    <div className="flex flex-1 max-w-2xl mx-auto min-h-[60vh] h-full w-full items-center justify-center px-4">
       <Card className="mx-auto max-w-2xl flex flex-1">
         <CardContent className="flex-1">
           <Form {...form}>
