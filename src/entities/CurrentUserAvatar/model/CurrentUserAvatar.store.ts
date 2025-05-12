@@ -47,4 +47,4 @@ sample({
   target: $profileImage,
 });
 
-export { CurrentUserAvatarGate, $initials, $profileImage };
+export { CurrentUserAvatarGate, $initials, $profileImage, setImageEv };
