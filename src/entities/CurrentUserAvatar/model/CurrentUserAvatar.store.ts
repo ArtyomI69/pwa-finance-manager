@@ -1,6 +1,7 @@
 import { getProfile } from '@/shared/API/supabase/getProfile';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
+import { debug } from 'patronum/debug';
 
 const CurrentUserAvatarGate = createGate();
 
