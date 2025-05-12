@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
 
-import { NormalToLargeButton } from './button';
+import { NormalToLargeButton } from '@/shared/components/bucketsui/button';
 import { cn } from '@/shared/utils/cn';
 import { CurrentUserAvatar } from '@/entities/CurrentUserAvatar';
 
-type PhotoUploadProps = {
+type ProfilePhotoUploadProps = {
   id: string;
   className?: string;
   onFileChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -12,7 +12,7 @@ type PhotoUploadProps = {
   name?: string;
 };
 
-export const PhotoUpload = ({ id, className, onFileChange }: PhotoUploadProps) => {
+export const ProfilePhotoUpload = ({ id, className, onFileChange }: ProfilePhotoUploadProps) => {
   const fileUploadRef = React.useRef<HTMLInputElement>(null);
   return (
     <div
@@ -47,4 +47,4 @@ export const PhotoUpload = ({ id, className, onFileChange }: PhotoUploadProps) =
   );
 };
 
-PhotoUpload.displayName = 'PhotoUpload';
+ProfilePhotoUpload.displayName = 'ProfilePhotoUpload';

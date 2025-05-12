@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useGate, useUnit } from 'effector-react';
 
 import {
   Form,
@@ -16,8 +17,8 @@ import { Button } from '@/shared/components/shadcnui/ui/button';
 import { Card, CardContent } from '@/shared/components/shadcnui/ui/card';
 import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
-import { PhotoUpload } from '@/shared/components/bucketsui/photo-upload';
-import { useGate, useUnit } from 'effector-react';
+import { ProfilePhotoUpload, updateProfilePhotoEv } from '@/features/ProfilePhotoUpload';
+import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 import {
   $email,
   $name,
@@ -25,7 +26,6 @@ import {
   ProfileFormGate,
   updateProfileEv,
 } from '../model/ProfileForm.store';
-import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
 
 // Define validation schema using Zod
 const formSchema = z
@@ -63,7 +63,16 @@ export function ProfileForm() {
     updateProfileEv({ email, name, password });
   }
 
-  if (loading) return <ThreeDotSimpleLoader />;
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) return;
+
+    const file = files[0];
+
+    updateProfilePhotoEv(file);
+  };
+
+  if (loading) return <FullScreenLoader />;
 
   return (
     <div className="flex flex-1 max-w-2xl mx-auto min-h-[60vh] h-full w-full items-center justify-center px-4 pb-12">
@@ -72,7 +81,11 @@ export function ProfileForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">
-                <PhotoUpload id="profile-photo-upload" aria-label="Profile photo upload" />
+                <ProfilePhotoUpload
+                  id="profile-photo-upload"
+                  aria-label="Profile photo upload"
+                  onFileChange={onFileChange}
+                />
 
                 {/* Name Field */}
                 <FormField

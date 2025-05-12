@@ -2,7 +2,7 @@ import { useLocation, Navigate } from 'react-router-dom';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { useUnit } from 'effector-react';
 import { $inited, $session } from '@/features/Auth';
-import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
+import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 
 export function RequireUnauth({ children }: { children: JSX.Element }) {
   const auth = useUnit($session);
@@ -10,11 +10,7 @@ export function RequireUnauth({ children }: { children: JSX.Element }) {
   const location = useLocation();
 
   if (!inited) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <ThreeDotSimpleLoader />
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   if (auth) {
