@@ -1,2 +1,5 @@
 export { ProfilePhotoUpload } from './ui/ProfilePhotoUpload';
-export { updateProfilePhotoEv } from './model/ProfilePhotoUpload.store';
+export {
+  updateProfilePhotoEv,
+  deleteCurrentProfilePhotoEv,
+} from './model/ProfilePhotoUpload.store';

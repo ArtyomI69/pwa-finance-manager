@@ -8,11 +8,17 @@ type ProfilePhotoUploadProps = {
   id: string;
   className?: string;
   onFileChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onFileDelete?: () => void;
   url?: string;
   name?: string;
 };
 
-export const ProfilePhotoUpload = ({ id, className, onFileChange }: ProfilePhotoUploadProps) => {
+export const ProfilePhotoUpload = ({
+  id,
+  className,
+  onFileChange,
+  onFileDelete,
+}: ProfilePhotoUploadProps) => {
   const fileUploadRef = React.useRef<HTMLInputElement>(null);
   return (
     <div
@@ -30,6 +36,7 @@ export const ProfilePhotoUpload = ({ id, className, onFileChange }: ProfilePhoto
       <NormalToLargeButton
         appearance="text"
         className="text-blinkCoral400 dark:text-blinkCoral300 underline"
+        onClick={onFileDelete}
       >
         Удалить фото
       </NormalToLargeButton>

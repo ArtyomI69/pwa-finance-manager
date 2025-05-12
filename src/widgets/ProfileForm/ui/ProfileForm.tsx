@@ -17,7 +17,11 @@ import { Button } from '@/shared/components/shadcnui/ui/button';
 import { Card, CardContent } from '@/shared/components/shadcnui/ui/card';
 import { Input } from '@/shared/components/shadcnui/ui/input';
 import { PasswordInput } from '@/shared/components/shadcn-form/ui/password-input';
-import { ProfilePhotoUpload, updateProfilePhotoEv } from '@/features/ProfilePhotoUpload';
+import {
+  deleteCurrentProfilePhotoEv,
+  ProfilePhotoUpload,
+  updateProfilePhotoEv,
+} from '@/features/ProfilePhotoUpload';
 import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 import {
   $email,
@@ -72,6 +76,10 @@ export function ProfileForm() {
     updateProfilePhotoEv(file);
   };
 
+  const onFileDelete = () => {
+    deleteCurrentProfilePhotoEv();
+  };
+
   if (loading) return <FullScreenLoader />;
 
   return (
@@ -85,6 +93,7 @@ export function ProfileForm() {
                   id="profile-photo-upload"
                   aria-label="Profile photo upload"
                   onFileChange={onFileChange}
+                  onFileDelete={onFileDelete}
                 />
 
                 {/* Name Field */}

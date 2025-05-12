@@ -19,7 +19,6 @@ const onAuthStateChangeFx = createEffect(async () => {
   const sciopeOnAuthStateChangeEv = scopeBind(onAuthStateChangeEv);
 
   onAuthStateChange((_, session) => {
-    console.log(session);
     sciopeOnAuthStateChangeEv(session);
   });
 });
