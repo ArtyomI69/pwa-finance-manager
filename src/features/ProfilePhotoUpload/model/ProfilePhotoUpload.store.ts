@@ -4,6 +4,7 @@ import { getPublicUrlAvatars } from '@/shared/API/supabase/getPublicUrlAvatars';
 import { updateProfilePhoto } from '@/shared/API/supabase/updateProfilePhoto';
 import { uploadProfilePhotoStorage } from '@/shared/API/supabase/uploadProfilePhotoStorage';
 import { toastLoading } from '@/shared/lib/toastLoading';
+import { getLastItemUrl } from '@/shared/utils/getLastItemUrlArray';
 import { createEffect, createEvent, sample } from 'effector';
 import { toast } from 'sonner';
 
@@ -12,7 +13,7 @@ const deleteOldProfilePhotoEv = createEvent<string>();
 const deleteCurrentProfilePhotoEv = createEvent();
 
 const updateProfilePhotoFx = createEffect(async (file: File) => {
-  const oldProfileImage = $profileImage.getState();
+  const oldProfileImageFileName = getLastItemUrl($profileImage.getState());
 
   const filename = `avatar_${Date.now()}.png`;
   const { error: errorStorage } = await toastLoading(uploadProfilePhotoStorage, filename, file);
@@ -31,9 +32,9 @@ const updateProfilePhotoFx = createEffect(async (file: File) => {
     throw new Error('Произошла ошибка при загрузке файла');
   }
 
-  setImageEv(URL.createObjectURL(file));
+  setImageEv(uploadedFilePublicUrl);
 
-  return oldProfileImage;
+  return oldProfileImageFileName;
 });
 
 const deleteOldProfilePhotoFx = createEffect(async (avatar_url: string) => {
