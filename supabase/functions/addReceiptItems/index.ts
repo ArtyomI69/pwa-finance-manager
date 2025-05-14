@@ -88,7 +88,7 @@ Deno.serve(async (req) => {
 
   const result = {
     items: itemsWithCategories,
-    address: formatAddress(qrrawData.address).split(' '),
+    address: formatAddress(qrrawData.address).replaceAll('+', ' '),
     shopName: qrrawData.shopName,
     coordinates,
   };
