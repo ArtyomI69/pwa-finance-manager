@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import QrScan from 'qr-scanner';
+import { getQrCodeDataEv } from '../model/QrScanner.store';
 
 export const QrScanner = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,7 +11,7 @@ export const QrScanner = () => {
       scannerRef.current = new QrScan(
         videoRef.current,
         (result) => {
-          console.log(result.data);
+          getQrCodeDataEv(result.data);
         },
         {
           returnDetailedScanResult: true,
@@ -19,7 +20,7 @@ export const QrScanner = () => {
           highlightCodeOutline: true,
           calculateScanRegion: (video: HTMLVideoElement) => {
             const minEdgeSize = Math.min(video.videoWidth, video.videoHeight);
-            const regionSize = Math.round(minEdgeSize * 0.3);
+            const regionSize = Math.round(minEdgeSize * 0.45);
             return {
               x: (video.videoWidth - regionSize) / 2,
               y: (video.videoHeight - regionSize) / 2,
@@ -34,7 +35,7 @@ export const QrScanner = () => {
     }
 
     return () => {
-      scannerRef.current?.stop();
+      scannerRef.current?.destroy();
     };
   }, []);
 
