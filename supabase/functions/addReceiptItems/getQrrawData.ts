@@ -9,7 +9,7 @@ interface IData {
 export const getQrrawData = async (qrraw: string) => {
   const result: Partial<IData> = {};
   const body = {
-    token: Deno.env.get('FNSAPIKEY'),
+    token: Deno.env.get('FNS_API_TOKEN'),
     qrraw,
   };
   const response = await fetch('https://proverkacheka.com/api/v1/check/get', {
