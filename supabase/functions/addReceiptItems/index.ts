@@ -7,7 +7,6 @@ import { corsHeaders } from './cors.ts';
 import { getQrrawData } from './getQrrawData.ts';
 import { getCoordinates } from './getCoordinates.ts';
 import { formatAddress } from './formatAddress.ts';
-import { getGigaToken } from './getGigaToken.ts';
 import { getItemsWithCategories } from './getItemsWithCategories.ts';
 
 console.info('server started');
@@ -36,60 +35,65 @@ Deno.serve(async (req) => {
 
   const { qrraw }: reqPayload = await req.json();
 
-  // const qrrawData = await getQrrawData(qrraw);
-  const qrrawData = {
-    items: [
-      {
-        name: 'Пакет ПЯТЕРОЧКА 65х40см',
-        sum: 999,
-        quantity: 1,
-      },
-      {
-        name: 'Конф.КАРА-КУМ шоколадные 1кг',
-        sum: 15600,
-        quantity: 0.208,
-      },
-      {
-        name: 'СТ.МОЛ.Молоко паст.2,5% 900мл',
-        sum: 7999,
-        quantity: 1,
-      },
-      {
-        name: '*P.ONE Корм сух.с лос/пш.1,5кг',
-        sum: 64999,
-        quantity: 1,
-      },
-      {
-        name: 'COF.Кофе CLASSICO ITALIANO 5х9г',
-        sum: 19999,
-        quantity: 1,
-      },
-      {
-        name: '*Игр.из.пер.Пр.Ам Няма/Лед/Пчела',
-        sum: 0,
-        quantity: 1,
-      },
-    ],
-    address:
-      '170027, 69 - Тверская область, г.о. город Тверь, г Тверь,, ул Оснабрюкская, Дом 38а, Помещение 1',
-    shopName: 'Общество с ограниченной ответственностью "Агроторг" ',
-  };
+  const qrrawData = await getQrrawData(qrraw);
+  // const qrrawData = {
+  //   items: [
+  //     {
+  //       name: 'Пакет ПЯТЕРОЧКА 65х40см',
+  //       sum: 999,
+  //       quantity: 1,
+  //     },
+  //     {
+  //       name: 'Конф.КАРА-КУМ шоколадные 1кг',
+  //       sum: 15600,
+  //       quantity: 0.208,
+  //     },
+  //     {
+  //       name: 'СТ.МОЛ.Молоко паст.2,5% 900мл',
+  //       sum: 7999,
+  //       quantity: 1,
+  //     },
+  //     {
+  //       name: '*P.ONE Корм сух.с лос/пш.1,5кг',
+  //       sum: 64999,
+  //       quantity: 1,
+  //     },
+  //     {
+  //       name: 'COF.Кофе CLASSICO ITALIANO 5х9г',
+  //       sum: 19999,
+  //       quantity: 1,
+  //     },
+  //     {
+  //       name: '*Игр.из.пер.Пр.Ам Няма/Лед/Пчела',
+  //       sum: 0,
+  //       quantity: 1,
+  //     },
+  //   ],
+  //   address:
+  //     '170027, 69 - Тверская область, г.о. город Тверь, г Тверь,, ул Оснабрюкская, Дом 38а, Помещение 1',
+  //   shopName: 'Общество с ограниченной ответственностью "Агроторг" ',
+  // };
 
-  // const formatedAddress = formatAddress(qrrawData.address);
-  // const coordinates = await getCoordinates(formatedAddress);
+  const formatedAddress = formatAddress(qrrawData.address);
+  const coordinates = await getCoordinates(formatedAddress);
 
   let { data: categories } = await supabaseClient.from('categories').select('name');
 
-  // const access_token = await getGigaToken();
   const itemsWithCategories = await getItemsWithCategories({
-    access_token: 'access_token',
     categories: categories.map(({ name }) => name),
     items: qrrawData.items.map(
       ({ name, quantity, sum }) => `{name: "${name}", quantity: ${quantity}, sum: ${sum}}`
     ),
   });
 
-  return new Response(JSON.stringify(itemsWithCategories), {
+  const result = {
+    items: itemsWithCategories,
+    address: formatAddress(qrrawData.address).split(' '),
+    shopName: qrrawData.shopName,
+    coordinates,
+  };
+
+  return new Response(JSON.stringify(result), {
     headers: {
       ...corsHeaders,
       'Content-Type': 'application/json',

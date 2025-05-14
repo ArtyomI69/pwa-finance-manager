@@ -1,15 +1,10 @@
 export const getItemsWithCategories = async ({
-  access_token,
   categories,
   items,
 }: {
-  access_token: string;
   categories: string[];
   items: string[];
 }) => {
-  const url = 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions';
-  const modelName = 'GigaChat-2-Max'; // Укажите название модели
-
   const categoriesText = `[${categories.join(', ')}]`;
   const itemsText = `[${items.join(', ')}]`;
   const prompt = `
@@ -18,36 +13,42 @@ export const getItemsWithCategories = async ({
   Пришли ответ в виде json в таком формате: Массив объектов формата {name: текст, sum: число, quantity: число, category: текст}. 
   В ответе должен быть только json и не должно быть не каких предложений`;
 
-  return prompt;
-
   const requestData = {
-    model: modelName,
+    modelUri: 'gpt://b1gp7dtvuasv62sfpbt2/yandexgpt',
+    completionOptions: {
+      stream: false,
+      temperature: 0.1,
+      maxTokens: 2000,
+    },
     messages: [
       {
         role: 'user',
-        content: prompt,
+        text: prompt,
       },
     ],
-    n: 1,
-    stream: false,
-    max_tokens: 512,
-    repetition_penalty: 1,
-    update_interval: 0,
   };
 
   const headers = {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Authorization: `Bearer ${access_token}`,
+    'x-folder-id': 'b1gp7dtvuasv62sfpbt2',
+    Authorization: `Api-key ${Deno.env.get('YA_GPT_API_KEY')}`,
   };
 
-  const response = await fetch(url, {
+  const response = await fetch('https://llm.api.cloud.yandex.net/foundationModels/v1/completion', {
     method: 'POST',
     headers: headers,
     body: JSON.stringify(requestData),
   });
 
   const data = await response.json();
+  const textWithJson = data.result.alternatives[0].message.text;
 
-  return data;
+  // Удаляем обратные кавычки и лишние пробелы
+  const jsonString = textWithJson.replace(/```/g, '').trim();
+
+  // Парсим JSON в JavaScript объект
+  const parsedItems = JSON.parse(jsonString);
+
+  // Возвращаем результат
+  return parsedItems;
 };
