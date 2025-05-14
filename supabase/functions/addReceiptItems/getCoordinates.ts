@@ -6,8 +6,6 @@ export const getCoordinates = async (geocode: string) => {
   );
   const result = await response.json();
 
-  console.log(result);
-
   return result.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
     .split(' ')
     .reverse();

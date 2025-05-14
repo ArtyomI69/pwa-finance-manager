@@ -16,7 +16,7 @@ const features = [
   },
   {
     Icon: ChartBarDecreasing,
-    name: 'Статистика',
+    name: 'Дашборд',
     description:
       'Узнайте, на что уходит больше всего ваших денег с помощью ярких графиков и таблиц!',
     href: RoutePath.receipts_dashboard,

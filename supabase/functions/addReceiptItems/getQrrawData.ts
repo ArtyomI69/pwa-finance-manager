@@ -1,9 +1,9 @@
 import { extractProductsData, IRecieptItem } from './extractProductsData.ts';
 
-interface IData {
-  items?: IRecieptItem[];
-  address?: string;
-  shopName?: string;
+export interface IData {
+  items: IRecieptItem[];
+  address: string;
+  shopName: string;
 }
 
 export const getQrrawData = async (qrraw: string) => {
