@@ -1,5 +1,4 @@
 import { Map, Placemark } from '@pbe/react-yandex-maps';
-import { useState } from 'react';
 
 export const ReceiptsMap = () => {
   return (
@@ -35,7 +34,7 @@ export const ReceiptsMap = () => {
           balloonContentFooter: 'Дополнительная информация',
         }}
       />
-      <Placemark
+      {/* <Placemark
         geometry={[55.784758, 37.738521]}
         options={{
           iconColor: 'red',
@@ -50,7 +49,7 @@ export const ReceiptsMap = () => {
           balloonContentBody: 'Описание метки',
           balloonContentFooter: 'Дополнительная информация',
         }}
-      />
+      /> */}
     </Map>
   );
 };
