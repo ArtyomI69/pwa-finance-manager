@@ -2,29 +2,6 @@ import { Map, Placemark } from '@pbe/react-yandex-maps';
 import { useState } from 'react';
 
 export const ReceiptsMap = () => {
-  const [coordinates, setCoordinates] = useState([55.751574, 37.573856]); // Москва по умолчанию
-
-  // useEffect(() => {
-  //   const getCoordinates = async () => {
-  //     const response = await fetch(
-  //       'https://geocode-maps.yandex.ru/1.x/?apikey=da69f6d8-f14f-4c6a-a65a-8093a117cfef&geocode=Москва+Красная+Площадь&format=json'
-  //     );
-  //     const result = await response.json();
-  //     console.log(
-  //       result.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-  //         .split(' ')
-  //         .reverse()
-  //     );
-  //     setCoordinates(
-  //       result.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-  //         .split(' ')
-  //         .reverse()
-  //     );
-  //   };
-
-  //   getCoordinates();
-  // }, []);
-
   return (
     <Map
       className="flex-1"
@@ -34,7 +11,7 @@ export const ReceiptsMap = () => {
       }}
     >
       <Placemark
-        geometry={coordinates}
+        geometry={[55.784758, 37.738521]}
         options={{
           iconColor: 'red',
           preset: 'islands#blueMoneyCircleIcon',
