@@ -19,6 +19,7 @@ const getQrCodeDataFx = createEffect(async (qrraw: string) => {
 
   if (qrDataError) {
     toast.error('Произошла ошибка при получении информации с QR кода');
+    console.error(qrDataError);
     return;
   }
 

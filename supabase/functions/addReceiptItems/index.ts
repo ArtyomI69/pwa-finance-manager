@@ -8,6 +8,8 @@ import { getQrrawData } from './getQrrawData.ts';
 import { getCoordinates } from './getCoordinates.ts';
 import { formatAddress } from './formatAddress.ts';
 import { getItemsWithCategories } from './getItemsWithCategories.ts';
+import { formatCoordinatesForDb } from './formatCoordinatesForDb.ts';
+import { findCategoryId } from './findCategoryId.ts';
 
 console.info('server started');
 
@@ -32,52 +34,14 @@ Deno.serve(async (req) => {
       },
     }
   );
-
   const { qrraw }: reqPayload = await req.json();
 
   const qrrawData = await getQrrawData(qrraw);
-  // const qrrawData = {
-  //   items: [
-  //     {
-  //       name: 'Пакет ПЯТЕРОЧКА 65х40см',
-  //       sum: 999,
-  //       quantity: 1,
-  //     },
-  //     {
-  //       name: 'Конф.КАРА-КУМ шоколадные 1кг',
-  //       sum: 15600,
-  //       quantity: 0.208,
-  //     },
-  //     {
-  //       name: 'СТ.МОЛ.Молоко паст.2,5% 900мл',
-  //       sum: 7999,
-  //       quantity: 1,
-  //     },
-  //     {
-  //       name: '*P.ONE Корм сух.с лос/пш.1,5кг',
-  //       sum: 64999,
-  //       quantity: 1,
-  //     },
-  //     {
-  //       name: 'COF.Кофе CLASSICO ITALIANO 5х9г',
-  //       sum: 19999,
-  //       quantity: 1,
-  //     },
-  //     {
-  //       name: '*Игр.из.пер.Пр.Ам Няма/Лед/Пчела',
-  //       sum: 0,
-  //       quantity: 1,
-  //     },
-  //   ],
-  //   address:
-  //     '170027, 69 - Тверская область, г.о. город Тверь, г Тверь,, ул Оснабрюкская, Дом 38а, Помещение 1',
-  //   shopName: 'Общество с ограниченной ответственностью "Агроторг" ',
-  // };
 
   const formatedAddress = formatAddress(qrrawData.address);
-  const coordinates = await getCoordinates(formatedAddress);
+  const { address, coordinates } = await getCoordinates(formatedAddress);
 
-  let { data: categories } = await supabaseClient.from('categories').select('name');
+  let { data: categories } = await supabaseClient.from('categories').select('*');
 
   const itemsWithCategories = await getItemsWithCategories({
     categories: categories.map(({ name }) => name),
@@ -88,12 +52,50 @@ Deno.serve(async (req) => {
 
   const result = {
     items: itemsWithCategories,
-    address: formatAddress(qrrawData.address).replaceAll('+', ' '),
+    address,
     shopName: qrrawData.shopName,
     coordinates,
   };
 
-  return new Response(JSON.stringify(result), {
+  const { data } = await supabaseClient
+    .from('shops')
+    .select('id')
+    .eq('name', result.shopName)
+    .eq('address', result.address)
+    .eq('coordinates', formatCoordinatesForDb(coordinates))
+    .maybeSingle();
+  let shop_id = data?.id ?? null;
+
+  if (!shop_id) {
+    const { data } = await supabaseClient
+      .from('shops')
+      .insert([
+        {
+          name: result.shopName,
+          address: result.address,
+          coordinates: formatCoordinatesForDb(coordinates),
+        },
+      ])
+      .select('id');
+    shop_id = data[0].id;
+  }
+
+  const {
+    data: { user },
+  } = await supabaseClient.auth.getUser();
+  const profile_id = user.id;
+  const { error } = await supabaseClient.from('items').insert(
+    result.items.map(({ name, sum, quantity, category }) => ({
+      name,
+      sum,
+      quantity,
+      shop_id,
+      category_id: findCategoryId(categories, category),
+      profile_id,
+    }))
+  );
+
+  return new Response(JSON.stringify(result, error), {
     headers: {
       ...corsHeaders,
       'Content-Type': 'application/json',

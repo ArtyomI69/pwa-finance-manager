@@ -6,7 +6,13 @@ export const getCoordinates = async (geocode: string) => {
   );
   const result = await response.json();
 
-  return result.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-    .split(' ')
-    .reverse();
+  return {
+    coordinates:
+      result?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
+        ?.split(' ')
+        .reverse() ?? null,
+    address:
+      result?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.metaDataProperty
+        ?.GeocoderMetaData?.text ?? geocode.replaceAll('+', ' '),
+  };
 };
