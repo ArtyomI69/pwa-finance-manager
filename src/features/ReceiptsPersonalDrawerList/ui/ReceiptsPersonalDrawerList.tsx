@@ -14,7 +14,9 @@ export const ReceiptsPersonalDrawerList = () => {
           className="flex items-center justify-between space-y-0 rounded-md border p-4 gap-4"
         >
           <Label>{shopName}</Label>
+          <p>|</p>
           <Label>{address}</Label>
+          <p>|</p>
           <Label>{totalSum}₽</Label>
         </li>
       ))}
