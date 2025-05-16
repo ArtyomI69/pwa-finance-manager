@@ -1,2 +1,2 @@
 export { ReceiptsMap } from './ui/ReceiptsMap';
-export { setPlaceMarks } from './model/ReceiptsMap.store';
+export { setPlaceMarks, setCenterMapEv, setZoomMapEv } from './model/ReceiptsMap.store';

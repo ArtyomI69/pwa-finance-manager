@@ -4,8 +4,10 @@ import { GroupedProfile } from '@/shared/types/shopGroup';
 
 export const ReceiptsGroupDrawerList = ({
   groupedProfiles,
+  onItemClick,
 }: {
   groupedProfiles: GroupedProfile[];
+  onItemClick: (center: number[]) => void;
 }) => {
   return (
     <Accordion>
@@ -14,7 +16,10 @@ export const ReceiptsGroupDrawerList = ({
           <Tab key={i}>
             <Trigger>{groupedProf.profile.name}</Trigger>
             <Content className="overflow-x-auto">
-              <ReceiptsPersonalDrawerList groupedShops={groupedProf.shops} />
+              <ReceiptsPersonalDrawerList
+                groupedShops={groupedProf.shops}
+                onItemClick={onItemClick}
+              />
             </Content>
           </Tab>
         );

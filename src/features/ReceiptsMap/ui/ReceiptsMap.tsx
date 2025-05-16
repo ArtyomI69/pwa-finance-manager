@@ -1,16 +1,18 @@
 import { Map, Placemark } from '@pbe/react-yandex-maps';
 import { useUnit } from 'effector-react';
-import { $placeMarks } from '../model/ReceiptsMap.store';
+import { $placeMarks, $center, $zoom } from '../model/ReceiptsMap.store';
 
 export const ReceiptsMap = () => {
   const placeMarks = useUnit($placeMarks);
+  const center = useUnit($center);
+  const zoom = useUnit($zoom);
 
   return (
     <Map
       className="flex-1"
-      defaultState={{
-        center: [56.861346, 35.774553],
-        zoom: 11,
+      state={{
+        center: center,
+        zoom,
       }}
     >
       {placeMarks.map((mark) => {

@@ -15,6 +15,7 @@ import {
   openPersonalTabEv,
   ReceiptsMapDrawerGate,
 } from '../model/ReceiptsMapDrawer.store';
+import { setCenterMapEv, setZoomMapEv } from '@/features/ReceiptsMap';
 
 export const ReceiptsMapDrawer = () => {
   useGate(ReceiptsMapDrawerGate);
@@ -38,6 +39,12 @@ export const ReceiptsMapDrawer = () => {
 
   const onOpenGroupTab = () => {
     openGroupTabEv();
+  };
+
+  const onItemClick = (center: number[]) => {
+    setCenterMapEv(center);
+    setZoomMapEv();
+    hideDrawer();
   };
 
   return (
@@ -65,10 +72,10 @@ export const ReceiptsMapDrawer = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-scroll">
-            <ReceiptsPersonalDrawerList groupedShops={currentUserShops} />
+            <ReceiptsPersonalDrawerList groupedShops={currentUserShops} onItemClick={onItemClick} />
           </TabsContent>
           <TabsContent value="group" className="flex-1 overflow-y-scroll">
-            <ReceiptsGroupDrawerList groupedProfiles={groupedProfiles} />
+            <ReceiptsGroupDrawerList groupedProfiles={groupedProfiles} onItemClick={onItemClick} />
           </TabsContent>
         </Tabs>
       </div>
