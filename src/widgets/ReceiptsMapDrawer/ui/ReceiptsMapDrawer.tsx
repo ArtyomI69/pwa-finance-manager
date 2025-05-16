@@ -11,6 +11,8 @@ import { useGate, useUnit } from 'effector-react';
 import {
   $currentUserShops,
   $groupedProfiles,
+  openGroupTabEv,
+  openPersonalTabEv,
   ReceiptsMapDrawerGate,
 } from '../model/ReceiptsMapDrawer.store';
 
@@ -30,6 +32,14 @@ export const ReceiptsMapDrawer = () => {
     setIsDrawerOpen(false);
   };
 
+  const onOpenPersonalTab = () => {
+    openPersonalTabEv();
+  };
+
+  const onOpenGroupTab = () => {
+    openGroupTabEv();
+  };
+
   return (
     <Drawer
       modal={isMobile ? undefined : false}
@@ -47,8 +57,12 @@ export const ReceiptsMapDrawer = () => {
         <DatePickerWithRange />
         <Tabs defaultValue="personal" className="w-full flex-1 flex flex-col overflow-hidden">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="personal">Персональное</TabsTrigger>
-            <TabsTrigger value="group">Груповое</TabsTrigger>
+            <TabsTrigger value="personal" onClick={onOpenPersonalTab}>
+              Персональное
+            </TabsTrigger>
+            <TabsTrigger value="group" onClick={onOpenGroupTab}>
+              Груповое
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-scroll">
             <ReceiptsPersonalDrawerList groupedShops={currentUserShops} />
