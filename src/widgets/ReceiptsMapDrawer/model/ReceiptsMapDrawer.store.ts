@@ -5,7 +5,7 @@ import { createGate } from 'effector-react';
 
 const ReceiptsMapDrawerGate = createGate();
 
-const $groupedProfile = createStore<GroupedProfile[]>([]);
+const $groupedProfiles = createStore<GroupedProfile[]>([]);
 const $currentUserShops = createStore<GroupedShop[]>([]);
 
 const fetchPersonalStoresFx = createEffect(async () => {
@@ -19,13 +19,13 @@ sample({
 
 sample({
   clock: fetchPersonalStoresFx.doneData,
-  target: $groupedProfile,
+  target: $groupedProfiles,
 });
 
 sample({
-  clock: $groupedProfile,
+  clock: $groupedProfiles,
   target: $currentUserShops,
   fn: (grouped) => grouped.find((groupedProf) => groupedProf.profile.isCurrentUser)!.shops,
 });
 
-export { $currentUserShops, $groupedProfile, ReceiptsMapDrawerGate };
+export { $currentUserShops, $groupedProfiles, ReceiptsMapDrawerGate };

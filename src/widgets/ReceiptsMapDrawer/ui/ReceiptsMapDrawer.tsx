@@ -10,13 +10,13 @@ import { ReceiptsGroupDrawerList } from '@/features/ReceiptsGroupDrawerList';
 import { useGate, useUnit } from 'effector-react';
 import {
   $currentUserShops,
-  $groupedProfile,
+  $groupedProfiles,
   ReceiptsMapDrawerGate,
 } from '../model/ReceiptsMapDrawer.store';
 
 export const ReceiptsMapDrawer = () => {
   useGate(ReceiptsMapDrawerGate);
-  const groupedProfile = useUnit($groupedProfile);
+  const groupedProfiles = useUnit($groupedProfiles);
   const currentUserShops = useUnit($currentUserShops);
 
   const isMobile = useIsMobile();
@@ -54,7 +54,7 @@ export const ReceiptsMapDrawer = () => {
             <ReceiptsPersonalDrawerList groupedShops={currentUserShops} />
           </TabsContent>
           <TabsContent value="group" className="flex-1 overflow-y-scroll">
-            <ReceiptsGroupDrawerList />
+            <ReceiptsGroupDrawerList groupedProfiles={groupedProfiles} />
           </TabsContent>
         </Tabs>
       </div>

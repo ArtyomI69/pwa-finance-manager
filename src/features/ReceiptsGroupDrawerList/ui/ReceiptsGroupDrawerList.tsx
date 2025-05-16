@@ -1,27 +1,20 @@
 import { Accordion, Content, Tab, Trigger } from '@/shared/components/lukachoui/accordion';
-import { Checkbox } from '@/shared/components/shadcnui/ui/checkbox';
-import { Label } from '@/shared/components/shadcnui/ui/label';
 import { ReceiptsPersonalDrawerList } from '@/features/ReceiptsPersonalDrawerList';
+import { GroupedProfile } from '@/shared/types/shopGroup';
 
-const questions = [
-  {
-    question: 'Папа',
-  },
-  { question: 'Мама' },
-  {
-    question: 'Сын',
-  },
-];
-
-export const ReceiptsGroupDrawerList = () => {
+export const ReceiptsGroupDrawerList = ({
+  groupedProfiles,
+}: {
+  groupedProfiles: GroupedProfile[];
+}) => {
   return (
     <Accordion>
-      {questions.map((e, i) => {
+      {groupedProfiles.map((groupedProf, i) => {
         return (
           <Tab key={i}>
-            <Trigger>{e.question}</Trigger>
-            <Content>
-              <ReceiptsPersonalDrawerList />
+            <Trigger>{groupedProf.profile.name}</Trigger>
+            <Content className="overflow-x-auto">
+              <ReceiptsPersonalDrawerList groupedShops={groupedProf.shops} />
             </Content>
           </Tab>
         );
