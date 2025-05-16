@@ -1,23 +1,19 @@
 import { Label } from '@/shared/components/shadcnui/ui/label';
-import { useGate, useUnit } from 'effector-react';
-import { $shops, ReceiptsPersonalDrawerListGate } from '../model/ReceiptsPersonalDrawerList.store';
+import { GroupedShop } from '@/shared/types/shopGroup';
 
-export const ReceiptsPersonalDrawerList = () => {
-  useGate(ReceiptsPersonalDrawerListGate);
-  const shops = useUnit($shops);
-
+export const ReceiptsPersonalDrawerList = ({ groupedShops }: { groupedShops: GroupedShop[] }) => {
   return (
     <ul className="flex flex-col">
-      {shops.map(({ shopName, address, totalSum }) => (
+      {groupedShops.map((grouped) => (
         <li
-          key={shopName}
-          className="flex items-center justify-between space-y-0 rounded-md border p-4 gap-4"
+          key={`${grouped.shop.name} ${grouped.shop.address}`}
+          className="flex items-center justify-between space-y-0 rounded-md border p-4 gap-2"
         >
-          <Label>{shopName}</Label>
+          <Label>{grouped.shop.name}</Label>
           <p>|</p>
-          <Label>{address}</Label>
+          <Label>{grouped.shop.address}</Label>
           <p>|</p>
-          <Label>{totalSum}₽</Label>
+          <Label>{grouped.totalSum}₽</Label>
         </li>
       ))}
     </ul>

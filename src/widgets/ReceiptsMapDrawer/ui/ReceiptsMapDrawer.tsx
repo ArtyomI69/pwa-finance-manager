@@ -3,14 +3,22 @@ import { MenuIcon } from '@/shared/assets/icons/menu-icon';
 import { Button } from '@/shared/components/bucketsui/button';
 import { Drawer } from '@/shared/components/bucketsui/drawer';
 import { DatePickerWithRange } from '@/shared/components/shadcnui/data-range-picker';
-import { Label } from '@/shared/components/shadcnui/ui/label';
-import { Switch } from '@/shared/components/shadcnui/ui/switch';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { ReceiptsPersonalDrawerList } from '@/features/ReceiptsPersonalDrawerList';
 import { ReceiptsGroupDrawerList } from '@/features/ReceiptsGroupDrawerList';
+import { useGate, useUnit } from 'effector-react';
+import {
+  $currentUserShops,
+  $groupedProfile,
+  ReceiptsMapDrawerGate,
+} from '../model/ReceiptsMapDrawer.store';
 
 export const ReceiptsMapDrawer = () => {
+  useGate(ReceiptsMapDrawerGate);
+  const groupedProfile = useUnit($groupedProfile);
+  const currentUserShops = useUnit($currentUserShops);
+
   const isMobile = useIsMobile();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean | undefined>();
 
@@ -35,19 +43,15 @@ export const ReceiptsMapDrawer = () => {
       }
     >
       <div className="flex flex-col gap-4 py-8 px-4 w-full">
-        <h3 className="font-blink-title font-bold text-xl italic">Настройка макеров на карте</h3>
+        <h3 className="font-blink-title font-bold text-xl italic">Отображаемые маркеры на карте</h3>
         <DatePickerWithRange />
-        <div className="flex items-center space-x-3 space-y-0 rounded-md border p-4">
-          <Switch id="show-label-on-map" />
-          <Label htmlFor="show-label-on-map">Отображать названия маркеров</Label>
-        </div>
         <Tabs defaultValue="personal" className="w-full flex-1 flex flex-col overflow-hidden">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="personal">Персональное</TabsTrigger>
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-scroll">
-            <ReceiptsPersonalDrawerList />
+            <ReceiptsPersonalDrawerList groupedShops={currentUserShops} />
           </TabsContent>
           <TabsContent value="group" className="flex-1 overflow-y-scroll">
             <ReceiptsGroupDrawerList />
