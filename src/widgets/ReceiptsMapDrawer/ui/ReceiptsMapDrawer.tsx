@@ -11,16 +11,19 @@ import { useGate, useUnit } from 'effector-react';
 import {
   $currentUserShops,
   $groupedProfiles,
+  fetchPersonalStoresFx,
   openGroupTabEv,
   openPersonalTabEv,
   ReceiptsMapDrawerGate,
 } from '../model/ReceiptsMapDrawer.store';
 import { setCenterMapEv, setZoomMapEv } from '@/features/ReceiptsMap';
+import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
 
 export const ReceiptsMapDrawer = () => {
   useGate(ReceiptsMapDrawerGate);
   const groupedProfiles = useUnit($groupedProfiles);
   const currentUserShops = useUnit($currentUserShops);
+  const loading = useUnit(fetchPersonalStoresFx.pending);
 
   const isMobile = useIsMobile();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean | undefined>();
@@ -72,10 +75,24 @@ export const ReceiptsMapDrawer = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-scroll">
-            <ReceiptsPersonalDrawerList groupedShops={currentUserShops} onItemClick={onItemClick} />
+            {loading ? (
+              <ThreeDotSimpleLoader />
+            ) : (
+              <ReceiptsPersonalDrawerList
+                groupedShops={currentUserShops}
+                onItemClick={onItemClick}
+              />
+            )}
           </TabsContent>
           <TabsContent value="group" className="flex-1 overflow-y-scroll">
-            <ReceiptsGroupDrawerList groupedProfiles={groupedProfiles} onItemClick={onItemClick} />
+            {loading ? (
+              <ThreeDotSimpleLoader />
+            ) : (
+              <ReceiptsGroupDrawerList
+                groupedProfiles={groupedProfiles}
+                onItemClick={onItemClick}
+              />
+            )}
           </TabsContent>
         </Tabs>
       </div>

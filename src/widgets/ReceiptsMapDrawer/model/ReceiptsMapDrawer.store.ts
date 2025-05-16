@@ -51,4 +51,5 @@ export {
   ReceiptsMapDrawerGate,
   openGroupTabEv,
   openPersonalTabEv,
+  fetchPersonalStoresFx,
 };
