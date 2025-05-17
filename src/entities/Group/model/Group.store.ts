@@ -6,6 +6,7 @@ import { createGate } from 'effector-react';
 const GroupGate = createGate();
 
 const $users = createStore<Profile[]>([]);
+const $isOwner = createStore<boolean>(false);
 
 const getAllUsersInGroupFx = createEffect(async () => {
   return await getAllUsersInGroup();
@@ -21,4 +22,10 @@ sample({
   target: $users,
 });
 
-export { $users, GroupGate, getAllUsersInGroupFx };
+sample({
+  clock: $users,
+  fn: (users) => Boolean(users.find((user) => user.isCurrentUser && user.id === user.group_id)),
+  target: $isOwner,
+});
+
+export { $isOwner, $users, GroupGate, getAllUsersInGroupFx };
