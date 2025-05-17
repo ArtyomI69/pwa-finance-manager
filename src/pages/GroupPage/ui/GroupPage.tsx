@@ -9,10 +9,10 @@ const GroupPage = () => {
           <TabsTrigger value="group">Группа</TabsTrigger>
           <TabsTrigger value="invitations">Приглашения</TabsTrigger>
         </TabsList>
-        <TabsContent value="group" className="flex-1">
+        <TabsContent value="group" className="flex-1 px-4">
           <Groups />
         </TabsContent>
-        <TabsContent value="invitations" className="flex-1"></TabsContent>
+        <TabsContent value="invitations" className="flex-1 px-4"></TabsContent>
       </Tabs>
     </div>
   );

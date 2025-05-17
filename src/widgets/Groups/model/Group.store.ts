@@ -21,4 +21,4 @@ sample({
   target: $users,
 });
 
-export { $users, GroupGate };
+export { $users, GroupGate, getAllUsersInGroupFx };
