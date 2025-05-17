@@ -25,7 +25,7 @@ export const ReceiptsPersonalDrawerList = ({
             <p>|</p>
             <Label className="cursor-pointer">{grouped.shop.address}</Label>
             <p>|</p>
-            <Label className="cursor-pointer text-red-600">{grouped.totalSum}₽</Label>
+            <Label className="cursor-pointer text-red-600">{grouped.totalSum.toFixed()}₽</Label>
           </li>
         );
       })}
