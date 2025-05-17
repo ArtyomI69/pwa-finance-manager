@@ -24,7 +24,7 @@ function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
 export const ReceiptsDashboardPersonal = ({ items }: { items: PurchaseItem[] }) => {
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
-      <SpendingSummaryCard />
+      <SpendingSummaryCard items={items} />
       <DailySpendingBarChart />
       <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
         <TabsList className="grid flex-1 grid-cols-2 max-w-screen-md w-full mx-auto">
