@@ -25,7 +25,7 @@ export const ReceiptsDashboardPersonal = ({ items }: { items: PurchaseItem[] }) 
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
       <SpendingSummaryCard items={items} />
-      <DailySpendingBarChart />
+      <DailySpendingBarChart items={items} />
       <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
         <TabsList className="grid flex-1 grid-cols-2 max-w-screen-md w-full mx-auto">
           <TabsTrigger value="categories">Категории</TabsTrigger>

@@ -2,11 +2,12 @@
 
 // Requires third-pary library 'react-countup' for counting animation
 // npm install react-countup
-import React from 'react';
+import React, { useEffect } from 'react';
 import CountUp from 'react-countup';
 
 import { BarChart } from '@/shared/components/tremor/ui/BarChart';
 import { Card } from '@/shared/components/tremor/ui/Card';
+import { PurchaseItem } from '@/shared/types/shopGroup';
 
 const valueFormatter = (number: number) => {
   return Intl.NumberFormat('us').format(number).toString() + '₽';
@@ -17,73 +18,54 @@ type DataPoint = {
   Расходы: number;
 };
 
-const data: DataPoint[] = [
-  {
-    date: 'Jan 23',
-    Расходы: 145,
-  },
-  {
-    date: 'Feb 23',
-    Расходы: 110,
-  },
-  {
-    date: 'Mar 23',
-    Расходы: 149,
-  },
-  {
-    date: 'Apr 23',
-    Расходы: 112,
-  },
-  {
-    date: 'May 23',
-    Расходы: 138,
-  },
-  {
-    date: 'Jun 23',
-    Расходы: 145,
-  },
-  {
-    date: 'Jul 23',
-    Расходы: 134,
-  },
-  {
-    date: 'Aug 23',
-    Расходы: 110,
-  },
-  {
-    date: 'Sep 23',
-    Расходы: 113,
-  },
-  {
-    date: 'Oct 23',
-    Расходы: 129,
-  },
-  {
-    date: 'Nov 23',
-    Расходы: 101,
-  },
-  {
-    date: 'Dec 23',
-    Расходы: 109,
-  },
-];
+function groupPurchasesByDate(items: PurchaseItem[]): DataPoint[] {
+  const resultMap: Record<string, number> = {};
+
+  items.forEach((item) => {
+    const date = item.created_at.split('T')[0]; // Извлекаем только дату без времени
+    if (!resultMap[date]) {
+      resultMap[date] = 0;
+    }
+    resultMap[date] += item.sum;
+  });
+
+  // Преобразуем объект в массив DataPoint и сортируем по дате
+  const result: DataPoint[] = Object.entries(resultMap)
+    .map(([date, sum]) => ({
+      date,
+      Расходы: sum,
+    }))
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  return result;
+}
 
 const categories: (keyof DataPoint)[] = ['Расходы'];
 
-const initialAverageValue =
-  data.reduce((sum, dataPoint) => {
-    categories.forEach((category) => {
-      sum += dataPoint[category] as number;
-    });
-    return sum;
-  }, 0) /
-  (data.length * categories.length);
+export function DailySpendingBarChart({ items }: { items: PurchaseItem[] }) {
+  const data = groupPurchasesByDate(items);
+  const initialAverageValue =
+    Math.floor(
+      data.reduce((sum, dataPoint) => {
+        categories.forEach((category) => {
+          sum += dataPoint[category] as number;
+        });
+        return sum;
+      }, 0)
+    ) /
+    (data.length * categories.length);
 
-export function DailySpendingBarChart() {
-  const [values] = React.useState<{ start: number; end: number }>({
+  const [values, setValues] = React.useState<{ start: number; end: number }>({
     start: 0,
     end: initialAverageValue,
   });
+
+  useEffect(() => {
+    setValues({
+      start: 0,
+      end: initialAverageValue,
+    });
+  }, [initialAverageValue]);
 
   return (
     <Card>
