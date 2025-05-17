@@ -21,7 +21,12 @@ export const ReceiptsMap = () => {
         const ballonContentBody = `
           <div>
           ${mark.items
-            .map((item) => `<p>${item.name}; Кол-во/кг: ${item.quantity}</p>`)
+            .map(
+              (item) =>
+                `<p>${item.name}; Кол-во/кг: ${item.quantity}; Цена: ${(item.sum / 100).toFixed(
+                  0
+                )}₽</p>`
+            )
             .join('<p>-----</p>')}
           </div>
           `;
