@@ -22,7 +22,7 @@ sample({
 
 sample({
   clock: setZoomMapEv,
-  fn: () => 17 + Math.random(),
+  fn: () => 17 + Math.random() * 0.1,
   target: $zoom,
 });
 
