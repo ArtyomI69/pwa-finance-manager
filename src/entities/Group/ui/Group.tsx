@@ -7,7 +7,14 @@ import {
   TableRow,
 } from '@/shared/components/shadcnui/ui/table';
 import { useGate, useUnit } from 'effector-react';
-import { $groupId, $isOwner, $users, getAllUsersInGroupFx, GroupGate } from '../model/Group.store';
+import {
+  $groupId,
+  $isOwner,
+  $users,
+  getAllUsersInGroupFx,
+  GroupGate,
+  kickFromGroupEv,
+} from '../model/Group.store';
 import { AvatarWithInitials } from '@/shared/components/ui/AvatarWithInitials';
 import { Button } from '@/shared/components/shadcnui/ui/button';
 import { Crown, UserX } from 'lucide-react';
@@ -48,11 +55,12 @@ export const Group = () => {
                 <TableCell>
                   {isCurrentUser && 'Я'} {id === group_id && 'Лидер'}
                 </TableCell>
-                {!isCurrentUser && (
+                {!isCurrentUser && isOwner && (
                   <TableCell className="text-right flex gap-2">
                     <Button
                       variant={'ghost'}
                       className="border rounded-[50%] p-2 hover:bg-gray-100"
+                      onClick={() => kickFromGroupEv(id)}
                     >
                       <UserX color="red" />
                     </Button>
