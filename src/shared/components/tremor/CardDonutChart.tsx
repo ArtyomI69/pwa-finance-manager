@@ -1,53 +1,28 @@
 // 'use client';
 
-import { cn as cx } from '@/shared/utils/cn';
+import { cn as cx } from '../../utils/cn';
 
-import { Card } from '@/shared/components/tremor/ui/Card';
-import { DonutChart } from '@/shared/components/tremor/ui/DonutChart';
-
-const data = [
-  {
-    name: 'Travel',
-    amount: 6730,
-    share: '32.1%',
-    color: 'bg-cyan-500 dark:bg-cyan-500',
-  },
-  {
-    name: 'IT & equipment',
-    amount: 4120,
-    share: '19.6%',
-    color: 'bg-blue-500 dark:bg-blue-500',
-  },
-  {
-    name: 'Training & development',
-    amount: 3920,
-    share: '18.6%',
-    color: 'bg-indigo-500 dark:bg-indigo-500',
-  },
-  {
-    name: 'Office supplies',
-    amount: 3210,
-    share: '15.3%',
-    color: 'bg-violet-500 dark:bg-violet-500',
-  },
-  {
-    name: 'Communication',
-    amount: 3010,
-    share: '14.3%',
-    color: 'bg-fuchsia-500 dark:bg-fuchsia',
-  },
-];
+import { Card } from './ui/Card';
+import { DonutChart } from './ui/DonutChart';
 
 const currencyFormatter = (number: number) =>
   Intl.NumberFormat('us').format(number).toString() + ' ₽';
 
-export function ShopsDonutChart() {
+type TData = { name: string; amount: number; share: string; color: string }[];
+
+export function CardDonutChart({
+  data,
+  name,
+  title,
+}: {
+  data: TData;
+  name: string;
+  title: string;
+}) {
   return (
     <>
       <Card className="sm:mx-auto sm:max-w-lg">
-        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
-          Расходы по магазинам
-        </h3>
+        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">{title}</h3>
         <DonutChart
           className="mx-auto mt-8"
           data={data}
@@ -59,7 +34,7 @@ export function ShopsDonutChart() {
           colors={['cyan', 'blue', 'emerald', 'violet', 'fuchsia', 'amber', 'pink', 'lime']}
         />
         <p className="mt-8 flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
-          <span>Магазин</span>
+          <span>{name}</span>
           <span>Цена / В процентах</span>
         </p>
         <ul

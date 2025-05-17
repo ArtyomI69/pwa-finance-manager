@@ -1,4 +1,4 @@
-import { ReceiptsDashboardPersonal } from '@/widgets/ReceiptsDashboardPersonal';
+import { ReceiptsDashboard } from '@/widgets/ReceiptsDashboard';
 import { DatePickerWithRange } from '@/shared/components/shadcnui/data-range-picker';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { DateRange } from 'react-day-picker';
@@ -34,10 +34,10 @@ const ReceiptsDashboardPage = () => {
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1">
-            <ReceiptsDashboardPersonal items={personalItems} />
+            <ReceiptsDashboard items={personalItems} isPersonal />
           </TabsContent>
           <TabsContent value="group" className="flex-1">
-            <div className="bg-blue-300">lol</div>
+            <ReceiptsDashboard items={items} isPersonal />
           </TabsContent>
         </Tabs>
       )}
