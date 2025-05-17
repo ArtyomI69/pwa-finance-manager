@@ -7,6 +7,7 @@ const GroupGate = createGate();
 
 const $users = createStore<Profile[]>([]);
 const $isOwner = createStore<boolean>(false);
+const $groupId = createStore<string>('');
 
 const getAllUsersInGroupFx = createEffect(async () => {
   return await getAllUsersInGroup();
@@ -28,4 +29,10 @@ sample({
   target: $isOwner,
 });
 
-export { $isOwner, $users, GroupGate, getAllUsersInGroupFx };
+sample({
+  clock: $users,
+  fn: (users) => users[0]?.group_id ?? '',
+  target: $groupId,
+});
+
+export { $groupId, $isOwner, $users, GroupGate, getAllUsersInGroupFx };

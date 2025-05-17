@@ -1,3 +1,4 @@
+import { getAllUsersInGroupFx } from '@/entities/Group/model/Group.store';
 import { leaveGroup } from '@/shared/API/supabase/leaveGroup';
 import { toastLoading } from '@/shared/lib/toastLoading';
 import { createEffect, createEvent, sample } from 'effector';
@@ -11,6 +12,11 @@ const leaveGroupFx = createEffect(async () => {
 sample({
   clock: leaveGroupEv,
   target: leaveGroupFx,
+});
+
+sample({
+  clock: leaveGroupFx.done,
+  target: getAllUsersInGroupFx,
 });
 
 export { leaveGroupEv };

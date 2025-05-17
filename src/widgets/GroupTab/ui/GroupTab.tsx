@@ -7,7 +7,7 @@ export const GroupTab = () => {
   const isOwner = useUnit($isOwner);
 
   return (
-    <div className="gap-2">
+    <div className="flex flex-col gap-8">
       <InviteUserToGroup />
       <Group />
       {!isOwner && <LeaveGroup />}
