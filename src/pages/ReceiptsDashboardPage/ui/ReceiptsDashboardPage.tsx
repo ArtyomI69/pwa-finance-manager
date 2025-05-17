@@ -5,6 +5,7 @@ import { DateRange } from 'react-day-picker';
 import { useGate, useUnit } from 'effector-react';
 import {
   $items,
+  $personalItems,
   onDateChangeEv,
   ReceiptsDashboardPageGate,
 } from '../model/ReceiptsDashboardPage.store';
@@ -14,6 +15,7 @@ import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 const ReceiptsDashboardPage = () => {
   useGate(ReceiptsDashboardPageGate);
   const items = useUnit($items);
+  const personalItems = useUnit($personalItems);
   const loading = useUnit(fetchGroupedProfilesOnMountFx.pending);
 
   const onChangeDate = (date: DateRange) => {
@@ -32,7 +34,7 @@ const ReceiptsDashboardPage = () => {
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1">
-            <ReceiptsDashboardPersonal items={items} />
+            <ReceiptsDashboardPersonal items={personalItems} />
           </TabsContent>
           <TabsContent value="group" className="flex-1">
             <div className="bg-blue-300">lol</div>

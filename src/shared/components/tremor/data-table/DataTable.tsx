@@ -80,7 +80,9 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
           table={table}
           categories={getFilterValues(data, 'category')}
           shop={getFilterValues(data, 'shop')}
-          users={getFilterValues(data, 'user')}
+          users={
+            getFilterValues(data, 'user').length > 1 ? getFilterValues(data, 'user') : undefined
+          }
         />
         <div className="relative overflow-hidden overflow-x-auto">
           <Table>

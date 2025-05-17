@@ -9,6 +9,7 @@ const ReceiptsDashboardPageGate = createGate();
 const onDateChangeEv = createEvent<DateRange>();
 
 const $items = createStore<PurchaseItem[]>([]);
+const $personalItems = createStore<PurchaseItem[]>([]);
 
 const fetchItemsOnMountFx = createEffect(async () => {
   return await getReceiptItems({ from: subDays(new Date(Date.now()), 7), to: new Date() });
@@ -36,4 +37,10 @@ sample({
   target: $items,
 });
 
-export { $items, fetchItemsOnMountFx, onDateChangeEv, ReceiptsDashboardPageGate };
+sample({
+  clock: $items,
+  fn: (items) => items.filter((item) => item.profile.isCurrentUser),
+  target: $personalItems,
+});
+
+export { $items, $personalItems, fetchItemsOnMountFx, onDateChangeEv, ReceiptsDashboardPageGate };
