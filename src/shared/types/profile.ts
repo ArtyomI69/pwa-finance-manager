@@ -4,4 +4,5 @@ export interface Profile {
   email: string;
   group_id: string;
   avatar_url: string | null;
+  isCurrentUser?: boolean;
 }

@@ -4,7 +4,6 @@ import { Button } from '@/shared/components/tremor/ui/Button';
 import { Searchbar } from '@/shared/components/tremor/ui/SearchBar';
 import { conditions, shop, categories } from '@/entities/DataTable';
 import { formatters } from '@/shared/utils/formatters';
-import { RiDownloadLine } from '@remixicon/react';
 import { Table } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
@@ -77,10 +76,6 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
         )}
       </div>
       <div className="flex items-center gap-2">
-        <Button variant="secondary" className="flex gap-x-2 px-2 py-1.5 text-sm sm:text-xs">
-          <RiDownloadLine className="size-4 shrink-0" aria-hidden="true" />
-          Экспорт
-        </Button>
         <ViewOptions table={table} />
       </div>
     </div>

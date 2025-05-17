@@ -60,7 +60,7 @@ export const columns = [
   }),
   columnHelper.accessor('shop', {
     header: ({ column }) => <DataTableColumnHeader column={column} title="Магазин" />,
-    enableSorting: false,
+    enableSorting: true,
     meta: {
       className: 'text-left',
       displayName: 'Shop',
@@ -97,7 +97,7 @@ export const columns = [
   }),
   columnHelper.accessor('date', {
     header: ({ column }) => <DataTableColumnHeader column={column} title="Дата" />,
-    enableSorting: false,
+    enableSorting: true,
     meta: {
       className: 'tabular-nums text-right',
       displayName: 'Date',

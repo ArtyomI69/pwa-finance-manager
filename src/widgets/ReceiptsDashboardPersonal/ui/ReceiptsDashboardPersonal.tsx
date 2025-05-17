@@ -2,12 +2,26 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/sh
 import { Divider } from '@/shared/components/tremor/ui/Divider';
 import { CategoriesDonutChart } from '@/features/CategoriesDonutChart';
 import { DailySpendingBarChart } from '@/features/DailySpendingBarChart';
-import { ReceiptsDashboardPersonalTable } from '@/features/ReceiptsDashboardPersonalTable';
 import { SpendingSummaryCard } from '@/features/SpendingSummaryCard';
 import { ShopsDonutChart } from '@/features/ShopsDonutChart';
 import { ColorActivator } from '@/shared/components/ui/ColorActivator';
+import { DataTable } from '@/shared/components/tremor/data-table/DataTable';
+import { columns } from './columns';
+import { Usage } from '../model/schema';
+import { PurchaseItem } from '@/shared/types/shopGroup';
 
-export const ReceiptsDashboardPersonal = () => {
+function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
+  return items.map((item) => ({
+    product: item.name,
+    category: item.categories.name,
+    shop: item.shops.name,
+    price: item.sum, // предполагая, что sum - это общая стоимость quantity товаров
+    date: item.created_at,
+    user: item.profile.name,
+  }));
+}
+
+export const ReceiptsDashboardPersonal = ({ items }: { items: PurchaseItem[] }) => {
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
       <SpendingSummaryCard />
@@ -25,7 +39,7 @@ export const ReceiptsDashboardPersonal = () => {
         </TabsContent>
       </Tabs>
       <Divider />
-      <ReceiptsDashboardPersonalTable />
+      <DataTable data={transformPurchaseItemsToUsage(items)} columns={columns} />
       <ColorActivator />
     </div>
   );

@@ -23,7 +23,7 @@ export interface GroupedShop {
 }
 
 export interface GroupedProfile {
-  profile: Profile & { isCurrentUser: boolean };
+  profile: Profile;
   shops: GroupedShop[];
   totalSum: number;
 }
