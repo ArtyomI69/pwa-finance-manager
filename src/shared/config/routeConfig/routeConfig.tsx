@@ -6,6 +6,7 @@ import { ReceiptsDashboardPageAsync } from '@/pages/ReceiptsDashboardPage';
 import { RegisterPageAsync } from '@/pages/RegisterPage';
 import { LoginPageAsync } from '@/pages/LoginPage';
 import { ProfilePageAsync } from '@/pages/ProfilePage';
+import { GroupPageAsync } from '@/pages/GroupPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -75,7 +76,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
   [AppRoutes.GROUPS]: {
     path: RoutePath.groups,
-    element: <ReceiptsPageAsync />,
+    element: <GroupPageAsync />,
     authOnly: true,
   },
   [AppRoutes.Profile]: {
