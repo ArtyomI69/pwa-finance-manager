@@ -1,5 +1,6 @@
 import { getAllUsersInGroup } from '@/shared/API/supabase/getAllUsersInGroup';
 import { kickFromGroup } from '@/shared/API/supabase/kickFromGroup';
+import { makeGroupLeader } from '@/shared/API/supabase/makeGroupLeader';
 import { Profile } from '@/shared/types/profile';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
@@ -7,6 +8,7 @@ import { createGate } from 'effector-react';
 const GroupGate = createGate();
 
 const kickFromGroupEv = createEvent<string>();
+const makeGroupLeaderEv = createEvent<string>();
 
 const $users = createStore<Profile[]>([]);
 const $isOwner = createStore<boolean>(false);
@@ -18,6 +20,10 @@ const getAllUsersInGroupFx = createEffect(async () => {
 
 const kickFromGroupFx = createEffect(async (id: string) => {
   await kickFromGroup(id);
+});
+
+const makeGroupLeaderFx = createEffect(async (id: string) => {
+  await makeGroupLeader(id);
 });
 
 sample({
@@ -36,7 +42,12 @@ sample({
 });
 
 sample({
-  clock: kickFromGroupFx.done,
+  clock: makeGroupLeaderEv,
+  target: makeGroupLeaderFx,
+});
+
+sample({
+  clock: [kickFromGroupFx.done, makeGroupLeaderFx.done],
   target: getAllUsersInGroupFx,
 });
 
@@ -52,4 +63,12 @@ sample({
   target: $groupId,
 });
 
-export { $groupId, $isOwner, $users, GroupGate, getAllUsersInGroupFx, kickFromGroupEv };
+export {
+  $groupId,
+  $isOwner,
+  $users,
+  GroupGate,
+  getAllUsersInGroupFx,
+  kickFromGroupEv,
+  makeGroupLeaderEv,
+};

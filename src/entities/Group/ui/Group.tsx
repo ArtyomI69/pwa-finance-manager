@@ -14,6 +14,7 @@ import {
   getAllUsersInGroupFx,
   GroupGate,
   kickFromGroupEv,
+  makeGroupLeaderEv,
 } from '../model/Group.store';
 import { AvatarWithInitials } from '@/shared/components/ui/AvatarWithInitials';
 import { Button } from '@/shared/components/shadcnui/ui/button';
@@ -45,6 +46,14 @@ export const Group = () => {
         </TableHeader>
         <TableBody>
           {users.map(({ name, avatar_url, email, isCurrentUser, id, group_id }) => {
+            const onKickFromGroupHandler = () => {
+              kickFromGroupEv(id);
+            };
+
+            const onMakeGroupLeaderHandler = () => {
+              makeGroupLeaderEv(id);
+            };
+
             return (
               <TableRow key={id}>
                 <TableCell className="font-medium">
@@ -60,13 +69,14 @@ export const Group = () => {
                     <Button
                       variant={'ghost'}
                       className="border rounded-[50%] p-2 hover:bg-gray-100"
-                      onClick={() => kickFromGroupEv(id)}
+                      onClick={onKickFromGroupHandler}
                     >
                       <UserX color="red" />
                     </Button>
                     <Button
                       variant={'ghost'}
                       className="border rounded-[50%] p-2 hover:bg-gray-100"
+                      onClick={onMakeGroupLeaderHandler}
                     >
                       <Crown color="gold" />
                     </Button>
