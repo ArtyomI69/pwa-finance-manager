@@ -20,10 +20,9 @@ export const ReceiptsMap = () => {
         const shopName = mark.shop.name;
         const ballonContentBody = `
           <div>
-          <p>Описание метки</p>
-          <button onClick={console.log('test')} id="myButton" style="padding: 5px 10px; background: blue; color: white; border: none; cursor: pointer;">
-          Нажми меня
-          </button>
+          ${mark.items
+            .map((item) => `<p>${item.name}; Кол-во/кг: ${item.quantity}</p>`)
+            .join('<p>-----</p>')}
           </div>
           `;
 
