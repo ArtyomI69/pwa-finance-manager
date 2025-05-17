@@ -7,7 +7,7 @@ const CurrentUserAvatarGate = createGate();
 const setImageEv = createEvent<string>();
 
 const $profileImage = createStore<string>('', { skipVoid: false });
-const $initials = createStore<string>('', { skipVoid: false });
+const $name = createStore<string>('', { skipVoid: false });
 
 const getProfileImageFx = createEffect(async () => {
   const { avatar_url } = await getProfile();
@@ -18,13 +18,7 @@ const getProfileImageFx = createEffect(async () => {
 const getInitialsFx = createEffect(async () => {
   const { name } = await getProfile();
 
-  const initials = name
-    ?.split(' ')
-    ?.map((word) => word[0])
-    ?.join('')
-    ?.toUpperCase();
-
-  return initials;
+  return name;
 });
 
 sample({
@@ -39,7 +33,7 @@ sample({
 
 sample({
   clock: getInitialsFx.doneData,
-  target: $initials,
+  target: $name,
 });
 
 sample({
@@ -47,4 +41,4 @@ sample({
   target: $profileImage,
 });
 
-export { CurrentUserAvatarGate, $initials, $profileImage, setImageEv };
+export { CurrentUserAvatarGate, $name, $profileImage, setImageEv };
