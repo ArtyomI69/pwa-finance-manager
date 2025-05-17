@@ -38,13 +38,17 @@ sample({ clock: onDateChangeEv, target: onDateChangeFx });
 
 sample({
   clock: onDateChangeFx.doneData,
+  fn: (grouped) => grouped.sort((a, b) => b.totalSum - a.totalSum),
   target: $groupedProfiles,
 });
 
 sample({
   clock: $groupedProfiles,
+  fn: (grouped) =>
+    grouped
+      .find((groupedProf) => groupedProf.profile.isCurrentUser)
+      ?.shops.sort((a, b) => b.totalSum - a.totalSum) ?? [],
   target: $currentUserShops,
-  fn: (grouped) => grouped.find((groupedProf) => groupedProf.profile.isCurrentUser)?.shops ?? [],
 });
 
 sample({

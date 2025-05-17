@@ -14,7 +14,9 @@ export const ReceiptsGroupDrawerList = ({
       {groupedProfiles.map((groupedProf, i) => {
         return (
           <Tab key={i}>
-            <Trigger>{groupedProf.profile.name}</Trigger>
+            <Trigger>
+              {groupedProf.profile.name} ({groupedProf.totalSum.toFixed(0)}₽)
+            </Trigger>
             <Content className="overflow-x-auto">
               <ReceiptsPersonalDrawerList
                 groupedShops={groupedProf.shops}
