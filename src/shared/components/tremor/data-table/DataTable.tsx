@@ -24,10 +24,30 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { TFilter } from '@/shared/types/data-table/filter';
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[];
   data: TData[];
+}
+
+function getFilterValues(data: any[], field: any): TFilter {
+  // Создаем Set для хранения уникальных значений
+  const uniqueValues = new Set<string>();
+
+  // Проходим по всем элементам массива и собираем уникальные значения указанного поля
+  data.forEach((item) => {
+    const fieldValue = item[field];
+    // Преобразуем значение в строку (на случай, если это число или дата)
+    const stringValue = String(fieldValue);
+    uniqueValues.add(stringValue);
+  });
+
+  // Преобразуем Set в массив объектов TFilter
+  return Array.from(uniqueValues).map((value) => ({
+    value,
+    label: value,
+  }));
 }
 
 export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
@@ -56,7 +76,12 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   return (
     <>
       <div className="space-y-3">
-        <Filterbar table={table} />
+        <Filterbar
+          table={table}
+          categories={getFilterValues(data, 'category')}
+          shop={getFilterValues(data, 'shop')}
+          users={getFilterValues(data, 'user')}
+        />
         <div className="relative overflow-hidden overflow-x-auto">
           <Table>
             <TableHead>

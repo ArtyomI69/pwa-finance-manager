@@ -16,6 +16,7 @@ function markCurrentUserItems(items: PurchaseItem[], currentUserId: string): Pur
       ...purchase.shops,
       name: getShopRealName(purchase.shops.name),
     },
+    sum: purchase.sum / 100,
   }));
 }
 

@@ -2,19 +2,41 @@
 
 import { Button } from '@/shared/components/tremor/ui/Button';
 import { Searchbar } from '@/shared/components/tremor/ui/SearchBar';
-import { conditions, shop, categories } from '@/entities/DataTable';
 import { formatters } from '@/shared/utils/formatters';
 import { Table } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { DataTableFilter } from './DataTableFilter';
 import { ViewOptions } from './DataTableViewOptions';
+import { TFilter } from '@/shared/types/data-table/filter';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
+  shop: TFilter;
+  categories: TFilter;
+  users?: TFilter;
 }
 
-export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
+const conditions: { value: string; label: string }[] = [
+  {
+    value: 'is-equal-to',
+    label: 'Равно сумме',
+  },
+  {
+    value: 'is-between',
+    label: 'В промежутке между ценой A и B',
+  },
+  {
+    value: 'is-greater-than',
+    label: 'Больше чем',
+  },
+  {
+    value: 'is-less-than',
+    label: 'Меньше чем',
+  },
+];
+
+export function Filterbar<TData>({ table, categories, shop, users }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -53,6 +75,14 @@ export function Filterbar<TData>({ table }: DataTableToolbarProps<TData>) {
             column={table.getColumn('shop')}
             title="Магазин"
             options={shop}
+            type="checkbox"
+          />
+        )}
+        {users && table.getColumn('user')?.getIsVisible() && (
+          <DataTableFilter
+            column={table.getColumn('user')}
+            title="Пользователь"
+            options={users}
             type="checkbox"
           />
         )}
