@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { Groups } from '@/widgets/Groups';
+import { Invitations } from '@/widgets/Invitations/ui/Invitations';
 
 const GroupPage = () => {
   return (
@@ -12,7 +13,9 @@ const GroupPage = () => {
         <TabsContent value="group" className="flex-1 px-4">
           <Groups />
         </TabsContent>
-        <TabsContent value="invitations" className="flex-1 px-4"></TabsContent>
+        <TabsContent value="invitations" className="flex-1 px-4">
+          <Invitations />
+        </TabsContent>
       </Tabs>
     </div>
   );
