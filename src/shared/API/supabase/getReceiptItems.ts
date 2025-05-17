@@ -5,7 +5,10 @@ import { PurchaseItem } from '@/shared/types/shopGroup';
 import { DateRange } from 'react-day-picker';
 import { getShopRealName } from '@/shared/utils/getShopRealName';
 
-function markCurrentUserItems(items: PurchaseItem[], currentUserId: string): PurchaseItem[] {
+function transformAndMarkCurrentUserItems(
+  items: PurchaseItem[],
+  currentUserId: string
+): PurchaseItem[] {
   return items.map((purchase) => ({
     ...purchase,
     profile: {
@@ -46,7 +49,7 @@ export const getReceiptItems = async (date: DateRange) => {
     .gte('created_at', date.from?.toISOString()) // Дата больше или равна "from"
     .lte('created_at', date.to?.toISOString()); // Дата меньше или равна "to";
 
-  const result = markCurrentUserItems(data!, user_id);
+  const result = transformAndMarkCurrentUserItems(data!, user_id);
 
   return result as PurchaseItem[];
 };
