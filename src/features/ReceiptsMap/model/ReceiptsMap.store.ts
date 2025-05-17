@@ -1,6 +1,5 @@
 import { GroupedShop } from '@/shared/types/shopGroup';
 import { createEvent, createStore, sample } from 'effector';
-import { debug } from 'patronum/debug';
 
 const setPlaceMarks = createEvent<GroupedShop[]>();
 const setCenterMapEv = createEvent<number[]>();
@@ -25,7 +24,5 @@ sample({
   fn: () => 17 + Math.random() * 0.1,
   target: $zoom,
 });
-
-debug($center, $zoom);
 
 export { $placeMarks, setPlaceMarks, $center, setCenterMapEv, $zoom, setZoomMapEv };

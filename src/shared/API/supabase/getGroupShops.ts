@@ -3,6 +3,7 @@ import { getCurrentUserGroupId } from './getCurrentUserGroupId';
 import { getCurentUserId } from './getCurentUserId';
 import { GroupedProfile, PurchaseItem } from '@/shared/types/shopGroup';
 import { getShopRealName } from '@/shared/utils/getShopRealName';
+import { DateRange } from 'react-day-picker';
 
 function groupPurchasesByProfile(
   purchases: PurchaseItem[],
@@ -43,7 +44,7 @@ function groupPurchasesByProfile(
   return Array.from(profileMap.values());
 }
 
-export const getGroupShops = async () => {
+export const getGroupShops = async (date: DateRange) => {
   const group_id = await getCurrentUserGroupId();
   const user_id = await getCurentUserId();
 
@@ -65,7 +66,9 @@ export const getGroupShops = async () => {
     .in(
       'profile_id',
       profiles!.map((p) => p.id)
-    );
+    )
+    .gte('created_at', date.from?.toISOString()) // Дата больше или равна "from"
+    .lte('created_at', date.to?.toISOString()); // Дата меньше или равна "to";
 
   console.log(groupPurchasesByProfile(data!, user_id));
 

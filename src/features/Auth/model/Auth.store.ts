@@ -2,7 +2,6 @@ import { createStore, createEffect, sample, createEvent, scopeBind } from 'effec
 import { Session } from '@supabase/supabase-js';
 import { getSession, onAuthStateChange } from '@/shared/API/supabase';
 import { createGate } from 'effector-react';
-import { debug } from 'patronum/debug';
 
 const AuthGate = createGate();
 

@@ -10,12 +10,26 @@ import { cn } from '@/shared/utils/cn';
 import { Button } from './ui/button';
 import { Calendar } from './ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { useEffect } from 'react';
 
-export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
+export function DatePickerWithRange({
+  className,
+  onChangeDate,
+}: React.HTMLAttributes<HTMLDivElement> & { onChangeDate: (date: DateRange) => void }) {
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: subDays(new Date(Date.now()), 7),
     to: new Date(Date.now()),
   });
+
+  const firstUpdate = React.useRef(true);
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    onChangeDate(date!);
+  }, [date?.from, date?.to]);
 
   return (
     <div className={cn('grid gap-2', className)}>

@@ -1,35 +1,50 @@
 import { setPlaceMarks } from '@/features/ReceiptsMap';
 import { getGroupShops } from '@/shared/API/supabase/getGroupShops';
 import { GroupedProfile, GroupedShop } from '@/shared/types/shopGroup';
+import { subDays } from 'date-fns';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
+import { DateRange } from 'react-day-picker';
 
 const ReceiptsMapDrawerGate = createGate();
 
 const openPersonalTabEv = createEvent();
 const openGroupTabEv = createEvent();
+const onDateChangeEv = createEvent<DateRange>();
 
 const $groupedProfiles = createStore<GroupedProfile[]>([]);
 const $currentUserShops = createStore<GroupedShop[]>([]);
 
-const fetchPersonalStoresFx = createEffect(async () => {
-  return await getGroupShops();
+const fetchGroupedProfilesOnMountFx = createEffect(async () => {
+  return await getGroupShops({ from: subDays(new Date(Date.now()), 7), to: new Date() });
+});
+
+const onDateChangeFx = createEffect(async (date: DateRange) => {
+  if (!date.to) date.to = date.from;
+  return await getGroupShops(date);
 });
 
 sample({
   clock: ReceiptsMapDrawerGate.open,
-  target: fetchPersonalStoresFx,
+  target: fetchGroupedProfilesOnMountFx,
 });
 
 sample({
-  clock: fetchPersonalStoresFx.doneData,
+  clock: fetchGroupedProfilesOnMountFx.doneData,
+  target: $groupedProfiles,
+});
+
+sample({ clock: onDateChangeEv, target: onDateChangeFx });
+
+sample({
+  clock: onDateChangeFx.doneData,
   target: $groupedProfiles,
 });
 
 sample({
   clock: $groupedProfiles,
   target: $currentUserShops,
-  fn: (grouped) => grouped.find((groupedProf) => groupedProf.profile.isCurrentUser)!.shops,
+  fn: (grouped) => grouped.find((groupedProf) => groupedProf.profile.isCurrentUser)?.shops ?? [],
 });
 
 sample({
@@ -51,5 +66,6 @@ export {
   ReceiptsMapDrawerGate,
   openGroupTabEv,
   openPersonalTabEv,
-  fetchPersonalStoresFx,
+  fetchGroupedProfilesOnMountFx,
+  onDateChangeEv,
 };

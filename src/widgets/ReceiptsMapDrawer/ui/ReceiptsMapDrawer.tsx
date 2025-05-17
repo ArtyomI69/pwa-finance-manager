@@ -11,19 +11,21 @@ import { useGate, useUnit } from 'effector-react';
 import {
   $currentUserShops,
   $groupedProfiles,
-  fetchPersonalStoresFx,
+  fetchGroupedProfilesOnMountFx,
+  onDateChangeEv,
   openGroupTabEv,
   openPersonalTabEv,
   ReceiptsMapDrawerGate,
 } from '../model/ReceiptsMapDrawer.store';
 import { setCenterMapEv, setZoomMapEv } from '@/features/ReceiptsMap';
 import ThreeDotSimpleLoader from '@/shared/components/cuicui/ThreeDotSimpleLoader';
+import { DateRange } from 'react-day-picker';
 
 export const ReceiptsMapDrawer = () => {
   useGate(ReceiptsMapDrawerGate);
   const groupedProfiles = useUnit($groupedProfiles);
   const currentUserShops = useUnit($currentUserShops);
-  const loading = useUnit(fetchPersonalStoresFx.pending);
+  const loading = useUnit(fetchGroupedProfilesOnMountFx.pending);
 
   const isMobile = useIsMobile();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean | undefined>();
@@ -50,6 +52,10 @@ export const ReceiptsMapDrawer = () => {
     hideDrawer();
   };
 
+  const onChangeDate = (date: DateRange) => {
+    onDateChangeEv(date);
+  };
+
   return (
     <Drawer
       modal={isMobile ? undefined : false}
@@ -64,7 +70,7 @@ export const ReceiptsMapDrawer = () => {
     >
       <div className="flex flex-col gap-4 py-8 px-4 w-full">
         <h3 className="font-blink-title font-bold text-xl italic">Отображаемые маркеры на карте</h3>
-        <DatePickerWithRange />
+        <DatePickerWithRange onChangeDate={onChangeDate} />
         <Tabs defaultValue="personal" className="w-full flex-1 flex flex-col overflow-hidden">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="personal" onClick={onOpenPersonalTab}>
