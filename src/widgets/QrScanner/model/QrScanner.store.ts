@@ -23,6 +23,7 @@ const getQrCodeDataFx = createEffect(async (qrraw: string) => {
     return;
   }
 
+  toast.success('Данные из чека успешно добавлены');
   console.log(data);
 
   await new Promise((resolve) => setTimeout(resolve, 5000));
