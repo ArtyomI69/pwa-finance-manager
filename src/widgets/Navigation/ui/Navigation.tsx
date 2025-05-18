@@ -18,7 +18,7 @@ export const Navigation = () => {
     {
       title: 'Анализ cчетов(банки)',
       icon: <ChartColumnIncreasing />,
-      href: RoutePath.dashboard,
+      href: RoutePath.banksDashboard,
     },
     {
       title: 'QR сканирование',
