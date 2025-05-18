@@ -7,6 +7,7 @@ import { RegisterPageAsync } from '@/pages/RegisterPage';
 import { LoginPageAsync } from '@/pages/LoginPage';
 import { ProfilePageAsync } from '@/pages/ProfilePage';
 import { GroupPageAsync } from '@/pages/GroupPage';
+import { BanksDashboardPageAsync } from '@/pages/BanksDashboardPage';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -18,7 +19,7 @@ export enum AppRoutes {
   Receipts = 'receipts',
   ReceiptsMap = 'receipts_map',
   ReceiptsDashboard = 'receipts_dashboard',
-  Dashboard = 'dashboard',
+  BanksDashboard = 'banksDashboard',
   QR_SCANNER = 'qr_scanner',
   GROUPS = 'groups',
   Profile = 'profile',
@@ -32,7 +33,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.Receipts]: '/receipts',
   [AppRoutes.ReceiptsMap]: '/receipts/map',
   [AppRoutes.ReceiptsDashboard]: '/receipts/dashboard',
-  [AppRoutes.Dashboard]: '/dashboard',
+  [AppRoutes.BanksDashboard]: '/banksDashboard',
   [AppRoutes.QR_SCANNER]: '/qr_scanner',
   [AppRoutes.GROUPS]: '/groups',
   [AppRoutes.Profile]: '/profile',
@@ -64,9 +65,9 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element: <ReceiptsDashboardPageAsync />,
     authOnly: true,
   },
-  [AppRoutes.Dashboard]: {
-    path: RoutePath.dashboard,
-    element: <ReceiptsPageAsync />,
+  [AppRoutes.BanksDashboard]: {
+    path: RoutePath.banksDashboard,
+    element: <BanksDashboardPageAsync />,
     authOnly: true,
   },
   [AppRoutes.QR_SCANNER]: {
