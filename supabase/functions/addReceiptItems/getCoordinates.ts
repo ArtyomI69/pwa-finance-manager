@@ -13,7 +13,8 @@ export const getCoordinates = async (geocode: string) => {
         .reverse() ?? null,
     address:
       result?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.metaDataProperty?.GeocoderMetaData?.text.replaceAll(
-        'Россия, '
+        'Россия, ',
+        ''
       ) ?? geocode.replaceAll('+', ' '),
   };
 };
