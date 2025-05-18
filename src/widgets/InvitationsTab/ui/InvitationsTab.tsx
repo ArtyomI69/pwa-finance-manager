@@ -9,6 +9,7 @@ import {
 import { useGate, useUnit } from 'effector-react';
 import {
   $invitations,
+  acceptInvitationEv,
   getInvitationsFx,
   InvitationsTabGate,
   rejectInvitationEv,
@@ -39,6 +40,10 @@ export const InvitationsTab = () => {
             rejectInvitationEv(id);
           };
 
+          const onAcceptInvitationHandler = () => {
+            acceptInvitationEv({ newGroupId: group_id, invitationId: id });
+          };
+
           return (
             <TableRow className="flex-1" key={`${from_profile} ${to_profile} ${group_id}`}>
               <TableCell>{group_id}</TableCell>
@@ -47,7 +52,11 @@ export const InvitationsTab = () => {
                 {from_profile.name}
               </TableCell>
               <TableCell>
-                <Button variant={'ghost'} className="border rounded-[50%] p-2 hover:bg-gray-100">
+                <Button
+                  onClick={onAcceptInvitationHandler}
+                  variant={'ghost'}
+                  className="border rounded-[50%] p-2 hover:bg-gray-100"
+                >
                   <Check color="green" />
                 </Button>
                 <Button
