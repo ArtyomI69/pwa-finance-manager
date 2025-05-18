@@ -4,7 +4,7 @@ import { getCurentUserId } from './getCurentUserId';
 
 export const getInvitations = async () => {
   const currentUserId = await getCurentUserId();
-  const { data, error } = await createClient()
+  const { data } = await createClient()
     .from('invitations')
     .select(
       `
