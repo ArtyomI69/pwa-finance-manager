@@ -6,20 +6,26 @@ import { useGate, useUnit } from 'effector-react';
 import {
   $items,
   $personalItems,
+  deleteItemsEv,
+  fetchItemsFx,
   onDateChangeEv,
   ReceiptsDashboardPageGate,
 } from '../model/ReceiptsDashboardPage.store';
-import { fetchGroupedProfilesOnMountFx } from '@/widgets/ReceiptsMapDrawer/model/ReceiptsMapDrawer.store';
 import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
+import { PurchaseItem } from '@/shared/types/shopGroup';
 
 const ReceiptsDashboardPage = () => {
   useGate(ReceiptsDashboardPageGate);
   const items = useUnit($items);
   const personalItems = useUnit($personalItems);
-  const loading = useUnit(fetchGroupedProfilesOnMountFx.pending);
+  const loading = useUnit(fetchItemsFx.pending);
 
   const onChangeDate = (date: DateRange) => {
     onDateChangeEv(date);
+  };
+
+  const onDeletItems = (items: PurchaseItem[]) => {
+    deleteItemsEv(items);
   };
 
   return (
@@ -34,10 +40,10 @@ const ReceiptsDashboardPage = () => {
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1">
-            <ReceiptsDashboard items={personalItems} isPersonal />
+            <ReceiptsDashboard items={personalItems} isPersonal onDelete={onDeletItems} />
           </TabsContent>
           <TabsContent value="group" className="flex-1">
-            <ReceiptsDashboard items={items} />
+            <ReceiptsDashboard items={items} onDelete={onDeletItems} />
           </TabsContent>
         </Tabs>
       )}

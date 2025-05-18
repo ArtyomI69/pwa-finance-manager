@@ -13,6 +13,7 @@ import { getUserStats } from './utils/getUserStats';
 
 function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
   return items.map((item) => ({
+    id: item.id,
     product: item.name,
     category: item.categories.name,
     shop: item.shops.name,
@@ -22,13 +23,17 @@ function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
   }));
 }
 
-export const ReceiptsDashboard = ({
-  items,
-  isPersonal,
-}: {
+interface ReceiptsDashboardProps<T> {
   items: PurchaseItem[];
   isPersonal?: boolean;
-}) => {
+  onDelete?: (rows: T[]) => void;
+}
+
+export const ReceiptsDashboard = <T,>({
+  items,
+  isPersonal,
+  onDelete,
+}: ReceiptsDashboardProps<T>) => {
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
       <DailySpendingBarChart items={items} />
@@ -61,7 +66,11 @@ export const ReceiptsDashboard = ({
         )}
       </Tabs>
       <Divider />
-      <DataTable data={transformPurchaseItemsToUsage(items)} columns={columns} />
+      <DataTable
+        data={transformPurchaseItemsToUsage(items)}
+        columns={columns}
+        onDelete={onDelete}
+      />
       <ColorActivator />
     </div>
   );

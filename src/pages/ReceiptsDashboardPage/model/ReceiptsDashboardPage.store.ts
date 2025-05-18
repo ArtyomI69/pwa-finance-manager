@@ -1,4 +1,6 @@
+import { deleteReceiptItems } from '@/shared/API/supabase/deleteReceiptItems';
 import { getReceiptItems } from '@/shared/API/supabase/getReceiptItems';
+import { toastLoading } from '@/shared/lib/toastLoading';
 import { PurchaseItem } from '@/shared/types/shopGroup';
 import { subDays } from 'date-fns';
 import { createEffect, createEvent, createStore, sample } from 'effector';
@@ -7,11 +9,12 @@ import { DateRange } from 'react-day-picker';
 
 const ReceiptsDashboardPageGate = createGate();
 const onDateChangeEv = createEvent<DateRange>();
+const deleteItemsEv = createEvent<PurchaseItem[]>();
 
 const $items = createStore<PurchaseItem[]>([]);
 const $personalItems = createStore<PurchaseItem[]>([]);
 
-const fetchItemsOnMountFx = createEffect(async () => {
+const fetchItemsFx = createEffect(async () => {
   return await getReceiptItems({ from: subDays(new Date(Date.now()), 7), to: new Date() });
 });
 
@@ -20,13 +23,25 @@ const onDateChangeFx = createEffect(async (date: DateRange) => {
   return await getReceiptItems(date);
 });
 
-sample({
-  clock: ReceiptsDashboardPageGate.open,
-  target: fetchItemsOnMountFx,
+const deleteItemsFx = createEffect(async (items: PurchaseItem[]) => {
+  await toastLoading(
+    deleteReceiptItems,
+    items.map((item) => item.id)
+  );
 });
 
 sample({
-  clock: fetchItemsOnMountFx.doneData,
+  clock: deleteItemsEv,
+  target: deleteItemsFx,
+});
+
+sample({
+  clock: [ReceiptsDashboardPageGate.open, deleteItemsFx.done],
+  target: fetchItemsFx,
+});
+
+sample({
+  clock: fetchItemsFx.doneData,
   target: $items,
 });
 
@@ -43,4 +58,11 @@ sample({
   target: $personalItems,
 });
 
-export { $items, $personalItems, fetchItemsOnMountFx, onDateChangeEv, ReceiptsDashboardPageGate };
+export {
+  $items,
+  $personalItems,
+  fetchItemsFx,
+  onDateChangeEv,
+  ReceiptsDashboardPageGate,
+  deleteItemsEv,
+};

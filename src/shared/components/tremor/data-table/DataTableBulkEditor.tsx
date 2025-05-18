@@ -9,12 +9,17 @@ import {
 } from '@/shared/components/tremor/ui/CommandBar';
 import { RowSelectionState, Table } from '@tanstack/react-table';
 
-type DataTableBulkEditorProps<TData> = {
+type DataTableBulkEditorProps<TData, TItems> = {
   table: Table<TData>;
   rowSelection: RowSelectionState;
+  onDelete?: (rows: TItems[]) => void;
 };
 
-function DataTableBulkEditor<TData>({ table, rowSelection }: DataTableBulkEditorProps<TData>) {
+function DataTableBulkEditor<TData, TItems>({
+  table,
+  rowSelection,
+  onDelete = () => {},
+}: DataTableBulkEditorProps<TData, TItems>) {
   const hasSelectedRows = Object.keys(rowSelection).length > 0;
   return (
     <CommandBar open={hasSelectedRows}>
@@ -25,7 +30,7 @@ function DataTableBulkEditor<TData>({ table, rowSelection }: DataTableBulkEditor
         <CommandBarCommand
           label="Delete"
           action={() => {
-            console.log('Delete');
+            onDelete(table.getSelectedRowModel().rows.map((row) => row.original) as any);
           }}
           shortcut={{ shortcut: 'd' }}
         />

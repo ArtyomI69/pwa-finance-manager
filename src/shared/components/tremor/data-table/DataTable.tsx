@@ -26,9 +26,10 @@ import {
 } from '@tanstack/react-table';
 import { TFilter } from '@/shared/types/data-table/filter';
 
-interface DataTableProps<TData> {
+interface DataTableProps<TData, TItems> {
   columns: ColumnDef<TData>[];
   data: TData[];
+  onDelete?: (rows: TItems[]) => void;
 }
 
 function getFilterValues(data: any[], field: any): TFilter {
@@ -50,7 +51,11 @@ function getFilterValues(data: any[], field: any): TFilter {
   }));
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData, TItems>({
+  columns,
+  data,
+  onDelete,
+}: DataTableProps<TData, TItems>) {
   const pageSize = 20;
   const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
@@ -142,7 +147,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
               )}
             </TableBody>
           </Table>
-          <DataTableBulkEditor table={table} rowSelection={rowSelection} />
+          <DataTableBulkEditor table={table} rowSelection={rowSelection} onDelete={onDelete} />
         </div>
         <DataTablePagination table={table} pageSize={pageSize} />
       </div>
