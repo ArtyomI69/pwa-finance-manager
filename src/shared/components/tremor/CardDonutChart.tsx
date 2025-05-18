@@ -48,7 +48,9 @@ export function CardDonutChart({
                   className={cx(item.color, 'size-2.5 shrink-0 rounded-sm')}
                   aria-hidden={true}
                 />
-                <span className="truncate dark:text-gray-300">{item.name}</span>
+                <span className="truncate dark:text-gray-300" title={item.name}>
+                  {item.name}
+                </span>
               </div>
               <p className="flex items-center space-x-2">
                 <span className="font-medium tabular-nums text-gray-900 dark:text-gray-50">

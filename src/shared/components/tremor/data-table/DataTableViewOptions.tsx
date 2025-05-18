@@ -411,7 +411,7 @@ function ViewOptions<TData>({ table }: DataTableViewOptionsProps<TData>) {
             </Button>
           </PopoverTrigger>
           <PopoverContent align="end" sideOffset={7} className="z-50 w-fit space-y-2">
-            <Label className="font-medium">Display properties</Label>
+            <Label className="font-medium">Настройки отображения</Label>
             <ListContext.Provider value={contextValue}>
               <div className="flex flex-col">
                 {items.map((item, index) => {

@@ -13,7 +13,7 @@ export function getShopStats(items: PurchaseItem[]): {
     const shopId = item.shop_id;
     const currentAmount = shopMap.get(shopId)?.amount || 0;
     shopMap.set(shopId, {
-      name: item.shops.name,
+      name: item.shops.name + ' ' + item.shops.address,
       amount: currentAmount + item.sum,
     });
   });
