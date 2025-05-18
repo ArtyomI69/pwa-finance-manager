@@ -37,7 +37,7 @@ const ReceiptsDashboardPage = () => {
             <ReceiptsDashboard items={personalItems} isPersonal />
           </TabsContent>
           <TabsContent value="group" className="flex-1">
-            <ReceiptsDashboard items={items} isPersonal />
+            <ReceiptsDashboard items={items} />
           </TabsContent>
         </Tabs>
       )}
