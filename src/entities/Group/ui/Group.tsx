@@ -38,7 +38,7 @@ export const Group = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Аватар</TableHead>
+            <TableHead>Аватар</TableHead>
             <TableHead>Имя</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Роль</TableHead>
@@ -65,7 +65,7 @@ export const Group = () => {
                   {isCurrentUser && 'Я'} {id === group_id && 'Лидер'}
                 </TableCell>
                 {!isCurrentUser && isOwner && (
-                  <TableCell className="text-right flex gap-2">
+                  <TableCell className="text-right">
                     <Button
                       variant={'ghost'}
                       className="border rounded-[50%] p-2 hover:bg-gray-100"
@@ -75,7 +75,7 @@ export const Group = () => {
                     </Button>
                     <Button
                       variant={'ghost'}
-                      className="border rounded-[50%] p-2 hover:bg-gray-100"
+                      className="ml-2 border rounded-[50%] p-2 hover:bg-gray-100"
                       onClick={onMakeGroupLeaderHandler}
                     >
                       <Crown color="gold" />
