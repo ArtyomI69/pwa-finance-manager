@@ -7,6 +7,7 @@ import { Usage } from '../model/schema';
 import { CardDonutChart } from '@/shared/components/tremor/CardDonutChart';
 import { getCategoryStats } from './utils/getCategoryStats';
 import { getUserStats } from './utils/getUserStats';
+import { BanksBalance } from '@/features/BanksBalance';
 
 function transformPurchaseItemsToUsage(items: any[]): Usage[] {
   return items.map((item) => ({
@@ -29,9 +30,10 @@ interface ReceiptsDashboardProps<T> {
 export const BanksDashboard = <T,>({ items, isPersonal, onDelete }: ReceiptsDashboardProps<T>) => {
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
+      <BanksBalance />
       <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
         <TabsList
-          className={`grid flex-1 grid-cols-${!isPersonal ? 3 : 2} max-w-screen-md w-full mx-auto`}
+          className={`grid flex-1 grid-cols-${!isPersonal ? 2 : 1} max-w-screen-md w-full mx-auto`}
         >
           <TabsTrigger value="categories">Категории</TabsTrigger>
           {!isPersonal && <TabsTrigger value="users">Пользователи</TabsTrigger>}
