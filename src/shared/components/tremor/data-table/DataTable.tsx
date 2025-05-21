@@ -84,10 +84,8 @@ export function DataTable<TData, TItems>({
         <Filterbar
           table={table}
           categories={getFilterValues(data, 'category')}
-          shop={getFilterValues(data, 'shop')}
-          users={
-            getFilterValues(data, 'user').length > 1 ? getFilterValues(data, 'user') : undefined
-          }
+          shops={getFilterValues(data, 'shop')}
+          users={getFilterValues(data, 'user')}
         />
         <div className="relative overflow-hidden overflow-x-auto">
           <Table>

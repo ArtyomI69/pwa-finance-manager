@@ -6,7 +6,7 @@ import { Card } from './ui/Card';
 import { DonutChart } from './ui/DonutChart';
 
 const currencyFormatter = (number: number) =>
-  Intl.NumberFormat('us').format(number).toString() + ' ₽';
+  Intl.NumberFormat('us').format(number).toString() + '₽';
 
 type TData = { name: string; amount: number; share: string; color: string }[];
 

@@ -12,8 +12,8 @@ import { TFilter } from '@/shared/types/data-table/filter';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
-  shop: TFilter;
-  categories: TFilter;
+  shops?: TFilter;
+  categories?: TFilter;
   users?: TFilter;
 }
 
@@ -36,7 +36,12 @@ const conditions: { value: string; label: string }[] = [
   },
 ];
 
-export function Filterbar<TData>({ table, categories, shop, users }: DataTableToolbarProps<TData>) {
+export function Filterbar<TData>({
+  table,
+  categories,
+  shops,
+  users,
+}: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -62,7 +67,7 @@ export function Filterbar<TData>({ table, categories, shop, users }: DataTableTo
             className="w-full sm:max-w-[250px] sm:[&>input]:h-[30px]"
           />
         )}
-        {table.getColumn('category')?.getIsVisible() && (
+        {categories && categories.length > 0 && table.getColumn('category')?.getIsVisible() && (
           <DataTableFilter
             column={table.getColumn('category')}
             title="Категория"
@@ -70,15 +75,15 @@ export function Filterbar<TData>({ table, categories, shop, users }: DataTableTo
             type="checkbox"
           />
         )}
-        {table.getColumn('shop')?.getIsVisible() && (
+        {shops && shops.length > 0 && table.getColumn('shop')?.getIsVisible() && (
           <DataTableFilter
             column={table.getColumn('shop')}
             title="Магазин"
-            options={shop}
+            options={shops}
             type="checkbox"
           />
         )}
-        {users && table.getColumn('user')?.getIsVisible() && (
+        {users && users?.length > 0 && table.getColumn('user')?.getIsVisible() && (
           <DataTableFilter
             column={table.getColumn('user')}
             title="Пользователь"
