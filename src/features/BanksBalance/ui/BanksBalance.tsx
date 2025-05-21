@@ -2,7 +2,7 @@
 
 import { Card } from '@/shared/components/tremor/ui/Card';
 
-export function BanksBalance() {
+export function BanksBalance({ income, expense }: { income: number; expense: number }) {
   return (
     <>
       <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -12,7 +12,7 @@ export function BanksBalance() {
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-emerald-700 text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              +10.450₽
+              +{income}₽
             </span>
           </dd>
         </Card>
@@ -22,7 +22,7 @@ export function BanksBalance() {
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-red-700 text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              10.450₽
+              {expense}₽
             </span>
           </dd>
         </Card>
@@ -32,7 +32,7 @@ export function BanksBalance() {
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              10.450₽
+              {income + expense}₽
             </span>
           </dd>
         </Card>
