@@ -16,7 +16,7 @@ export const Navigation = () => {
       href: RoutePath.receipts,
     },
     {
-      title: 'Анализ cчетов(банки)',
+      title: 'Анализ cчетов(банк)',
       icon: <ChartColumnIncreasing />,
       href: RoutePath.banksDashboard,
     },

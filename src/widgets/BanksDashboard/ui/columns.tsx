@@ -45,16 +45,16 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-left',
-      displayName: 'Сategory',
+      displayName: 'Категория',
     },
     filterFn: 'arrIncludesSome',
   }),
   columnHelper.accessor('price', {
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Цена" />,
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Сумма" />,
     enableSorting: true,
     meta: {
       className: 'text-right',
-      displayName: 'Price',
+      displayName: 'Сумма',
     },
     cell: ({ getValue }) => {
       return <span className="font-medium">{formatters.currency(getValue())}</span>;
@@ -82,7 +82,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'tabular-nums text-right',
-      displayName: 'Date',
+      displayName: 'Дата',
     },
   }),
 
@@ -91,7 +91,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-left',
-      displayName: 'User',
+      displayName: 'Пользователь',
     },
   }),
 ] as ColumnDef<Usage>[];
