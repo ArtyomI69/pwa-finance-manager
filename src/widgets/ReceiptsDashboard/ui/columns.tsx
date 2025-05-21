@@ -43,10 +43,10 @@ export const columns = [
   columnHelper.accessor('product', {
     header: ({ column }) => <DataTableColumnHeader column={column} title="Товар" />,
     enableSorting: true,
-    enableHiding: false,
+    // enableHiding: false,
     meta: {
       className: 'text-left',
-      displayName: 'Product',
+      displayName: 'Товар',
     },
   }),
   columnHelper.accessor('category', {
@@ -54,7 +54,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-left',
-      displayName: 'Сategory',
+      displayName: 'Категория',
     },
     filterFn: 'arrIncludesSome',
   }),
@@ -63,7 +63,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-left',
-      displayName: 'Shop',
+      displayName: 'Магазин',
     },
     filterFn: 'arrIncludesSome',
   }),
@@ -72,7 +72,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-right',
-      displayName: 'Price',
+      displayName: 'Цена',
     },
     cell: ({ getValue }) => {
       return <span className="font-medium">{formatters.currency(getValue())}</span>;
@@ -100,7 +100,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'tabular-nums text-right',
-      displayName: 'Date',
+      displayName: 'Дата',
     },
   }),
 
@@ -109,7 +109,7 @@ export const columns = [
     enableSorting: true,
     meta: {
       className: 'text-left',
-      displayName: 'User',
+      displayName: 'Пользователь',
     },
   }),
 ] as ColumnDef<Usage>[];
