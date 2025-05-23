@@ -4,13 +4,12 @@ import { getCurentUserId } from './getCurentUserId';
 
 export const addTransactions = async (transactions: Transaction[]) => {
   const id = await getCurentUserId();
-  await createClient()
+  return await createClient()
     .from('transactions')
     .insert(
-      transactions.map(({ sum, category, created_at }) => ({
+      transactions.map(({ sum, category }) => ({
         sum,
         category,
-        created_at,
         profile_id: id,
       }))
     );

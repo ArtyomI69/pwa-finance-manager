@@ -6,10 +6,16 @@ import { subDays } from 'date-fns';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { DateRange } from 'react-day-picker';
+import pdfToText from 'react-pdftotext';
+import { extractTransactions } from './extractTransactions';
+import { toast } from 'sonner';
+import { addTransactions } from '@/shared/API/supabase/addTransactions';
+import { tr } from 'date-fns/locale';
 
 const BankDashboardPageGate = createGate();
 const onDateChangeEv = createEvent<DateRange>();
 const deleteTransactionsEv = createEvent<Transaction[]>();
+const addSberbankStatementEv = createEvent<File>();
 
 const $transactions = createStore<Transaction[]>([]);
 const $personalTransactions = createStore<Transaction[]>([]);
@@ -28,6 +34,21 @@ const deleteTransactionsFx = createEffect(async (Transactions: Transaction[]) =>
     deleteTransactions,
     Transactions.map((transaction) => transaction.id)
   );
+});
+
+const addSberbankStatementFx = createEffect(async (file: File) => {
+  const text = await pdfToText(file);
+  const isSberbankStatement = text
+    .split('Расшифровка операций')[0]
+    .includes('Зайдите в приложение СберБанк Онлайн в раздел «Выписки и справки»');
+
+  if (!isSberbankStatement) {
+    toast.error('Данный файл не является выпиской из Сбербанка');
+    throw new Error('Данный файл не является выпиской из Сбербанка');
+  }
+  const bankStatementText = text.split('Расшифровка операций')[1];
+  const transactions = extractTransactions(bankStatementText);
+  await addTransactions(transactions);
 });
 
 sample({
@@ -58,6 +79,16 @@ sample({
   target: $personalTransactions,
 });
 
+sample({
+  clock: addSberbankStatementEv,
+  target: addSberbankStatementFx,
+});
+
+sample({
+  clock: addSberbankStatementFx.done,
+  target: fetchTransactionsFx,
+});
+
 export {
   $transactions,
   $personalTransactions,
@@ -65,4 +96,5 @@ export {
   onDateChangeEv,
   BankDashboardPageGate,
   deleteTransactionsEv,
+  addSberbankStatementEv,
 };

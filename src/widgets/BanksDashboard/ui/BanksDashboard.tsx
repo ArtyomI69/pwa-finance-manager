@@ -8,8 +8,6 @@ import { CardDonutChart } from '@/shared/components/tremor/CardDonutChart';
 import { getCategoryStats } from './utils/getCategoryStats';
 import { getUserStats } from './utils/getUserStats';
 import { BanksBalance } from '@/features/BanksBalance';
-import { UploadBankStatement } from '@/features/UploadBankStatement';
-import pdfToText from 'react-pdftotext';
 import { Transaction } from '@/shared/types/transaction';
 
 function transformTransactionsToUsage(transactions: Transaction[]): Usage[] {
@@ -29,21 +27,8 @@ interface ReceiptsDashboardProps<T> {
 }
 
 export const BanksDashboard = <T,>({ items, isPersonal, onDelete }: ReceiptsDashboardProps<T>) => {
-  const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files) return;
-
-    const file = files[0];
-    const text = await pdfToText(file);
-    console.log(text);
-    // const bankStatementText = text.split('Расшифровка операций')[1];
-    // console.log(bankStatementText);
-    // console.log(extractTransactions(bankStatementText));
-  };
-
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
-      <UploadBankStatement id="sberbank-statement" onFileChange={onFileChange} />
       <BanksBalance income={3000} expense={-1500} />
       <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
         <TabsList

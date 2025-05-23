@@ -1,6 +1,6 @@
 import { Transaction } from '@/shared/types/transaction';
 
-function extractTransactions(text: string): Transaction[] {
+export function extractTransactions(text: string): Transaction[] {
   const transactions: Transaction[] = [];
 
   // Улучшенное регулярное выражение для более точного извлечения данных
@@ -17,7 +17,7 @@ function extractTransactions(text: string): Transaction[] {
 
     // Фильтруем некорректные категории (слишком длинные или содержащие даты)
     if (category.length < 50 && !/\d{2}\.\d{2}\.\d{4}/.test(category)) {
-      transactions.push({ created_at: date, category, sum: isMinus ? -sum : +sum });
+      transactions.push({ created_at: date, category, sum: isMinus ? -sum : +sum } as Transaction);
     }
   }
 
