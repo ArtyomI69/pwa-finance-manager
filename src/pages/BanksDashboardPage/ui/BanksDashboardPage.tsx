@@ -3,19 +3,28 @@ import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/shadcnui/ui/tabs';
 import { DateRange } from 'react-day-picker';
 import { BanksDashboard } from '@/widgets/BanksDashboard';
+import { useGate, useUnit } from 'effector-react';
+import {
+  $personalTransactions,
+  $transactions,
+  BankDashboardPageGate,
+  fetchTransactionsFx,
+  onDateChangeEv,
+} from '../model/BankDashboardPage.store';
+import { deleteItemsEv } from '@/pages/ReceiptsDashboardPage/model/ReceiptsDashboardPage.store';
 
 export default function BanksDashboardPage() {
-  // useGate(ReceiptsDashboardPageGate);
-  const items = [] as any;
-  const personalItems = [] as any;
-  const loading = false as any;
+  useGate(BankDashboardPageGate);
+  const items = useUnit($transactions);
+  const personalItems = useUnit($personalTransactions);
+  const loading = useUnit(fetchTransactionsFx.pending);
 
   const onChangeDate = (date: DateRange) => {
-    // onDateChangeEv(date);
+    onDateChangeEv(date);
   };
 
   const onDeletItems = (items: any[]) => {
-    // deleteItemsEv(items);
+    deleteItemsEv(items);
   };
 
   return (
