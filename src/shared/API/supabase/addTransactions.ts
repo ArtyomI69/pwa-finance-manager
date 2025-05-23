@@ -7,10 +7,11 @@ export const addTransactions = async (transactions: Transaction[]) => {
   return await createClient()
     .from('transactions')
     .insert(
-      transactions.map(({ sum, category }) => ({
+      transactions.map(({ sum, category, created_at }) => ({
         sum,
         category,
         profile_id: id,
+        created_at,
       }))
     );
 };

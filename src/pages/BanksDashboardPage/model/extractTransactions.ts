@@ -1,4 +1,5 @@
 import { Transaction } from '@/shared/types/transaction';
+import { formatDateToSupabase } from '@/shared/utils/formatDateToSupabase';
 
 export function extractTransactions(text: string): Transaction[] {
   const transactions: Transaction[] = [];
@@ -17,7 +18,11 @@ export function extractTransactions(text: string): Transaction[] {
 
     // Фильтруем некорректные категории (слишком длинные или содержащие даты)
     if (category.length < 50 && !/\d{2}\.\d{2}\.\d{4}/.test(category)) {
-      transactions.push({ created_at: date, category, sum: isMinus ? -sum : +sum } as Transaction);
+      transactions.push({
+        created_at: formatDateToSupabase(date),
+        category,
+        sum: isMinus ? -sum : +sum,
+      } as Transaction);
     }
   }
 

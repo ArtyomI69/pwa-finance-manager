@@ -10,7 +10,6 @@ import pdfToText from 'react-pdftotext';
 import { extractTransactions } from './extractTransactions';
 import { toast } from 'sonner';
 import { addTransactions } from '@/shared/API/supabase/addTransactions';
-import { debug } from 'patronum';
 
 const BankDashboardPageGate = createGate();
 const onDateChangeEv = createEvent<DateRange>();
