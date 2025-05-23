@@ -12,7 +12,7 @@ export function BanksBalance({ income, expense }: { income: number; expense: num
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-emerald-700 text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              +{income}₽
+              +{income.toFixed(0)}₽
             </span>
           </dd>
         </Card>
@@ -22,7 +22,7 @@ export function BanksBalance({ income, expense }: { income: number; expense: num
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-red-700 text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              {expense}₽
+              {expense.toFixed(0)}₽
             </span>
           </dd>
         </Card>
@@ -32,7 +32,7 @@ export function BanksBalance({ income, expense }: { income: number; expense: num
           </dt>
           <dd className="mt-2 flex items-baseline space-x-2.5">
             <span className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              {income + expense}₽
+              {(income + expense).toFixed(0)}₽
             </span>
           </dd>
         </Card>

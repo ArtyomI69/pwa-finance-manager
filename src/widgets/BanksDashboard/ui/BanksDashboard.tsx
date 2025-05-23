@@ -5,10 +5,13 @@ import { DataTable } from '@/shared/components/tremor/data-table/DataTable';
 import { columns } from './columns';
 import { Usage } from '../model/schema';
 import { CardDonutChart } from '@/shared/components/tremor/CardDonutChart';
-import { getCategoryStats } from './utils/getCategoryStats';
-import { getUserStats } from './utils/getUserStats';
+import { groupExpensesByCategory } from './utils/groupExpensesByCategory';
 import { BanksBalance } from '@/features/BanksBalance';
 import { Transaction } from '@/shared/types/transaction';
+import { calculateTotals } from './utils/calculateTotal';
+import { groupIncomeByCategory } from './utils/groupIncomeByCategory';
+import { groupIncomeByUser } from './utils/groupIncomeByUser';
+import { groupExpensesByUser } from './utils/groupExpensesByUser';
 
 function transformTransactionsToUsage(transactions: Transaction[]): Usage[] {
   return transactions.map((transaction) => ({
@@ -27,31 +30,50 @@ interface ReceiptsDashboardProps<T> {
 }
 
 export const BanksDashboard = <T,>({ items, isPersonal, onDelete }: ReceiptsDashboardProps<T>) => {
+  const { totalIncome, totalExpenses } = calculateTotals(items);
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
-      <BanksBalance income={3000} expense={-1500} />
-      <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
+      <BanksBalance income={totalIncome} expense={-totalExpenses} />
+      <Tabs defaultValue="expense-categories" className="flex flex-col overflow-hidden">
         <TabsList
-          className={`grid flex-1 grid-cols-${!isPersonal ? 2 : 1} max-w-screen-md w-full mx-auto`}
+          className={`grid flex-1 grid-cols-${!isPersonal ? 4 : 2} max-w-screen-md w-full mx-auto`}
         >
-          <TabsTrigger value="categories">Категории</TabsTrigger>
-          {!isPersonal && <TabsTrigger value="users">Пользователи</TabsTrigger>}
+          <TabsTrigger value="expense-categories">Категории по расходам</TabsTrigger>
+          <TabsTrigger value="income-categories">Категории по доходам</TabsTrigger>
+          {!isPersonal && <TabsTrigger value="expense-users">Пользователи по расходам</TabsTrigger>}
+          {!isPersonal && <TabsTrigger value="income-users">Пользователи по доходам</TabsTrigger>}
         </TabsList>
-        <TabsContent value="categories" className="flex-1">
+        <TabsContent value="expense-categories" className="flex-1">
           <CardDonutChart
-            data={getCategoryStats(items)}
+            data={groupExpensesByCategory(items)}
+            name="Категория"
+            title="Расходы по категориям"
+          />
+        </TabsContent>
+        <TabsContent value="income-categories" className="flex-1">
+          <CardDonutChart
+            data={groupIncomeByCategory(items)}
             name="Категория"
             title="Расходы по категориям"
           />
         </TabsContent>
         {!isPersonal && (
-          <TabsContent value="users" className="flex-1">
-            <CardDonutChart
-              data={getUserStats(items)}
-              name="Пользователь"
-              title="Расходы по пользователям"
-            />
-          </TabsContent>
+          <>
+            <TabsContent value="expense-users" className="flex-1">
+              <CardDonutChart
+                data={groupExpensesByUser(items)}
+                name="Пользователь"
+                title="Расходы по пользователям"
+              />
+            </TabsContent>
+            <TabsContent value="income-users" className="flex-1">
+              <CardDonutChart
+                data={groupIncomeByUser(items)}
+                name="Пользователь"
+                title="Расходы по пользователям"
+              />
+            </TabsContent>
+          </>
         )}
       </Tabs>
       <Divider />
