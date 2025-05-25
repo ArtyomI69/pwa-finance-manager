@@ -24,11 +24,11 @@ function DataTableBulkEditor<TData, TItems>({
   return (
     <CommandBar open={hasSelectedRows}>
       <CommandBarBar>
-        <CommandBarValue>{Object.keys(rowSelection).length} selected</CommandBarValue>
+        <CommandBarValue>{Object.keys(rowSelection).length} выбрано</CommandBarValue>
         <CommandBarSeperator />
         <CommandBarSeperator />
         <CommandBarCommand
-          label="Delete"
+          label="Удалить"
           action={() => {
             onDelete(table.getSelectedRowModel().rows.map((row) => row.original) as any);
           }}
@@ -36,7 +36,7 @@ function DataTableBulkEditor<TData, TItems>({
         />
         <CommandBarSeperator />
         <CommandBarCommand
-          label="Reset"
+          label="Отменить выбранные"
           action={() => {
             table.resetRowSelection();
           }}
