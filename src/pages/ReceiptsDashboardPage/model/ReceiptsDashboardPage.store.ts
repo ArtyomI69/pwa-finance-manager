@@ -11,15 +11,11 @@ const ReceiptsDashboardPageGate = createGate();
 const onDateChangeEv = createEvent<DateRange>();
 const deleteItemsEv = createEvent<PurchaseItem[]>();
 
+const $date = createStore<DateRange>({ from: subDays(new Date(Date.now()), 7), to: new Date() });
 const $items = createStore<PurchaseItem[]>([]);
 const $personalItems = createStore<PurchaseItem[]>([]);
 
-const fetchItemsFx = createEffect(async () => {
-  return await getReceiptItems({ from: subDays(new Date(Date.now()), 7), to: new Date() });
-});
-
-const onDateChangeFx = createEffect(async (date: DateRange) => {
-  if (!date.to) date.to = date.from;
+const fetchItemsFx = createEffect(async (date: DateRange) => {
   return await getReceiptItems(date);
 });
 
@@ -30,6 +26,8 @@ const deleteItemsFx = createEffect(async (items: PurchaseItem[]) => {
   );
 });
 
+sample({ clock: onDateChangeEv, target: $date });
+
 sample({
   clock: deleteItemsEv,
   target: deleteItemsFx,
@@ -37,18 +35,17 @@ sample({
 
 sample({
   clock: [ReceiptsDashboardPageGate.open, deleteItemsFx.done],
+  source: $date,
+  target: fetchItemsFx,
+});
+
+sample({
+  clock: $date,
   target: fetchItemsFx,
 });
 
 sample({
   clock: fetchItemsFx.doneData,
-  target: $items,
-});
-
-sample({ clock: onDateChangeEv, target: onDateChangeFx });
-
-sample({
-  clock: onDateChangeFx.doneData,
   target: $items,
 });
 

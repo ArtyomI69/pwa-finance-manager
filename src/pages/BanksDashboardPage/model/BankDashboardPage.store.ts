@@ -29,7 +29,6 @@ const deleteTransactionsFx = createEffect(async (transactions: Transaction[]) =>
     deleteTransactions,
     transactions.map((transaction) => transaction.id)
   );
-  console.log(error);
 });
 
 const addSberbankStatementFx = createEffect(async (file: File) => {
