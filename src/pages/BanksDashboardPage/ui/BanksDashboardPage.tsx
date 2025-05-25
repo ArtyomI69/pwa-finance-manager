@@ -9,10 +9,10 @@ import {
   $transactions,
   addSberbankStatementEv,
   BankDashboardPageGate,
+  deleteTransactionsEv,
   fetchTransactionsFx,
   onDateChangeEv,
 } from '../model/BankDashboardPage.store';
-import { deleteItemsEv } from '@/pages/ReceiptsDashboardPage/model/ReceiptsDashboardPage.store';
 import { UploadBankStatement } from '@/features/UploadBankStatement';
 
 export default function BanksDashboardPage() {
@@ -26,7 +26,7 @@ export default function BanksDashboardPage() {
   };
 
   const onDeletItems = (items: any[]) => {
-    deleteItemsEv(items);
+    deleteTransactionsEv(items);
   };
 
   const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {

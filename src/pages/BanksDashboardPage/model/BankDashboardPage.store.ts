@@ -16,23 +16,20 @@ const onDateChangeEv = createEvent<DateRange>();
 const deleteTransactionsEv = createEvent<Transaction[]>();
 const addSberbankStatementEv = createEvent<File>();
 
+const $date = createStore<DateRange>({ from: subDays(new Date(Date.now()), 7), to: new Date() });
 const $transactions = createStore<Transaction[]>([]);
 const $personalTransactions = createStore<Transaction[]>([]);
 
-const fetchTransactionsFx = createEffect(async () => {
-  return await getTransactions({ from: subDays(new Date(Date.now()), 7), to: new Date() });
-});
-
-const onDateChangeFx = createEffect(async (date: DateRange) => {
-  if (!date.to) date.to = date.from;
+const fetchTransactionsFx = createEffect(async (date: DateRange) => {
   return await getTransactions(date);
 });
 
-const deleteTransactionsFx = createEffect(async (Transactions: Transaction[]) => {
-  await toastLoading(
+const deleteTransactionsFx = createEffect(async (transactions: Transaction[]) => {
+  const { error } = await toastLoading(
     deleteTransactions,
-    Transactions.map((transaction) => transaction.id)
+    transactions.map((transaction) => transaction.id)
   );
+  console.log(error);
 });
 
 const addSberbankStatementFx = createEffect(async (file: File) => {
@@ -50,32 +47,11 @@ const addSberbankStatementFx = createEffect(async (file: File) => {
   await addTransactions(transactions);
 });
 
+sample({ clock: onDateChangeEv, target: $date });
+
 sample({
   clock: deleteTransactionsEv,
   target: deleteTransactionsFx,
-});
-
-sample({
-  clock: [BankDashboardPageGate.open, deleteTransactionsFx.done],
-  target: fetchTransactionsFx,
-});
-
-sample({
-  clock: fetchTransactionsFx.doneData,
-  target: $transactions,
-});
-
-sample({ clock: onDateChangeEv, target: onDateChangeFx });
-
-sample({
-  clock: onDateChangeFx.doneData,
-  target: $transactions,
-});
-
-sample({
-  clock: $transactions,
-  fn: (Transactions) => Transactions.filter((Transaction) => Transaction.profile.isCurrentUser),
-  target: $personalTransactions,
 });
 
 sample({
@@ -84,8 +60,31 @@ sample({
 });
 
 sample({
-  clock: addSberbankStatementFx.done,
+  clock: [BankDashboardPageGate.open, deleteTransactionsFx.done],
+  source: $date,
   target: fetchTransactionsFx,
+});
+
+sample({
+  clock: $date,
+  target: fetchTransactionsFx,
+});
+
+sample({
+  clock: addSberbankStatementFx.done,
+  source: $date,
+  target: fetchTransactionsFx,
+});
+
+sample({
+  clock: fetchTransactionsFx.doneData,
+  target: $transactions,
+});
+
+sample({
+  clock: $transactions,
+  fn: (Transactions) => Transactions.filter((Transaction) => Transaction.profile.isCurrentUser),
+  target: $personalTransactions,
 });
 
 export {
