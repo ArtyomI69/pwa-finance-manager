@@ -25,7 +25,7 @@ const fetchTransactionsFx = createEffect(async (date: DateRange) => {
 });
 
 const deleteTransactionsFx = createEffect(async (transactions: Transaction[]) => {
-  const { error } = await toastLoading(
+  await toastLoading(
     deleteTransactions,
     transactions.map((transaction) => transaction.id)
   );

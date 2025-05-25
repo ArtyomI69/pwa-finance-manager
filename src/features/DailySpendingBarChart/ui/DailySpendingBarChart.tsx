@@ -8,42 +8,18 @@ import CountUp from 'react-countup';
 import { BarChart } from '@/shared/components/tremor/ui/BarChart';
 import { Card } from '@/shared/components/tremor/ui/Card';
 import { PurchaseItem } from '@/shared/types/shopGroup';
+import { DateRange } from 'react-day-picker';
+import { DataPoint } from './types/DataPoint';
+import { groupPurchasesByDate } from './utils/groupPurchasesByDate';
 
 const valueFormatter = (number: number) => {
   return Intl.NumberFormat('us').format(number).toString() + '₽';
 };
 
-type DataPoint = {
-  date: string;
-  Расходы: number;
-};
-
-function groupPurchasesByDate(items: PurchaseItem[]): DataPoint[] {
-  const resultMap: Record<string, number> = {};
-
-  items.forEach((item) => {
-    const date = item.created_at.split('T')[0]; // Извлекаем только дату без времени
-    if (!resultMap[date]) {
-      resultMap[date] = 0;
-    }
-    resultMap[date] += item.sum;
-  });
-
-  // Преобразуем объект в массив DataPoint и сортируем по дате
-  const result: DataPoint[] = Object.entries(resultMap)
-    .map(([date, sum]) => ({
-      date,
-      Расходы: sum,
-    }))
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  return result;
-}
-
 const categories: (keyof DataPoint)[] = ['Расходы'];
 
-export function DailySpendingBarChart({ items }: { items: PurchaseItem[] }) {
-  const data = groupPurchasesByDate(items);
+export function DailySpendingBarChart({ items, date }: { items: PurchaseItem[]; date: DateRange }) {
+  const data = groupPurchasesByDate(items, date);
   const initialAverageValue =
     Math.floor(
       data.reduce((sum, dataPoint) => {

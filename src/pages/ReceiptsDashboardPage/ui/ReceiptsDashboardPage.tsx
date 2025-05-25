@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/sh
 import { DateRange } from 'react-day-picker';
 import { useGate, useUnit } from 'effector-react';
 import {
+  $date,
   $items,
   $personalItems,
   deleteItemsEv,
@@ -16,6 +17,7 @@ import { PurchaseItem } from '@/shared/types/shopGroup';
 
 const ReceiptsDashboardPage = () => {
   useGate(ReceiptsDashboardPageGate);
+  const date = useUnit($date);
   const items = useUnit($items);
   const personalItems = useUnit($personalItems);
   const loading = useUnit(fetchItemsFx.pending);
@@ -40,10 +42,15 @@ const ReceiptsDashboardPage = () => {
             <TabsTrigger value="group">Груповое</TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1">
-            <ReceiptsDashboard items={personalItems} isPersonal onDelete={onDeletItems} />
+            <ReceiptsDashboard
+              items={personalItems}
+              isPersonal
+              onDelete={onDeletItems}
+              date={date}
+            />
           </TabsContent>
           <TabsContent value="group" className="flex-1">
-            <ReceiptsDashboard items={items} onDelete={onDeletItems} />
+            <ReceiptsDashboard items={items} onDelete={onDeletItems} date={date} />
           </TabsContent>
         </Tabs>
       )}

@@ -10,6 +10,7 @@ import { CardDonutChart } from '@/shared/components/tremor/CardDonutChart';
 import { getCategoryStats } from './utils/getCategoryStats';
 import { getShopStats } from './utils/getShopStats';
 import { getUserStats } from './utils/getUserStats';
+import { DateRange } from 'react-day-picker';
 
 function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
   return items.map((item) => ({
@@ -25,18 +26,20 @@ function transformPurchaseItemsToUsage(items: PurchaseItem[]): Usage[] {
 
 interface ReceiptsDashboardProps<T> {
   items: PurchaseItem[];
+  date: DateRange;
   isPersonal?: boolean;
   onDelete?: (rows: T[]) => void;
 }
 
 export const ReceiptsDashboard = <T,>({
   items,
+  date,
   isPersonal,
   onDelete,
 }: ReceiptsDashboardProps<T>) => {
   return (
     <div className="flex-1 flex flex-col gap-6 mb-12">
-      <DailySpendingBarChart items={items} />
+      <DailySpendingBarChart items={items} date={date} />
       <Tabs defaultValue="categories" className="flex flex-col overflow-hidden">
         <TabsList
           className={`grid flex-1 grid-cols-${!isPersonal ? 3 : 2} max-w-screen-md w-full mx-auto`}

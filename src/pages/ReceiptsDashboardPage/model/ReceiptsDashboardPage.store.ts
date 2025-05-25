@@ -16,6 +16,9 @@ const $items = createStore<PurchaseItem[]>([]);
 const $personalItems = createStore<PurchaseItem[]>([]);
 
 const fetchItemsFx = createEffect(async (date: DateRange) => {
+  if (!date.to) date.to = date.from;
+  date.from?.setHours(12);
+  date.to?.setHours(12);
   return await getReceiptItems(date);
 });
 
@@ -58,6 +61,7 @@ sample({
 export {
   $items,
   $personalItems,
+  $date,
   fetchItemsFx,
   onDateChangeEv,
   ReceiptsDashboardPageGate,
