@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from './app/App';
 import './app/styles/index.css';
 
+//@ts-ignore
 import { registerSW } from 'virtual:pwa-register';
 
 registerSW({ immediate: true });
