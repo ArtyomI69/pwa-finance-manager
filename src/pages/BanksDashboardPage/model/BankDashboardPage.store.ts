@@ -43,7 +43,10 @@ const addSberbankStatementFx = createEffect(async (file: File) => {
   }
   const bankStatementText = text.split('Расшифровка операций')[1];
   const transactions = extractTransactions(bankStatementText);
-  await addTransactions(transactions);
+  const { error } = await toastLoading(addTransactions, transactions);
+  if (!error) {
+    toast.success('Выписка из банка успешно добавлена');
+  }
 });
 
 sample({ clock: onDateChangeEv, target: $date });
