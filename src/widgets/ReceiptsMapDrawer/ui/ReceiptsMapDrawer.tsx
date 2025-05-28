@@ -77,7 +77,7 @@ export const ReceiptsMapDrawer = () => {
               Персональное
             </TabsTrigger>
             <TabsTrigger value="group" onClick={onOpenGroupTab}>
-              Груповое
+              Групповое
             </TabsTrigger>
           </TabsList>
           <TabsContent value="personal" className="flex-1 overflow-y-scroll">

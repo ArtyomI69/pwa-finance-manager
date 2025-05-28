@@ -48,7 +48,7 @@ export default function BanksDashboardPage() {
           <Tabs defaultValue="personal" className="flex flex-col overflow-hidden">
             <TabsList className="grid flex-1 grid-cols-2">
               <TabsTrigger value="personal">Персональное</TabsTrigger>
-              <TabsTrigger value="group">Груповое</TabsTrigger>
+              <TabsTrigger value="group">Групповое</TabsTrigger>
             </TabsList>
             <TabsContent value="personal" className="flex-1">
               <BanksDashboard items={personalItems} isPersonal onDelete={onDeletItems} />
