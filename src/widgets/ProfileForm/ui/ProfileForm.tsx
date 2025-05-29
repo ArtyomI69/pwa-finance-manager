@@ -69,9 +69,8 @@ export function ProfileForm() {
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (!files) return;
 
-    const file = files[0];
+    const file = files![0];
 
     updateProfilePhotoEv(file);
   };

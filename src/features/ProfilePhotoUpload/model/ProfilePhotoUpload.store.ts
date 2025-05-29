@@ -13,6 +13,7 @@ const deleteOldProfilePhotoEv = createEvent<string>();
 const deleteCurrentProfilePhotoEv = createEvent();
 
 const updateProfilePhotoFx = createEffect(async (file: File) => {
+  console.log($profileImage);
   const oldProfileImageFileName = getLastItemUrl($profileImage.getState());
 
   const filename = `avatar_${Date.now()}.png`;
