@@ -29,41 +29,6 @@ export default defineConfig({
       includeAssets: ['robots.txt'],
       workbox: {
         globPatterns: ['**/*.{html,css,js,ico,png,svg,jpg}'],
-        runtimeCaching: [
-          {
-            urlPattern: /\/auth\/.*/i, // Регулярное выражение для API endpoints
-            handler: 'CacheFirst', // Стратегия кэширования
-            options: {
-              cacheName: 'api-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24, // 1 день
-              },
-            },
-          },
-          {
-            urlPattern: /\/rest\/.*/i, // Регулярное выражение для API endpoints
-            handler: 'CacheFirst', // Стратегия кэширования
-            options: {
-              cacheName: 'api-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24, // 1 день
-              },
-            },
-          },
-          {
-            urlPattern: /\/storage\/.*/i, // Пример для статических файлов
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'static-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 дней
-              },
-            },
-          },
-        ],
       },
       manifest,
     }),
