@@ -32,26 +32,24 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /\/auth\/.*/i, // Регулярное выражение для API endpoints
-            handler: 'NetworkFirst', // Стратегия кэширования
+            handler: 'CacheFirst', // Стратегия кэширования
             options: {
               cacheName: 'api-cache',
               expiration: {
                 maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24, // 1 день
               },
-              networkTimeoutSeconds: 10, // Таймаут для NetworkFirst стратегии
             },
           },
           {
             urlPattern: /\/rest\/.*/i, // Регулярное выражение для API endpoints
-            handler: 'NetworkFirst', // Стратегия кэширования
+            handler: 'CacheFirst', // Стратегия кэширования
             options: {
               cacheName: 'api-cache',
               expiration: {
                 maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24, // 1 день
               },
-              networkTimeoutSeconds: 10, // Таймаут для NetworkFirst стратегии
             },
           },
           {
