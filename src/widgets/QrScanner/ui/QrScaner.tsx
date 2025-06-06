@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import QrScan from 'qr-scanner';
-import { getQrCodeDataEv } from '../model/QrScanner.store';
+import { getQrCodeDataEv, QrScannerGate } from '../model/QrScanner.store';
+import { useGate } from 'effector-react';
 
 export const QrScanner = () => {
+  useGate(QrScannerGate);
   const videoRef = useRef<HTMLVideoElement>(null);
   const scannerRef = useRef<QrScan | null>(null);
 

@@ -3,6 +3,8 @@ import { Map, ChartBarDecreasing } from 'lucide-react';
 import { BentoCard } from '@/shared/components/magicui/bento-grid';
 import { Link } from 'react-router-dom';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { useGate } from 'effector-react';
+import { QrScannerGate } from '@/widgets/QrScanner';
 
 const features = [
   {
@@ -27,6 +29,7 @@ const features = [
 ];
 
 function ReceiptsPage() {
+  useGate(QrScannerGate);
   return (
     <div className="flex-1 flex flex-col gap-4 px-4 py-8 md:py-20">
       {features.map((feature) => (
