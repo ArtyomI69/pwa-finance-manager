@@ -14,8 +14,18 @@ import {
   onDateChangeEv,
 } from '../model/BankDashboardPage.store';
 import { UploadBankStatement } from '@/features/UploadBankStatement';
+import { $isOnline } from '@/entities/OnlineStatus';
+import { toast } from 'sonner';
+import { useEffect } from 'react';
 
 export default function BanksDashboardPage() {
+  const isOnline = useUnit($isOnline);
+
+  useEffect(() => {
+    if (!isOnline)
+      toast.info('Для просмотра информации на данной страницы необходимо интернет соединение');
+  }, []);
+
   useGate(BankDashboardPageGate);
   const items = useUnit($transactions);
   const personalItems = useUnit($personalTransactions);

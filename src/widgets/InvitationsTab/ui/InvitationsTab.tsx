@@ -21,8 +21,8 @@ import { Check, X } from 'lucide-react';
 
 export const InvitationsTab = () => {
   useGate(InvitationsTabGate);
+  const invitations = useUnit($invitations) ?? [];
   const loading = useUnit(getInvitationsFx.pending);
-  const invitations = useUnit($invitations);
 
   if (loading) return <ThreeDotSimpleLoader />;
 

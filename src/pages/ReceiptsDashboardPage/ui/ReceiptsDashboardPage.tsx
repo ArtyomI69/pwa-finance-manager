@@ -14,8 +14,18 @@ import {
 } from '../model/ReceiptsDashboardPage.store';
 import { FullScreenLoader } from '@/shared/components/ui/FullScreenLoader';
 import { PurchaseItem } from '@/shared/types/shopGroup';
+import { $isOnline } from '@/entities/OnlineStatus';
+import { toast } from 'sonner';
+import { useEffect } from 'react';
 
 const ReceiptsDashboardPage = () => {
+  const isOnline = useUnit($isOnline);
+
+  useEffect(() => {
+    if (!isOnline)
+      toast.info('Для просмотра информации на данной страницы необходимо интернет соединение');
+  }, []);
+
   useGate(ReceiptsDashboardPageGate);
   const date = useUnit($date);
   const items = useUnit($items);

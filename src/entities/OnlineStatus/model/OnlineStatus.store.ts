@@ -6,7 +6,7 @@ const OnlineStatusGate = createGate();
 
 const setOnlineStatusEv = createEvent<boolean>();
 
-const $isOnline = createStore<boolean>(true);
+const $isOnline = createStore<boolean>(navigator.onLine);
 
 const subscribeToOnlineStatusFx = createEffect(async () => {
   window.addEventListener('online', () => {
