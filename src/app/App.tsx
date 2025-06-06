@@ -6,8 +6,10 @@ import AppRouter from './providers/router/ui/AppRouter';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { useGate } from 'effector-react';
 import { AuthGate } from '@/features/Auth';
+import { OnlineStatusGate } from '@/entities/OnlineStatus';
 
 export const App = () => {
+  useGate(OnlineStatusGate);
   useGate(AuthGate);
 
   const location = useLocation();
